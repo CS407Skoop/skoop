@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import SkoopNavbar from './components/SkoopNavbar/SkoopNavbar';
+import MapPane from './components/mapPane/mapPane';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
 import './App.css';
+import { store } from './store';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+    render() {
+        const test = store.getState().test;
+        console.log(test);
+      return (
+          <div id="mainPageDiv">
+              <div className="navbarDiv">
+                  <SkoopNavbar />
+
+              </div>
+              <Grid fluid>
+                  <Row className="showGrid">
+                      <Col lg={12}> <MapPane /> </Col>
+                  </Row>
+              </Grid>
       </div>
     );
   }

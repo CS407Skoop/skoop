@@ -1,0 +1,12 @@
+.rightPaneDiv {
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    height: 87vh;
+    display: flex;
+}
+
+.col-lg-2, .col-lg-3, .col-lg-7 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}

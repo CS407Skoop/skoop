@@ -3,12 +3,27 @@ import Navbar from 'react-bootstrap/lib/Navbar';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Nav from 'react-bootstrap/lib/Nav';
 import './SkoopNavbar.scss';
+import { store } from '../../store';
+import { openLogInModal } from '../../actions';
 
 
 class SkoopNavbar extends Component {
+
+
+
+    handleNavbarSelect(selectedKey) {
+        if (selectedKey === 1) {
+            
+            store.dispatch(openLogInModal());
+
+         
+        }
+    }
+
     render() {
+       
         return (
-            <Navbar>
+            <Navbar onSelect={this.handleNavbarSelect.bind(this)}>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="#home">Skoop</a>

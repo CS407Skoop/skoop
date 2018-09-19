@@ -5,10 +5,12 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import LeftPane from '../leftPane/leftPane';
 import RightPane from '../rightPane/rightPane';
+import { store } from '../../store';
 
 
 class MapPane extends Component {
     render() {
+        console.log(store.getState());
         return (
             <div className="mapDiv">
                 <Grid fluid>

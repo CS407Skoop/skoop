@@ -9,8 +9,8 @@ import { store } from './store';
 
 class App extends Component {
     render() {
-        const test = store.getState().test;
-        console.log(test);
+        //const test = store.getState().test;
+        console.log(store.getState());
       return (
           <div id="mainPageDiv">
               <div className="navbarDiv">

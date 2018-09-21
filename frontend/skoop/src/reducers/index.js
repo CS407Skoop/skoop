@@ -1,9 +1,10 @@
 export default (state, action) => {
     switch (action.type) {
-        case 'OPEN_LOGIN_MODAL':
+        case 'SHOW_LOGIN_MODAL':
             return {
                 ...state,
-                logInModal: true
+                showLogInModal: true,
+                openOptions: false
             };
         default:
             return state;

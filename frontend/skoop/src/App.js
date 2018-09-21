@@ -4,6 +4,7 @@ import MapPane from './components/mapPane/mapPane';
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
+import  UserOptionsModal  from './components/userOptionsModal/userOptionsModal';
 import './App.css';
 import { store } from './store';
 
@@ -11,15 +12,17 @@ class App extends Component {
     render() {
         //const test = store.getState().test;
         console.log(store.getState());
-      return (
-          <div id="mainPageDiv">
+        return (
+            
+            <div id="mainPageDiv">
+                
               <div className="navbarDiv">
                   <SkoopNavbar />
 
               </div>
               <Grid fluid>
                   <Row className="showGrid">
-                      <Col lg={12}> <MapPane /> </Col>
+                        <Col lg={12}> <UserOptionsModal /> </Col>
                   </Row>
               </Grid>
       </div>

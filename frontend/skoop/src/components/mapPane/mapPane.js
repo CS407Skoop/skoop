@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/lib/Col';
 import LeftPane from '../leftPane/leftPane';
 import RightPane from '../rightPane/rightPane';
 import { store } from '../../store';
+import GoogleMap from './GoogleMap';
 
 
 class MapPane extends Component {
@@ -16,7 +17,7 @@ class MapPane extends Component {
                 <Grid fluid>
                     <Row className="showGrid">
                         <Col lg={2}> <LeftPane /> </Col>
-                        <Col lg={7}>    Map Pane goes here. </Col>
+                        <Col lg={7}>    <GoogleMap/> </Col>
                         <Col lg={3}> <RightPane /> </Col>
                     </Row>    
                 </Grid>

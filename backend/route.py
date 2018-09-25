@@ -2,9 +2,10 @@ from flask import Flask
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 import json
 from flask import Response
+from app import app
+from models import User
 
-app = Flask(__name__)
-FlaskJSON(app)
+'''FlaskJSON(app)'''
 
 @app.route('/')
 def home():
@@ -12,6 +13,8 @@ def home():
 
 @app.route('/api/login/')
 def login():
+    return 'LOGIN'
+    '''
     data = {
         'LOGIN'  : '1',
         'message' : 'SUCCESS',
@@ -22,9 +25,12 @@ def login():
 
     resp = Response(js, status=200, mimetype='application/json')
     return resp
+    '''
 
 @app.route('/api/signup/')
 def signup():
+    return 'SIGNUP'
+    '''
     data = {
         'SIGNUP'  : '1',
         'message' : 'SUCCESS',
@@ -35,3 +41,4 @@ def signup():
 
     resp = Response(js, status=200, mimetype='application/json')
     return resp
+    '''

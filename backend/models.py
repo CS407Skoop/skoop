@@ -1,5 +1,16 @@
-Base = declarative_base()
+from app import db
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(15), nullable=False)
+    last_name = db.Column(db.String(15), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(32), nullable=False)
+
+    def __repr__(self):
+            return self.first_name + " " + self.last_name + " " + self.email + " " + self.password
+
+'''
 class User(Base):
     __tablename__ = 'user'
 
@@ -10,9 +21,9 @@ class User(Base):
     password = Column(String(32), nullable=False)
     country = Column(String(50), nullable=True)
 
-    '''
+    
     Add another column for preferences. Figure out how to store it.
-    '''
+    
 
     errors = []
     def __repr__(self):
@@ -40,19 +51,12 @@ class User(Base):
             self.errors.append("Invalid email formatting")
 
         if(password):
-            '''
+            
             Add encryption before saving password in future
-            '''
+            
 
             self.password = password
         else:
             self.password = None
             self.errors.append("Invalid password formatting")
-
-        if(phone and re.match("^[0-9]{10}$", phone)):
-            self.phone = phone
-        else:
-            self.phone = None
-            self.errors.append("Invalid phone formatting")
-
-        self.country = country
+'''

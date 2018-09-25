@@ -8,30 +8,43 @@ from app import db
 
 FlaskJSON(app)
 
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     print(request.get_json())
     return 'HOME'
 
-@app.route('/api/login/')
+
+@app.route('/api/login/', methods=['GET', 'POST'])
 def login():
-    return 'LOGIN'
-    '''
-    data = {
-        'LOGIN'  : '1',
-        'message' : 'SUCCESS',
-        'prefences' : 'New York, Chicago, Boston`'
+    data = request.get_json()
 
-    }
-    js = json.dumps(data)
+    username = data['username']
+    password = data['password']
 
-    resp = Response(js, status=200, mimetype='application/json')
-    return resp
-    '''
+    User
+    user = User.query.filter_by(email=username, password=password).first()
+
+    if user is None :
+        ret = {
+            'message': 'Failure'
+        }
+        js = json.dumps(ret)
+        resp = Response(js, status=200, mimetype='application/json')
+        return resp
+    else :
+        ret = {
+            'message': 'SUCCESS',
+            'firstName': user.first_name,
+            'lastName': user.last_name
+
+        }
+        js = json.dumps(ret)
+        resp = Response(js, status=200, mimetype='application/json')
+        return resp
 
 @app.route('/api/signup/', methods=['GET', 'POST'])
 def signup():
-
     data = request.get_json()
 
     firstName = data['firstName']
@@ -43,15 +56,13 @@ def signup():
     db.session.add(user)
     db.session.commit()
 
-
     ret = {
-        'message' : 'SUCCESS',
+        'message': 'SUCCESS',
         'firstName': firstName,
-        'lastName' : lastName
+        'lastName': lastName
 
     }
-    js = json.dumps(data)
+    js = json.dumps(ret)
 
     resp = Response(js, status=200, mimetype='application/json')
     return resp
-    

@@ -4,6 +4,7 @@ import json
 from flask import Response
 from app import app
 from models import User
+from app import db
 
 FlaskJSON(app)
 
@@ -28,7 +29,7 @@ def login():
     return resp
     '''
 
-@app.route('/api/signup/')
+@app.route('/api/signup/', methods=['GET', 'POST'])
 def signup():
 
     data = request.get_json()

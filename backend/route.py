@@ -1,14 +1,15 @@
-from flask import Flask
+from flask import Flask, request, url_for
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 import json
 from flask import Response
 from app import app
 from models import User
 
-'''FlaskJSON(app)'''
+FlaskJSON(app)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
+    print(request.get_json())
     return 'HOME'
 
 @app.route('/api/login/')
@@ -29,16 +30,27 @@ def login():
 
 @app.route('/api/signup/')
 def signup():
-    return 'SIGNUP'
-    '''
-    data = {
-        'SIGNUP'  : '1',
+
+    data = request.get_json()
+
+    firstName = data['firstName']
+    lastName = data['lastName']
+    username = data['username']
+    password = data['password']
+
+    user = User(firstName, lastName, username, password)
+    db.session.add(user)
+    db.session.commit()
+
+
+    ret = {
         'message' : 'SUCCESS',
-        'prefences' : 'New York, Chicago, Boston`'
+        'firstName': firstName,
+        'lastName' : lastName
 
     }
     js = json.dumps(data)
 
     resp = Response(js, status=200, mimetype='application/json')
     return resp
-    '''
+    

@@ -13,6 +13,12 @@ export const openSignUpModal = () => {
 }
 
 export const enterGuestMode = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+        console.log(position);
+        var pos = position;
+        store.dispatch(sendUserLocation(pos));
+
+    })
     return {
         type: 'ENTER_GUEST_MODE'
     }
@@ -114,6 +120,12 @@ export const signUpSubmit = () => {
         lastName: lastName
     })
     console.log(jsonToSend);
+    navigator.geolocation.getCurrentPosition(position => {
+        console.log(position);
+        var pos = position;
+        store.dispatch(sendUserLocation(pos));
+
+    })
     return {
         type: 'SIGN_UP_SUBMIT',
     }

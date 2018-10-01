@@ -103,6 +103,25 @@ export const logInSubmit = () => {
     const currentStore = store.getState();
     var email = currentStore.signInUserEmail;
     var password = currentStore.signInPassword;
+    if(!email || email.length===0) {
+        alert('Email cannot be left empty')
+        return {
+            type: 'LOG_IN_FAILURE'
+        }
+    }
+    if(!password || password.length===0) {
+        alert('Password cannot be left empty')
+        return {
+            type: 'LOG_IN_FAILURE'
+        }
+    }
+
+    if(!validateEmail(email)) {
+            alert("Invalid Email");
+            return {
+                type: 'LOG_IN_FAILURE',
+            }
+        }
     var jsonToSend = JSON.stringify({
         username: email,
         password: password
@@ -150,18 +169,93 @@ export const logInSubmit = () => {
         }
   }
 
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 export const signUpSubmit = () => {
+
+
     const currentStore = store.getState();
     var email = currentStore.signUpUserEmail;
-    var password = currentStore.signUpPassword;
+        var password = currentStore.signUpPassword;
+        if(!email || email.length===0) {
+            alert('Email cannot be left empty')
+            return {
+                type: 'SIGN_UP_FAILURE'
+            }
+        }
+        if(!password || password.length===0) {
+            alert('Password cannot be left empty')
+            return {
+                type: 'SIGN_UP_FAILURE'
+            }
+        }
+
+        if(!validateEmail(email)) {
+                alert("Invalid Email");
+                return {
+                    type: 'SIGN_UP_FAILURE',
+                }
+            }
+    var confirmPassword = currentStore.signUpConfirmPassword;
+    if(!confirmPassword || confirmPassword.length===0) {
+                alert('Password cannot be left empty')
+                return {
+                    type: 'SIGN_UP_FAILURE'
+                }
+            }
+
+    if(confirmPassword !== password) {
+        alert('Passwords do not match')
+        return {
+            type: 'SIGN_UP_FAILURE'
+        }
+    }
+
+
     var firstName = currentStore.signUpFirstName;
     var lastName = currentStore.signUpLastName;
+
+    if(!firstName || firstName.length===0) {
+                alert('First Name cannot be left empty')
+                return {
+                    type: 'SIGN_UP_FAILURE'
+                }
+            }
+
+     if(!lastName || lastName.length===0) {
+                 alert('Last Name cannot be left empty')
+                 return {
+                     type: 'SIGN_UP_FAILURE'
+                 }
+             }
+
+
+    if (!/[^a-zA-Z]/.test(firstName)) {
+
+        alert('First Name can only contain letters')
+        return {
+                    type: 'SIGN_UP_FAILURE'
+                }
+    }
+
+    if (!/[^a-zA-Z]/.test(lastName)) {
+
+            alert('Last Name can only contain letters')
+            return {
+                        type: 'SIGN_UP_FAILURE'
+                    }
+        }
+
     var jsonToSend = JSON.stringify({
         username: email,
         password: password,
         firstName: firstName,
         lastName: lastName
     })
+
     var request = new Request('http://127.0.0.1:5000/api/signup/', {
               method: 'POST',
               headers: {

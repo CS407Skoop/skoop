@@ -39,7 +39,11 @@ def login():
         ret = {
             'message': 'SUCCESS',
             'firstName': user.first_name,
-            'lastName': user.last_name
+            'lastName': user.last_name,
+            'email': username,
+            'favoriteLocations': ['Jaipur', 'Mumbai', 'West Lafayette'],
+            'favoriteArticles':['Test1', 'Test2', 'Test3'],
+            'categories': ['sports', 'climate', 'politics', 'breaking', 'technology', 'entertainment']
 
         }
         js = json.dumps(ret)
@@ -55,16 +59,30 @@ def signup():
     username = data['username']
     password = data['password']
 
-    user = User(firstName, lastName, username, password)
-    db.session.add(user)
-    db.session.commit()
+    user = User.query.filter_by(email=username, password=password).first()
+    if user is None:
 
-    ret = {
-        'message': 'SUCCESS',
-        'firstName': firstName,
-        'lastName': lastName
+        user = User(firstName, lastName, username, password)
+        db.session.add(user)
+        db.session.commit()
 
-    }
+        ret = {
+            'message': 'SUCCESS',
+            'firstName': firstName,
+            'lastName': lastName,
+            'categories': ['sports', 'climate', 'politics', 'breaking', 'technology', 'entertainment'],
+            'email': username,
+
+
+        }
+    else:
+
+        ret = {
+            'message': 'User Already Exists',
+            'method': 'signup'
+        }
+
+
     js = json.dumps(ret)
 
     resp = Response(js, status=200, mimetype='application/json')

@@ -97,7 +97,14 @@ export default (state, action) => {
                 ...state,
                 openOptions: true,
                 userLoggedIn: false,
-                showMainScren: false
+                showMainScreen: false,
+                firstName: '',
+                lastName: '',
+                                            email: '',
+                                            favoriteLocations: '',
+                                            favoriteArticles: '',
+                                            categories: ''
+
             }
         case 'SET_LOADING_TRUE':
             return {
@@ -115,7 +122,11 @@ export default (state, action) => {
             return {
                 ...state,
                 firstName: action.payload.firstName,
-                lastName: action.payload.lastName
+                lastName: action.payload.lastName,
+                                            email: action.payload.email,
+                                            favoriteLocations: action.payload.favoriteLocations,
+                                            favoriteArticles: action.payload.favoriteArticles,
+                                            categories: action.payload.categories
             }
         }
 
@@ -135,7 +146,9 @@ export default (state, action) => {
             return {
                             ...state,
                             firstName: action.payload.firstName,
-                            lastName: action.payload.lastName
+                            lastName: action.payload.lastName,
+                                            email: action.payload.email,
+                            categories: action.payload.categories
                         }
          case 'SIGN_UP_FAILURE':
             return {
@@ -148,6 +161,7 @@ export default (state, action) => {
                                 showMainScreen: false,
                                 userLoggedIn: false
             }
+
         default:
             return state;
     }

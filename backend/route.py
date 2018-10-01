@@ -1,4 +1,5 @@
 from flask import Flask, request, url_for
+from flask_cors import CORS, cross_origin
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 import json
 from flask import Response
@@ -7,6 +8,7 @@ from models import User
 from app import db
 
 FlaskJSON(app)
+CORS(app)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -16,6 +18,7 @@ def home():
 
 
 @app.route('/api/login/', methods=['GET', 'POST'])
+@cross_origin()
 def login():
     data = request.get_json()
 

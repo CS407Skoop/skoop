@@ -18,7 +18,7 @@ class GoogleMap extends Component {
 
     render() {
         if (store.getState().position) {
-            console.log(store.getState().position)
+            //console.log(store.getState().position)
             const defaultProps = {
                 defaultCenter: {
                     lat: 40.424546,

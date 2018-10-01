@@ -33,7 +33,7 @@ class SkoopNavbar extends Component {
     }
 
     render() {
-        console.log(store.getState().userLoggedIn)
+        //console.log(store.getState().userLoggedIn)
         if (store.getState().userLoggedIn == false) {
             return (
                 <Navbar onSelect={this.handleNavbarSelect.bind(this)}>

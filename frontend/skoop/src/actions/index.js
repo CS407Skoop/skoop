@@ -95,6 +95,19 @@ export const logInSubmit = () => {
         password: password
     })
     console.log(jsonToSend);
+    var request = new Request('http://127.0.0.1:5000/api/login/', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: jsonToSend
+        });
+    fetch(request).then(function(response){
+        response.text().then(function(text) {
+            console.log(text);
+        })
+    })
     navigator.geolocation.getCurrentPosition(position => {
         console.log(position);
         var pos = position;

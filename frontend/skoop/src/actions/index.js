@@ -67,6 +67,19 @@ export const signUpLastNameChange = (lastName) => {
     }
 }
 
+export const setLoadingTrue = () => {
+    return {
+        type: 'SET_LOAD_TRUE',
+    }
+}
+
+export const sendUserLocation = (position) => {
+    return {
+        type: 'SEND_USER_POSITION',
+        payload: position
+    }
+}
+
 export const logInSubmit = () => {
     const currentStore = store.getState();
     var email = currentStore.signInUserEmail;
@@ -76,10 +89,17 @@ export const logInSubmit = () => {
         password: password
     })
     console.log(jsonToSend);
+    navigator.geolocation.getCurrentPosition(position => {
+        console.log(position);
+        var pos = position;
+        store.dispatch(sendUserLocation(pos));
+        
+        })
     return {
         type: 'LOG_IN_SUBMIT',
     }
-}
+    }
+    
 
 export const signUpSubmit = () => {
     const currentStore = store.getState();
@@ -102,5 +122,11 @@ export const signUpSubmit = () => {
 export const initialModalOptions = () => {
     return {
         type: 'INITIAL_ENTRY_OPTIONS'
+    }
+}
+
+export const logUserOut = () => {
+    return {
+        type: 'LOG_USER_OUT'
     }
 }

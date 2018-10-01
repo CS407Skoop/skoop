@@ -77,7 +77,7 @@ export default (state, action) => {
                 showLogInModal: false,
                 openOptions: false,
                 showSignUpModal: false,
-                enterGuestMode: false,
+                enterGuestMode: true,
                 showMainScreen: true,
                 userLoggedIn: false
             }
@@ -91,8 +91,26 @@ export default (state, action) => {
                     enterGuestMode: false,
                     showMainScreen: true,
                     userLoggedIn: true
-                }
-            
+            }
+        case 'LOG_USER_OUT':
+            return {
+                ...state,
+                openOptions: true,
+                userLoggedIn: false,
+                showMainScren: false
+            }
+        case 'SET_LOADING_TRUE':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'SEND_USER_POSITION': {
+            console.log(action.payload)
+            return {
+                ...state,
+                position: action.payload
+            }
+        }
         default:
             return state;
     }

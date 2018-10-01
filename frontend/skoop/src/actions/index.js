@@ -86,6 +86,19 @@ export const sendUserLocation = (position) => {
     }
 }
 
+export const storeUserLogInDetails = (userDetails) => {
+    return {
+        type: 'STORE_USER_DETAILS',
+        payload: userDetails
+    }
+}
+
+export const logInFailure = () => {
+    return {
+        type: 'LOG_IN_FAILURE'
+    }
+}
+
 export const logInSubmit = () => {
     const currentStore = store.getState();
     var email = currentStore.signInUserEmail;
@@ -94,7 +107,7 @@ export const logInSubmit = () => {
         username: email,
         password: password
     })
-    console.log(jsonToSend);
+    //console.log(jsonToSend);
     var request = new Request('http://127.0.0.1:5000/api/login/', {
           method: 'POST',
           headers: {
@@ -105,11 +118,16 @@ export const logInSubmit = () => {
         });
     fetch(request).then(function(response){
         response.text().then(function(text) {
-            console.log(text);
+            var objReceived = JSON.parse(text);
+            if(objReceived.message === 'SUCCESS')
+                store.dispatch(storeUserLogInDetails(objReceived));
+            else {
+                alert('Invalid credentials. Try logging in again')
+                store.dispatch(logInFailure());
+            }
         })
     })
     navigator.geolocation.getCurrentPosition(position => {
-        console.log(position);
         var pos = position;
         store.dispatch(sendUserLocation(pos));
         
@@ -118,12 +136,24 @@ export const logInSubmit = () => {
         type: 'LOG_IN_SUBMIT',
     }
     }
-    
+
+  export const signUpFailure = () => {
+       return {
+          type: 'SIGN_UP_FAILURE'
+       }
+  }
+
+  export const storeUserSignUpDetails =  (userDetails) => {
+        return {
+            type: 'STORE_SIGNUP_DETAILS',
+            payload: userDetails
+        }
+  }
 
 export const signUpSubmit = () => {
     const currentStore = store.getState();
-    var email = currentStore.signInUserEmail;
-    var password = currentStore.signInPassword;
+    var email = currentStore.signUpUserEmail;
+    var password = currentStore.signUpPassword;
     var firstName = currentStore.signUpFirstName;
     var lastName = currentStore.signUpLastName;
     var jsonToSend = JSON.stringify({
@@ -132,6 +162,26 @@ export const signUpSubmit = () => {
         firstName: firstName,
         lastName: lastName
     })
+    var request = new Request('http://127.0.0.1:5000/api/signup/', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: jsonToSend
+            });
+        fetch(request).then(function(response){
+            response.text().then(function(text) {
+                var objReceived = JSON.parse(text);
+                console.log(objReceived);
+                if(objReceived.message === 'SUCCESS')
+                    store.dispatch(storeUserSignUpDetails(objReceived));
+                else {
+                    alert('User already exists. Use a different email or sign in')
+                    store.dispatch(signUpFailure());
+                }
+            })
+        })
     console.log(jsonToSend);
     navigator.geolocation.getCurrentPosition(position => {
         console.log(position);

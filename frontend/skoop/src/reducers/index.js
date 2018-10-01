@@ -105,12 +105,49 @@ export default (state, action) => {
                 loading: true
             }
         case 'SEND_USER_POSITION': {
-            console.log(action.payload)
+
             return {
                 ...state,
                 position: action.payload
             }
         }
+        case 'STORE_USER_DETAILS': {
+            return {
+                ...state,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName
+            }
+        }
+
+        case 'LOG_IN_FAILURE':
+            return {
+                ...state,
+                signInPassword: '',
+                showLogInModal: true,
+                openOptions: false,
+                showSignUpModal: false,
+                enterGuestMode: false,
+                showMainScreen: false,
+                userLoggedIn: false
+
+            }
+         case 'STORE_SIGNUP_DETAILS':
+            return {
+                            ...state,
+                            firstName: action.payload.firstName,
+                            lastName: action.payload.lastName
+                        }
+         case 'SIGN_UP_FAILURE':
+            return {
+                ...state,
+                                signInPassword: '',
+                                showLogInModal: false,
+                                showSignUpModal: true,
+                                openOptions: false,
+                                enterGuestMode: false,
+                                showMainScreen: false,
+                                userLoggedIn: false
+            }
         default:
             return state;
     }

@@ -33,9 +33,9 @@ def login():
             'firstName': user.first_name,
             'lastName': user.last_name,
             'email': username,
-            'favoriteLocations': user.locations,
-            'favoriteArticles': user.articles,
-            'categories': user.categories
+            'favoriteLocations': user.parsePreferences(user.locations),
+            'favoriteArticles': user.parsePreferences(user.articles),
+            'categories': user.parsePreferences(user.categories)
 
         }
         js = json.dumps(ret)
@@ -114,9 +114,9 @@ def editPreferences():
             'firstName': user.first_name,
             'lastName': user.last_name,
             'email': username,
-            'favoriteLocations': user.locations,
-            'favoriteArticles': user.articles,
-            'categories': user.categories
+            'favoriteLocations': user.parsePreferences(user.locations),
+            'favoriteArticles': user.parsePreferences(user.articles),
+            'categories': user.parsePreferences(user.categories)
         }
         js = json.dumps(ret)
         resp = Response(js, status=200, mimetype='application/json')

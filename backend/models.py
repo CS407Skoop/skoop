@@ -21,18 +21,31 @@ class User(db.Model):
             self.email = email
             self.password = password
             self.locations = locations
-            self.articles = topics
+            self.articles = articles
             self.categories = categories
 
     def editPreferences(self, locations='', articles='', categories=''): 
-    
+
+
+        location_array = self.locations.split(',')
+        print(location_array)
+
+        article_array = self.articles.split(',')
+
+
         for location in locations:
-            self.locations += location 
-            self.locations += ","
+
+            if location not in location_array:
+
+                self.locations += location
+                self.locations += ","
 
         for article in articles:
-            self.articles += article
-            self.articles += ","
+
+            if article not in article_array:
+
+                self.articles += article
+                self.articles += ","
 
         for category in categories:
             self.categories += category 
@@ -40,4 +53,8 @@ class User(db.Model):
 
 
     def parsePreferences(self, preference):
-        return "LOL"
+
+        preference_array = preference.split(',')
+        preference_array.pop()
+
+        return preference_array

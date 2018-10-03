@@ -149,7 +149,7 @@ export const logInSubmit = () => {
     navigator.geolocation.getCurrentPosition(position => {
         var pos = position;
         store.dispatch(sendUserLocation(pos));
-        
+
         })
     return {
         type: 'LOG_IN_SUBMIT',
@@ -303,5 +303,17 @@ export const logUserOut = () => {
 export const openLeftPane = () => {
     return {
         type: 'OPEN_LEFT_PANE'
+    }
+}
+
+export const closeLeftPane = () => {
+    return {
+      type: 'CLOSE_LEFT_PANE'
+    }
+}
+
+export const openPreferencesModal = () => {
+    return {
+        type: 'OPEN_PREFERENCES_MODAL'
     }
 }

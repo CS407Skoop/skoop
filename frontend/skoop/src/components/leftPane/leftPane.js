@@ -2,22 +2,38 @@ import React, { Component } from 'react';
 import './leftPane.css';
 import { store } from '../../store';
 import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button } from 'react-bootstrap';
-
+import { closeLeftPane, openPreferencesModal } from '../../actions';
+import  PreferencesModal from '../preferencesModal/preferencesModal';
 
 class LeftPane extends Component {
+    closeLeftPane() {
+        store.dispatch(closeLeftPane());
+    }
+
+    openPreferencesModal() {
+        store.dispatch(openPreferencesModal());
+    }
+
+    showModal() {
+
+        if (store.getState().openPreferencesModal) {
+            return (
+                <PreferencesModal />
+                )
+        }
+        else 
+            return (<div />)
+    }
+
     render() {
         return (
             <div className="leftPaneDiv">
-              <ButtonToolbar>
-                <Button bsStyle="link">Exit</Button>
-                <br />
-                <Button>Edit</Button>
-              </ButtonToolbar>
+                <this.showModal/>
 
               <br /><h1><label>First Last</label><br /><br />
               </h1>
               <ButtonToolbar>
-                <DropdownButton
+                <DropdownButton className="prefs"
                   title="Favorite Locations"
                   id="favoriteLocations"
                 >
@@ -28,7 +44,7 @@ class LeftPane extends Component {
               </ButtonToolbar><br />
 
               <ButtonToolbar>
-                <DropdownButton
+                <DropdownButton className="prefs"
                   title="Favorite Articles"
                   id="favoriteArticles"
                 >
@@ -39,7 +55,7 @@ class LeftPane extends Component {
               </ButtonToolbar><br />
 
               <ButtonToolbar>
-                <DropdownButton
+                <DropdownButton className="prefs"
                   title="Categories"
                   id="Categories"
                 >
@@ -51,6 +67,11 @@ class LeftPane extends Component {
                   <MenuItem eventKey="6">Entertainment</MenuItem>
                 </DropdownButton>
               </ButtonToolbar><br />
+
+              <ButtonToolbar>
+                    <Button onClick={this.openPreferencesModal}>Edit</Button>
+                <Button onClick={this.closeLeftPane}>Exit</Button>
+              </ButtonToolbar>
 
 {/*              <ListGroup>Favorite Locations
                 <ListGroupItem bsStyle="info">Jaipur</ListGroupItem>

@@ -70,7 +70,8 @@ export default (state, action) => {
                 enterGuestMode: false,
                 showMainScreen: true,
                 userLoggedIn: true,
-                openLeftPane: false
+                openLeftPane: false,
+                allCategories: ['Sports', 'Technology', 'Climate', 'Politics', 'Breaking', 'Entertainment']
             }
         case 'ENTER_GUEST_MODE':
             return {
@@ -93,7 +94,8 @@ export default (state, action) => {
                     enterGuestMode: false,
                     showMainScreen: true,
                     userLoggedIn: true,
-                    openLeftPane: false
+                    openLeftPane: false,
+                    allCategories: ['Sports', 'Technology', 'Climate', 'Politics', 'Breaking', 'Entertainment']
             }
         case 'LOG_USER_OUT':
             return {
@@ -180,6 +182,11 @@ export default (state, action) => {
                 ...state,
                 openPreferencesModal: true
             }
+        case 'CLOSE_PREFERENCES_MODAL':
+            return {
+                ...state,
+                openPreferencesModal: false
+            }   
         default:
             return state;
 

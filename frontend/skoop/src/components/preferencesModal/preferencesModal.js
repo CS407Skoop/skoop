@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { Form, Col, FormControl, Modal, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 import {
-    
+    closePrefModal
 } from '../../actions';
 import { store } from '../../store';
 import Select from 'react-select';
 import { countries } from './countries';
+import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 
 class PreferencesModal extends Component {
 
-    
+    closeModal() {
+        store.dispatch(closePrefModal())
+    }
+
     render() {
+        
+
         return (
             <Modal bsSize="lg"
                 show={true}
@@ -26,8 +32,14 @@ class PreferencesModal extends Component {
                             <Col componentClass={ControlLabel} sm={2}>
                                 Favorite Locations
                             </Col>
-                            <Col sm={10}>
-                                <FormControl type="text" placeholder="Location" />
+                            <Col sm={3}>
+                                <Select options={countries} />
+                            </Col>
+                            <Col sm={3}>
+                                <Select options={countries} />
+                            </Col>
+                            <Col sm={3}>
+                                <Select options={countries} />
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="categories">
@@ -44,7 +56,7 @@ class PreferencesModal extends Component {
                                 <Button bsStyle="primary" >Submit</Button>
                             </Col>
                             <Col smOffset={6} sm={2}>
-                                <Button >Cancel</Button>
+                                <Button onClick={this.closeModal} >Cancel</Button>
 
                             </Col>
                         </FormGroup>

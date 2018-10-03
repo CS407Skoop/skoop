@@ -317,3 +317,9 @@ export const openPreferencesModal = () => {
         type: 'OPEN_PREFERENCES_MODAL'
     }
 }
+
+export const closePrefModal = () => {
+    return {
+        type: 'CLOSE_PREFERENCES_MODAL'
+    }
+}

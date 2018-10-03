@@ -311,3 +311,15 @@ export const closeLeftPane = () => {
       type: 'CLOSE_LEFT_PANE'
     }
 }
+
+export const showLogOutModal = () => {
+    return {
+      type: 'SHOW_LOGOUT_MODAL'
+    }
+}
+
+export const removeLogOutModal = () => {
+    return {
+      type: 'REMOVE_LOGOUT_MODAL'
+    }
+}

@@ -106,7 +106,9 @@ export default (state, action) => {
                                             email: '',
                                             favoriteLocations: '',
                                             favoriteArticles: '',
-                                            categories: ''
+                                            categories: '',
+                                            showLogOutModal: false
+
 
             }
         case 'SET_LOADING_TRUE':
@@ -170,14 +172,28 @@ export default (state, action) => {
                 openLeftPane: true
             }
 
+        case 'CLOSE_LEFT_PANE':
+            return {
+                ...state,
+                openLeftPane: false
+            }
+
+        case 'SHOW_LOGOUT_MODAL':
+            return {
+                ...state,
+                showLogOutModal: true
+            }
+
+        case 'REMOVE_LOGOUT_MODAL':
+            return {
+                ...state,
+                showLogOutModal: false
+            }
+
         default:
             return state;
 
-        case 'CLOSE_LEFT_PANE':
-            return {
-              ...state,
-              openLeftPane: false
-        }
+
     }
 
 }

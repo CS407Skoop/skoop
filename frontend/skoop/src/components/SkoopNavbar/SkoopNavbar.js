@@ -4,7 +4,7 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Nav from 'react-bootstrap/lib/Nav';
 import './SkoopNavbar.scss';
 import { store } from '../../store';
-import { openLogInModal, openSignUpModal, logUserOut, enterGuestMode } from '../../actions';
+import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode } from '../../actions';
 
 
 class SkoopNavbar extends Component {
@@ -24,7 +24,7 @@ class SkoopNavbar extends Component {
         }
 
         if (selectedKey === 3) {
-            store.dispatch(logUserOut());
+            store.dispatch(showLogOutModal());
         }
 
         if (selectedKey === 4) {
@@ -33,6 +33,7 @@ class SkoopNavbar extends Component {
     }
 
     render() {
+
         //console.log(store.getState().userLoggedIn)
         if (store.getState().userLoggedIn == false) {
             return (

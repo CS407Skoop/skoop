@@ -6,7 +6,7 @@ from flask import Response
 from app import app
 from models import User
 from app import db
-improt validation
+import validation
 
 FlaskJSON(app)
 CORS(app)
@@ -118,9 +118,10 @@ def editPreferences():
 @app.route('/api/validate/<hash>', methods=['GET', 'POST'])
 @cross_origin()
 def validate(hash):
-    data = request.get_json()
-    decoded_output = validate_hash()
-    user = User.query.filter_by(email=username).first()
+    #data = request.get_json()
+    #print(hash)
+    decoded_output = validation.validate_hash(hash)
+    user = User.query.filter_by(email=decoded_output).first()
 
     if user is None :
         ret = {

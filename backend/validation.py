@@ -36,10 +36,5 @@ def validate_hash(hash):
     return decodeHash(hash)
 
 
-hash = send_validation("ashvinlohiya@gmail.com")
-
-print(validate_hash(hash))
-
-
 
 

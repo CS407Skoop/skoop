@@ -1,5 +1,5 @@
-const K_WIDTH = 40;
-const K_HEIGHT = 40;
+const K_WIDTH = 50;
+const K_HEIGHT = 50;
 
 const GoogleMapsStyle = {
   // initially any map object has left top corner at lat lng coordinates

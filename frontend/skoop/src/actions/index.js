@@ -299,3 +299,9 @@ export const logUserOut = () => {
         type: 'LOG_USER_OUT'
     }
 }
+
+export const openLeftPane = () => {
+    return {
+        type: 'OPEN_LEFT_PANE'
+    }
+}

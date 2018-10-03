@@ -69,7 +69,8 @@ export default (state, action) => {
                 showSignUpModal: false,
                 enterGuestMode: false,
                 showMainScreen: true,
-                userLoggedIn: true
+                userLoggedIn: true,
+                openLeftPane: false
             }
         case 'ENTER_GUEST_MODE':
             return {
@@ -79,7 +80,8 @@ export default (state, action) => {
                 showSignUpModal: false,
                 enterGuestMode: true,
                 showMainScreen: true,
-                userLoggedIn: false
+                userLoggedIn: false,
+                openLeftPane: false,
             }
         case 'LOG_IN_SUBMIT':
             
@@ -90,7 +92,8 @@ export default (state, action) => {
                     showSignUpModal: false,
                     enterGuestMode: false,
                     showMainScreen: true,
-                    userLoggedIn: true
+                    userLoggedIn: true,
+                    openLeftPane: false
             }
         case 'LOG_USER_OUT':
             return {
@@ -160,6 +163,11 @@ export default (state, action) => {
                                 enterGuestMode: false,
                                 showMainScreen: false,
                                 userLoggedIn: false
+            }
+        case 'OPEN_LEFT_PANE':
+            return {
+                ...state,
+                openLeftPane: true
             }
 
         default:

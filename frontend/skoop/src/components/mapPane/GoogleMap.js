@@ -1,20 +1,43 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { store } from '../../store';
+import {openLeftPane} from '../../actions'
 import Loader from 'react-loader-spinner';
 import { GoogleMapsStyle } from './GoogleMapStyles';
 import LeftPane from '../leftPane/leftPane';
-import './googleMap.css'
+import './googleMap.css';
+import LeftPaneButton from '../leftPane/leftPaneButton';
 
 class GoogleMap extends Component {
 
     UserLocation = () => {
-        console.log(this.props)
         return (
             <div style={GoogleMapsStyle}>
-                SP
+                You
             </div>
             )
+    }
+
+
+    leftSide() {
+        console.log(store.getState().openLeftPane)
+        if (store.getState().openLeftPane) {
+            console.log(store.getState().openLeftPane)
+            return (
+                <div className="leftPane">
+                    <LeftPane />
+                </div>
+            )
+        }
+        else {
+
+            return (
+                <div className="leftPaneButton">
+                    <LeftPaneButton />
+                </div>
+                )
+        }
+
     }
 
     render() {
@@ -34,9 +57,7 @@ class GoogleMap extends Component {
             return (
                 // Important! Always set the container height explicitly
                 <div className="mapContainer">
-                    <div className="leftPane">
-                        <LeftPane />
-                    </div>
+                    <this.leftSide />
                     <div className="mapPane">
                         <GoogleMapReact
                             bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo' }}

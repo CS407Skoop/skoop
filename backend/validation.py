@@ -13,7 +13,7 @@ def decodeHash(hash):
     file = open("key.txt", "r")
     key = file.read().encode()
     suit = Fernet(key)
-    decrypted = suit.decrypt(hash)
+    decrypted = suit.decrypt(hash.encode())
     return decrypted.decode()
 
 def send_validation(username):

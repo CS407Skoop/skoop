@@ -123,6 +123,8 @@ def validate(hash):
     decoded_output = validation.validate_hash(hash)
     user = User.query.filter_by(email=decoded_output).first()
 
+    print(user)
+
     if user is None :
         ret = {
             'message': 'Invalid credentials'
@@ -132,6 +134,9 @@ def validate(hash):
         return resp
     else :
         user.isValidated = True
+        print(user)
+        print(user.isValidated)
+        db.session.commit()
         ret = {
             'message' : 'Successfully credentials'
         }

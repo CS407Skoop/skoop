@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { store } from '../../store';
-import { openLeftPane } from '../../actions'
+import { openLeftPane } from '../../actions';
 
 class LeftPaneButton extends Component {
     openPaneLeft() {

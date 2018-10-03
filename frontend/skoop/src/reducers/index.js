@@ -16,7 +16,7 @@ export default (state, action) => {
                 showLogInModal: false,
                 enterGuestMode: false
             }
-       
+
         case 'SIGNIN_EMAIL_CHANGE':
             return {
                 ...state,
@@ -84,7 +84,7 @@ export default (state, action) => {
                 openLeftPane: false,
             }
         case 'LOG_IN_SUBMIT':
-            
+
                 return {
                     ...state,
                     showLogInModal: false,
@@ -172,6 +172,12 @@ export default (state, action) => {
 
         default:
             return state;
+
+        case 'CLOSE_LEFT_PANE':
+            return {
+              ...state,
+              openLeftPane: false
+        }
     }
 
 }

@@ -2,22 +2,21 @@ import React, { Component } from 'react';
 import './leftPane.css';
 import { store } from '../../store';
 import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button } from 'react-bootstrap';
-
+import { closeLeftPane } from '../../actions';
 
 class LeftPane extends Component {
+    closeLeftPane() {
+        store.dispatch(closeLeftPane());
+    }
     render() {
         return (
             <div className="leftPaneDiv">
-              <ButtonToolbar>
-                <Button bsStyle="link">Exit</Button>
-                <br />
-                <Button>Edit</Button>
-              </ButtonToolbar>
+
 
               <br /><h1><label>First Last</label><br /><br />
               </h1>
               <ButtonToolbar>
-                <DropdownButton
+                <DropdownButton className="prefs"
                   title="Favorite Locations"
                   id="favoriteLocations"
                 >
@@ -28,7 +27,7 @@ class LeftPane extends Component {
               </ButtonToolbar><br />
 
               <ButtonToolbar>
-                <DropdownButton
+                <DropdownButton className="prefs"
                   title="Favorite Articles"
                   id="favoriteArticles"
                 >
@@ -39,7 +38,7 @@ class LeftPane extends Component {
               </ButtonToolbar><br />
 
               <ButtonToolbar>
-                <DropdownButton
+                <DropdownButton className="prefs"
                   title="Categories"
                   id="Categories"
                 >
@@ -51,6 +50,11 @@ class LeftPane extends Component {
                   <MenuItem eventKey="6">Entertainment</MenuItem>
                 </DropdownButton>
               </ButtonToolbar><br />
+
+              <ButtonToolbar>
+                <Button>Edit</Button>
+                <Button onClick={this.closeLeftPane}>Exit</Button>
+              </ButtonToolbar>
 
 {/*              <ListGroup>Favorite Locations
                 <ListGroupItem bsStyle="info">Jaipur</ListGroupItem>

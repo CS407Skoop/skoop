@@ -2,16 +2,33 @@ import React, { Component } from 'react';
 import './leftPane.css';
 import { store } from '../../store';
 import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button } from 'react-bootstrap';
-import { closeLeftPane } from '../../actions';
+import { closeLeftPane, openPreferencesModal } from '../../actions';
+import  PreferencesModal from '../preferencesModal/preferencesModal';
 
 class LeftPane extends Component {
     closeLeftPane() {
         store.dispatch(closeLeftPane());
     }
+
+    openPreferencesModal() {
+        store.dispatch(openPreferencesModal());
+    }
+
+    showModal() {
+
+        if (store.getState().openPreferencesModal) {
+            return (
+                <PreferencesModal />
+                )
+        }
+        else 
+            return (<div />)
+    }
+
     render() {
         return (
             <div className="leftPaneDiv">
-
+                <this.showModal/>
 
               <br /><h1><label>First Last</label><br /><br />
               </h1>
@@ -52,7 +69,7 @@ class LeftPane extends Component {
               </ButtonToolbar><br />
 
               <ButtonToolbar>
-                <Button>Edit</Button>
+                    <Button onClick={this.openPreferencesModal}>Edit</Button>
                 <Button onClick={this.closeLeftPane}>Exit</Button>
               </ButtonToolbar>
 

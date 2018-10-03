@@ -311,3 +311,9 @@ export const closeLeftPane = () => {
       type: 'CLOSE_LEFT_PANE'
     }
 }
+
+export const openPreferencesModal = () => {
+    return {
+        type: 'OPEN_PREFERENCES_MODAL'
+    }
+}

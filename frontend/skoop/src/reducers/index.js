@@ -167,17 +167,23 @@ export default (state, action) => {
         case 'OPEN_LEFT_PANE':
             return {
                 ...state,
-                openLeftPane: true
+                openLeftPane: true,
+                openPreferencesModal: false
             }
-
+        case 'CLOSE_LEFT_PANE':
+            return {
+                ...state,
+                openLeftPane: false
+            }
+        case 'OPEN_PREFERENCES_MODAL':
+            return {
+                ...state,
+                openPreferencesModal: true
+            }
         default:
             return state;
 
-        case 'CLOSE_LEFT_PANE':
-            return {
-              ...state,
-              openLeftPane: false
-        }
+        
     }
 
 }

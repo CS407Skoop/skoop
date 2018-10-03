@@ -233,7 +233,7 @@ export const signUpSubmit = () => {
              }
 
 
-    if (!/[^a-zA-Z]/.test(firstName)) {
+    if (/[^a-zA-Z]/.test(firstName)) {
 
         alert('First Name can only contain letters')
         return {
@@ -241,7 +241,7 @@ export const signUpSubmit = () => {
                 }
     }
 
-    if (!/[^a-zA-Z]/.test(lastName)) {
+    if (/[^a-zA-Z]/.test(lastName)) {
 
             alert('Last Name can only contain letters')
             return {
@@ -297,5 +297,11 @@ export const initialModalOptions = () => {
 export const logUserOut = () => {
     return {
         type: 'LOG_USER_OUT'
+    }
+}
+
+export const openLeftPane = () => {
+    return {
+        type: 'OPEN_LEFT_PANE'
     }
 }

@@ -20,3 +20,15 @@
     z-index: 10;
     width: 18%;
 }
+
+.leftPaneButton {
+    opacity: 0.9;
+    margin-left: 50px;
+    margin-top: 50px;
+    z-index: 20;
+    position: absolute; 
+    width: 50px;
+    height: 50px;
+    background-color: #e6e6ed;
+    border-radius: 50%;
+}

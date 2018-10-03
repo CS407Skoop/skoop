@@ -5,3 +5,7 @@
 5.) Using command line, run db.create_all() using the db component in models.py
 
 Also pip install mysqlclient
+
+
+
+Link for sql stuff - https://www.youtube.com/watch?v=HXV3zeQKqGY

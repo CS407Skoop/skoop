@@ -312,6 +312,7 @@ export const closeLeftPane = () => {
     }
 }
 
+<<<<<<< HEAD
 export const showLogOutModal = () => {
     return {
       type: 'SHOW_LOGOUT_MODAL'
@@ -321,5 +322,10 @@ export const showLogOutModal = () => {
 export const removeLogOutModal = () => {
     return {
       type: 'REMOVE_LOGOUT_MODAL'
+=======
+export const openPreferencesModal = () => {
+    return {
+        type: 'OPEN_PREFERENCES_MODAL'
+>>>>>>> 17fd4c850f47e1e4e35b0ac33662a83b1f078557
     }
 }

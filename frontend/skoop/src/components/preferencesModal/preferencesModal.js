@@ -4,8 +4,10 @@ import {
     
 } from '../../actions';
 import { store } from '../../store';
+import Select from 'react-select';
+import { countries } from './countries';
 
-class SignUpModal extends Component {
+class PreferencesModal extends Component {
 
     
     render() {
@@ -25,7 +27,7 @@ class SignUpModal extends Component {
                                 Favorite Locations
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" placeholder="Location"} />
+                                <FormControl type="text" placeholder="Location" />
                             </Col>
                         </FormGroup>
                         <FormGroup controlId="categories">
@@ -33,7 +35,7 @@ class SignUpModal extends Component {
                                 Categories
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text"} />
+                                <FormControl type="text" />
                             </Col>
                         </FormGroup>
                         
@@ -53,4 +55,4 @@ class SignUpModal extends Component {
     }
 }
 
-export default SignUpModal;
+export default PreferencesModal;

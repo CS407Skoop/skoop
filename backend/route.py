@@ -10,13 +10,6 @@ from app import db
 FlaskJSON(app)
 CORS(app)
 
-
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    print(request.get_json())
-    return 'HOME'
-
-
 @app.route('/api/login/', methods=['GET', 'POST'])
 @cross_origin()
 def login():
@@ -25,7 +18,6 @@ def login():
     username = data['username']
     password = data['password']
 
-    User
     user = User.query.filter_by(email=username, password=password).first()
 
     if user is None :
@@ -41,9 +33,9 @@ def login():
             'firstName': user.first_name,
             'lastName': user.last_name,
             'email': username,
-            'favoriteLocations': ['Jaipur', 'Mumbai', 'West Lafayette'],
-            'favoriteArticles':['Test1', 'Test2', 'Test3'],
-            'categories': ['sports', 'climate', 'politics', 'breaking', 'technology', 'entertainment']
+            'favoriteLocations': user.locations,
+            'favoriteArticles': user.articles,
+            'categories': user.categories
 
         }
         js = json.dumps(ret)
@@ -51,6 +43,7 @@ def login():
         return resp
 
 @app.route('/api/signup/', methods=['GET', 'POST'])
+@cross_origin()
 def signup():
     data = request.get_json()
 
@@ -70,20 +63,61 @@ def signup():
             'message': 'SUCCESS',
             'firstName': firstName,
             'lastName': lastName,
-            'categories': ['sports', 'climate', 'politics', 'breaking', 'technology', 'entertainment'],
             'email': username,
-
-
+            'categories': '',
+            'articles' : '',
+            'locations' : ''
         }
     else:
-
         ret = {
             'message': 'User Already Exists',
             'method': 'signup'
         }
-
-
     js = json.dumps(ret)
-
     resp = Response(js, status=200, mimetype='application/json')
     return resp
+
+@app.route('/api/editPreferences/', methods=['GET', 'POST'])
+@cross_origin()
+def editPreferences():
+    data = request.get_json()
+
+    username = data['username']
+    password = data['password']
+    articles = data['favoriteArticles']
+    locations = data['favoriteLocations']
+    categories = data['categories']
+
+    print("LOLOL")
+
+    for a in articles: 
+        print(a)
+    print(articles)
+    print(locations)
+    print(categories)
+
+    user = User.query.filter_by(email=username, password=password).first()
+
+    if user is None :
+        ret = {
+            'message': 'Invalid credentials'
+        }
+        js = json.dumps(ret)
+        resp = Response(js, status=200, mimetype='application/json')
+        return resp
+
+    else :
+        user.editPreferences(locations, articles, categories)
+        db.session.commit()
+        ret = {
+            'message': 'SUCCESS',
+            'firstName': user.first_name,
+            'lastName': user.last_name,
+            'email': username,
+            'favoriteLocations': user.locations,
+            'favoriteArticles': user.articles,
+            'categories': user.categories
+        }
+        js = json.dumps(ret)
+        resp = Response(js, status=200, mimetype='application/json')
+        return resp

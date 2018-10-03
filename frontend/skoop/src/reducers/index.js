@@ -182,7 +182,6 @@ export default (state, action) => {
                 ...state,
                 openPreferencesModal: true
             }
-<<<<<<< HEAD
 
         case 'CLOSE_LEFT_PANE':
             return {
@@ -206,12 +205,7 @@ export default (state, action) => {
             return state;
 
 
-=======
-        default:
-            return state;
 
-        
->>>>>>> 17fd4c850f47e1e4e35b0ac33662a83b1f078557
     }
 
 }

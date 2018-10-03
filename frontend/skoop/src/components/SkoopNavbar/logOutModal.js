@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './SkoopNavbar.scss';
 import { store } from '../../store';
+import {Modal, Button} from 'react-bootstrap'
 import { openLogInModal, openSignUpModal, logUserOut, enterGuestMode, removeLogOutModal } from '../../actions';
 
 
-class logOutModal extends Component {
+class LogOutModal extends Component {
     logUserOut() {
       store.dispatch(logUserOut());
     }
@@ -14,6 +15,7 @@ class logOutModal extends Component {
     }
     
     render() {
+    return(
       <Modal bsSize="lg"
           show={true}
           aria-labelledby="contained-modal-title-lg"
@@ -31,7 +33,8 @@ class logOutModal extends Component {
           </Modal.Footer>
         </Modal.Dialog>
       </Modal>
+      );
     }
 }
 
-export default logOutModal;
+export default LogOutModal;

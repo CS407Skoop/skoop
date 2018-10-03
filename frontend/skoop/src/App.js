@@ -27,7 +27,7 @@ class App extends Component {
     }
 
     render() {
-        console.log(store.getState());
+        //console.log(store.getState());
         return (
             
             <div id="mainPageDiv">

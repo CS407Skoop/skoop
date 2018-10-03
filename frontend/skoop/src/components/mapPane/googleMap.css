@@ -1,0 +1,22 @@
+.mapContainer {
+    height: 85vh;
+    width: 100%;
+    position: relative;
+}
+
+.leftPane,
+.mapPane {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.mapPane {
+
+    width: 100%;
+}
+
+.leftPane {
+    z-index: 10;
+    width: 18%;
+}

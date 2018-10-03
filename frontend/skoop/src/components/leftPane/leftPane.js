@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import './leftPane.css';
 import { store } from '../../store';
-import { ListGroup } from 'react-bootstrap';
-import { ListGroupItem } from 'react-bootstrap';
-import { DropdownButton } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
-import { MenuItem } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button } from 'react-bootstrap';
+
 
 class LeftPane extends Component {
     render() {
         return (
             <div className="leftPaneDiv">
+              <ButtonToolbar>
+                <Button bsStyle="link">Exit</Button>
+                <br />
+                <Button>Edit</Button>
+              </ButtonToolbar>
+
               <br /><h1><label>First Last</label><br /><br />
               </h1>
               <ButtonToolbar>

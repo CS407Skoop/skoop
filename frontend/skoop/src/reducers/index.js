@@ -66,14 +66,13 @@ export default (state, action) => {
         case 'SIGN_UP_SUBMIT':
             return {
                 ...state,
-                showLogInModal: false,
+                showLogInModal: true,
                 openOptions: false,
-                showSignUpModal: false,
+                showSignUpModal: true,
                 enterGuestMode: false,
-                showMainScreen: true,
-                userLoggedIn: true,
+                showMainScreen: false,
+                userLoggedIn: false,
                 openLeftPane: false,
-                allCategories: ['Sports', 'Technology', 'Climate', 'Politics', 'Breaking', 'Entertainment']
             }
         case 'ENTER_GUEST_MODE':
             return {
@@ -124,6 +123,7 @@ export default (state, action) => {
 
             return {
                 ...state,
+                locationGiven: true,
                 position: action.payload
             }
         }
@@ -253,7 +253,13 @@ export default (state, action) => {
                 return {
                     ...state,
                     openPreferencesModal: false
-                }
+            }
+
+        case 'NO_LOCATION_GIVEN':
+            return {
+                ...state,
+                locationGiven: false
+            }
 
         default:
             return state;

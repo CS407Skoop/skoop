@@ -12,11 +12,14 @@ import LogOutModal from '../SkoopNavbar/logOutModal';
 class GoogleMap extends Component {
 
     UserLocation = () => {
+        if(store.getState().locationGiven)
         return (
             <div style={GoogleMapsStyle}>
                 You
             </div>
             )
+        else 
+            return <div />
     }
 
 
@@ -50,6 +53,40 @@ class GoogleMap extends Component {
     }
 
     render() {
+        if (!store.getState().locationGiven) {
+            const defaultProps = {
+                defaultCenter: {
+                    lat: 40.424546,
+                    lng: -86.921826
+                },
+                zoom: 11,
+                center: {
+                    lat: 40.424546,
+                    lng: -86.921826
+                },
+            }
+            return (
+                // Important! Always set the container height explicitly
+                <div className="mapContainer">
+                    <this.leftSide />
+                    <div className="mapPane">
+                        <GoogleMapReact
+                            bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo' }}
+                            defaultCenter={defaultProps.defaultCenter}
+                            center={defaultProps.center}
+                            defaultZoom={defaultProps.zoom}
+                        >
+
+
+
+                         
+
+                        </GoogleMapReact>
+                    </div>
+                </div>
+            );
+
+        }
         if (store.getState().position) {
             //console.log(store.getState().position)
             const defaultProps = {

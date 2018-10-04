@@ -18,6 +18,9 @@ export const enterGuestMode = () => {
         var pos = position;
         store.dispatch(sendUserLocation(pos));
 
+    }, error => {
+        console.log(error);
+        store.dispatch(noLocationGiven())
     })
     return {
         type: 'ENTER_GUEST_MODE'
@@ -150,7 +153,10 @@ export const logInSubmit = () => {
         var pos = position;
         store.dispatch(sendUserLocation(pos));
 
-        })
+    },error => {
+        console.log(error);
+        store.dispatch(noLocationGiven())
+    })
     return {
         type: 'LOG_IN_SUBMIT',
     }
@@ -172,6 +178,13 @@ export const logInSubmit = () => {
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+}
+
+export const noLocationGiven = () => {
+    return {
+        type: 'NO_LOCATION_GIVEN'
+            
+    }
 }
 
 export const signUpSubmit = () => {
@@ -269,7 +282,7 @@ export const signUpSubmit = () => {
                 var objReceived = JSON.parse(text);
                 console.log(objReceived);
                 if(objReceived.message === 'SUCCESS')
-                    store.dispatch(storeUserSignUpDetails(objReceived));
+                    console.log("SIGNED UP")
                 else {
                     alert('User already exists. Use a different email or sign in')
                     store.dispatch(signUpFailure());
@@ -279,9 +292,13 @@ export const signUpSubmit = () => {
     console.log(jsonToSend);
     navigator.geolocation.getCurrentPosition(position => {
         console.log(position);
+        console.log(position);
         var pos = position;
         store.dispatch(sendUserLocation(pos));
 
+    }, error => {
+        console.log(error);
+        store.dispatch(noLocationGiven())
     })
     return {
         type: 'SIGN_UP_SUBMIT',

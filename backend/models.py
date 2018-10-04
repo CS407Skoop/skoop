@@ -36,6 +36,7 @@ class User(db.Model):
         category_array = self.categories.split(',')
 
         self.locations = ''
+        self.categories = ''
         for location in locations:
 
             if location not in location_array:

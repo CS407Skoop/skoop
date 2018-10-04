@@ -33,6 +33,7 @@ class User(db.Model):
         print(location_array)
 
         article_array = self.articles.split(',')
+        category_array = self.categories.split(',')
 
         self.locations = ''
         for location in locations:
@@ -50,8 +51,10 @@ class User(db.Model):
                 self.articles += ","
 
         for category in categories:
-            self.categories += category 
-            self.categories += ","
+
+            if cateogry not in category_array:
+                self.categories += category 
+                self.categories += ","
 
 
     def parsePreferences(self, preference):

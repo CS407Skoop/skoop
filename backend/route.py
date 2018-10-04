@@ -101,6 +101,7 @@ def editPreferences():
 
     else :
         user.editPreferences(locations, articles, categories)
+        print(locations)
         db.session.commit()
         ret = {
             'message': 'SUCCESS',

@@ -176,6 +176,7 @@ export default (state, action) => {
                 openLeftPane: true,
                 openPreferencesModal: false,
                 tempFavoriteLocations: action.payload,
+                tempCategories: state.categories
 
             }
         case 'CLOSE_LEFT_PANE':

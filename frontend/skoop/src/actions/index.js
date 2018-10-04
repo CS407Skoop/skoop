@@ -371,8 +371,9 @@ export const updateNewCategories = (categories) => {
 
 export const changeFirstLocation = (location) => {
     var newArr = store.getState().tempFavoriteLocations.slice(0);
-    console.log(newArr)
+
     newArr[0] = location;
+    console.log(newArr);
     return {
         type: 'CHANGE_FIRST_LOCATION',
         payload: newArr
@@ -382,8 +383,9 @@ export const changeFirstLocation = (location) => {
 
 export const changeSecondLocation = (location) => {
     var newArr = store.getState().tempFavoriteLocations.slice(0);
-    console.log(newArr)
+
         newArr[1] = location;
+        console.log(newArr);
     return {
         type: 'CHANGE_SECOND_LOCATION',
         payload: newArr
@@ -392,8 +394,9 @@ export const changeSecondLocation = (location) => {
 
 export const changeThirdLocation = (location) => {
     var newArr = store.getState().tempFavoriteLocations.slice(0);
-    console.log(newArr)
+
         newArr[2] = location;
+        console.log(newArr);
     return {
         type: 'CHANGE_THIRD_LOCATION',
         payload: newArr
@@ -436,11 +439,12 @@ var jsonToSend = JSON.stringify({
             fetch(request).then(function(response){
                 response.text().then(function(text) {
                     var objReceived = JSON.parse(text);
+                    console.log(objReceived);
                     store.dispatch(updateAfterResponsePref(objReceived))
 
                 })
             })
-            store.dispatch(updateLocations(store.getState().tempFavoriteLocations));
+
 
           return {
             type: 'EDIT_PREF_SUBMITTED',

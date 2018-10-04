@@ -353,7 +353,8 @@ export const updateNewCategories = (categories) => {
 }
 
 export const changeFirstLocation = (location) => {
-    var newArr = store.getState().tempFavoriteLocations.slice();
+    var newArr = store.getState().tempFavoriteLocations.slice(0);
+    console.log(newArr)
     newArr[0] = location;
     return {
         type: 'CHANGE_FIRST_LOCATION',
@@ -363,7 +364,8 @@ export const changeFirstLocation = (location) => {
 }
 
 export const changeSecondLocation = (location) => {
-    var newArr = store.getState().tempFavoriteLocations.slice();
+    var newArr = store.getState().tempFavoriteLocations.slice(0);
+    console.log(newArr)
         newArr[1] = location;
     return {
         type: 'CHANGE_SECOND_LOCATION',
@@ -373,6 +375,7 @@ export const changeSecondLocation = (location) => {
 
 export const changeThirdLocation = (location) => {
     var newArr = store.getState().tempFavoriteLocations.slice(0);
+    console.log(newArr)
         newArr[2] = location;
     return {
         type: 'CHANGE_THIRD_LOCATION',

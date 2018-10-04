@@ -52,9 +52,10 @@ class User(db.Model):
 
         for category in categories:
 
-            if cateogry not in category_array:
-                self.categories += category 
-                self.categories += ","
+            if category is not None :
+                if cateogry not in category_array:
+                    self.categories += category
+                    self.categories += ","
 
 
     def parsePreferences(self, preference):

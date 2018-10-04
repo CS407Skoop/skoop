@@ -300,9 +300,17 @@ export const logUserOut = () => {
     }
 }
 
+export const loadTempCats = () => {
+    return {
+        type: 'LOAD_TEMP_CATS',
+        payload: store.getState().categories
+    }
+}
+
 export const openLeftPane = () => {
     return {
-        type: 'OPEN_LEFT_PANE'
+        type: 'OPEN_LEFT_PANE',
+        payload: store.getState().favoriteLocations
     }
 }
 
@@ -313,6 +321,7 @@ export const closeLeftPane = () => {
 }
 
 export const showLogOutModal = () => {
+console.log("IN");
     return {
       type: 'SHOW_LOGOUT_MODAL'
     }
@@ -334,3 +343,91 @@ export const closePrefModal = () => {
         type: 'CLOSE_PREFERENCES_MODAL'
     }
 }
+
+export const updateNewCategories = (categories) => {
+
+    return {
+        type: 'UPDATE_CATEGORIES',
+        payload: categories
+    }
+}
+
+export const changeFirstLocation = (location) => {
+    var newArr = store.getState().tempFavoriteLocations.slice(0);
+    console.log(newArr)
+    newArr[0] = location;
+    return {
+        type: 'CHANGE_FIRST_LOCATION',
+        payload: newArr
+
+    }
+}
+
+export const changeSecondLocation = (location) => {
+    var newArr = store.getState().tempFavoriteLocations.slice(0);
+    console.log(newArr)
+        newArr[1] = location;
+    return {
+        type: 'CHANGE_SECOND_LOCATION',
+        payload: newArr
+    }
+}
+
+export const changeThirdLocation = (location) => {
+    var newArr = store.getState().tempFavoriteLocations.slice(0);
+    console.log(newArr)
+        newArr[2] = location;
+    return {
+        type: 'CHANGE_THIRD_LOCATION',
+        payload: newArr
+    }
+}
+
+export const updateLocations = (locations) => {
+    return {
+        type: 'UPDATE_LOCATIONS_SUBMIT',
+        payload: locations
+    }
+
+}
+
+export const updateAfterResponsePref = (res) => {
+    return {
+        type: 'UPDATE_PREF_RESPONSE',
+        payload: res
+    }
+}
+
+export const submitEditPref = () => {
+const currentStore = store.getState();
+var jsonToSend = JSON.stringify({
+        username: currentStore.signInUserEmail,
+        password: currentStore.signInPassword,
+        favoriteArticles: currentStore.favoriteArticles,
+        favoriteLocations: currentStore.tempFavoriteLocations,
+        categories: currentStore.tempCategories
+    })
+    console.log(jsonToSend);
+    var request = new Request('http://127.0.0.1:5000/api/editPreferences/', {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                  body: jsonToSend
+                });
+            fetch(request).then(function(response){
+                response.text().then(function(text) {
+                    var objReceived = JSON.parse(text);
+                    store.dispatch(updateAfterResponsePref(objReceived))
+
+                })
+            })
+            store.dispatch(updateLocations(store.getState().tempFavoriteLocations));
+
+          return {
+            type: 'EDIT_PREF_SUBMITTED',
+            payload: store.getState().tempFavoriteCategories
+          }
+          }
+

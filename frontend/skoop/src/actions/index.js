@@ -312,6 +312,17 @@ export const closeLeftPane = () => {
     }
 }
 
+export const showLogOutModal = () => {
+    return {
+      type: 'SHOW_LOGOUT_MODAL'
+    }
+}
+
+export const removeLogOutModal = () => {
+    return {
+      type: 'REMOVE_LOGOUT_MODAL'
+      }
+      }
 export const openPreferencesModal = () => {
     return {
         type: 'OPEN_PREFERENCES_MODAL'

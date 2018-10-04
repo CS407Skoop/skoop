@@ -13,7 +13,7 @@ def decodeHash(hash):
     file = open("key.txt", "r")
     key = file.read().encode()
     suit = Fernet(key)
-    decrypted = suit.decrypt(hash)
+    decrypted = suit.decrypt(hash.encode())
     return decrypted.decode()
 
 def send_validation(username):
@@ -26,7 +26,7 @@ def send_validation(username):
     hashString = encodeUsername(username)
 
     # Send the mail
-    msg = "Please click on the link to verify your account -\n\nhttp://127.0.0.1:5000/api/validate?hash=" + hashString.decode()
+    msg = "Please click on the link to verify your account -\n\nhttp://127.0.0.1:5000/api/validate/" + hashString.decode()
     # The /n separates the message from the headers
     server.sendmail("skoopnews@gmail.com", username, msg)
     return hashString
@@ -34,11 +34,6 @@ def send_validation(username):
 
 def validate_hash(hash):
     return decodeHash(hash)
-
-
-hash = send_validation("ashvinlohiya@gmail.com")
-
-print(validate_hash(hash))
 
 
 

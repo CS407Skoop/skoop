@@ -7,6 +7,7 @@ import { GoogleMapsStyle } from './GoogleMapStyles';
 import LeftPane from '../leftPane/leftPane';
 import './googleMap.css';
 import LeftPaneButton from '../leftPane/leftPaneButton';
+import LogOutModal from '../SkoopNavbar/logOutModal';
 
 class GoogleMap extends Component {
 
@@ -21,7 +22,12 @@ class GoogleMap extends Component {
 
     leftSide() {
         console.log(store.getState().openLeftPane)
-        if (store.getState().openLeftPane) {
+        if (store.getState().showLogOutModal) {
+          return (
+            <LogOutModal/>
+          )
+        }
+        else if (store.getState().openLeftPane) {
             console.log(store.getState().openLeftPane)
             return (
                 <div className="leftPane">
@@ -29,6 +35,7 @@ class GoogleMap extends Component {
                 </div>
             )
         }
+
         else {
 
             return (
@@ -72,7 +79,7 @@ class GoogleMap extends Component {
 
                                 lat={store.getState().position.coords.latitude}
                                 lng={store.getState().position.coords.longitude}
-                           
+
 
                             />
 

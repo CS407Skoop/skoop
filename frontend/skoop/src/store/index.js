@@ -3,7 +3,8 @@ import reducer from '../reducers';
 
 const initialState = {
     openOptions: 'true',
-    userLoggedIn: false
+    userLoggedIn: false,
+
 };
 
 export const store = createStore(reducer, initialState);

@@ -13,6 +13,31 @@ class LeftPane extends Component {
     openPreferencesModal() {
         store.dispatch(openPreferencesModal());
     }
+    showLocationItems () {
+    const locationItems = store.getState().favoriteLocations.map(function(location) {
+        return <MenuItem > {location} </MenuItem>
+    })
+    return locationItems;
+    }
+
+    showArticleItems () {
+        const articleItems = store.getState().favoriteArticles.map(function(article) {
+            return <MenuItem > {article} </MenuItem>
+        })
+        return articleItems;
+        }
+     showCategoryItems () {
+        if(store.getState().categories !== undefined) {
+         const categoryItems = store.getState().categories.map(function(category) {
+             return <MenuItem > {category} </MenuItem>
+         })
+         return  categoryItems;
+         }
+         else
+         return (
+            <div />
+         );
+         }
 
     showModal() {
 
@@ -30,16 +55,14 @@ class LeftPane extends Component {
             <div className="leftPaneDiv">
                 <this.showModal/>
 
-              <br /><h1><label>First Last</label><br /><br />
-              </h1>
+              <br /><h3><label>{store.getState().firstName} {store.getState().lastName}</label><br /><br />
+              </h3>
               <ButtonToolbar>
                 <DropdownButton className="prefs"
                   title="Favorite Locations"
                   id="favoriteLocations"
                 >
-                  <MenuItem eventKey="1">Jaipur</MenuItem>
-                  <MenuItem eventKey="2">Mumbai</MenuItem>
-                  <MenuItem eventKey="3">West Lafayette</MenuItem>
+                  <this.showLocationItems />
                 </DropdownButton>
               </ButtonToolbar><br />
 
@@ -48,9 +71,7 @@ class LeftPane extends Component {
                   title="Favorite Articles"
                   id="favoriteArticles"
                 >
-                  <MenuItem eventKey="1">Test1</MenuItem>
-                  <MenuItem eventKey="2">Test2</MenuItem>
-                  <MenuItem eventKey="3">Test3</MenuItem>
+                  <this.showArticleItems/>
                 </DropdownButton>
               </ButtonToolbar><br />
 
@@ -59,17 +80,12 @@ class LeftPane extends Component {
                   title="Categories"
                   id="Categories"
                 >
-                  <MenuItem eventKey="1">Sports</MenuItem>
-                  <MenuItem eventKey="2">Climate</MenuItem>
-                  <MenuItem eventKey="3">Politics</MenuItem>
-                  <MenuItem eventKey="4">Breaking</MenuItem>
-                  <MenuItem eventKey="5">Technology</MenuItem>
-                  <MenuItem eventKey="6">Entertainment</MenuItem>
+                  <this.showCategoryItems />
                 </DropdownButton>
               </ButtonToolbar><br />
 
               <ButtonToolbar>
-                    <Button onClick={this.openPreferencesModal}>Edit</Button>
+                    <Button bsStyle="primary" onClick={this.openPreferencesModal}>Edit</Button>
                 <Button onClick={this.closeLeftPane}>Exit</Button>
               </ButtonToolbar>
 

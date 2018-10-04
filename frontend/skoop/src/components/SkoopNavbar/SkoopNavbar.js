@@ -24,6 +24,7 @@ class SkoopNavbar extends Component {
         }
 
         if (selectedKey === 3) {
+            console.log('2');
             store.dispatch(showLogOutModal());
         }
 

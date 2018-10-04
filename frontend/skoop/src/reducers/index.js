@@ -1,3 +1,5 @@
+import {store} from '../store';
+
 export default (state, action) => {
     switch (action.type) {
         case 'SHOW_LOGIN_MODAL':
@@ -155,7 +157,7 @@ export default (state, action) => {
                             firstName: action.payload.firstName,
                             lastName: action.payload.lastName,
                                             email: action.payload.email,
-                            categories: action.payload.categories
+                            categories: ''
                         }
          case 'SIGN_UP_FAILURE':
             return {
@@ -172,7 +174,9 @@ export default (state, action) => {
             return {
                 ...state,
                 openLeftPane: true,
-                openPreferencesModal: false
+                openPreferencesModal: false,
+                tempFavoriteLocations: action.payload,
+
             }
         case 'CLOSE_LEFT_PANE':
             return {
@@ -207,7 +211,50 @@ export default (state, action) => {
             return {
                 ...state,
                 openPreferencesModal: false
-            }   
+            }
+        case 'CHANGE_FIRST_LOCATION':
+            return {
+                ...state,
+                tempFavoriteLocations: action.payload
+             }
+        case 'CHANGE_SECOND_LOCATION':
+                    return {
+                        ...state,
+                        tempFavoriteLocations: action.payload
+                     }
+        case 'CHANGE_THIRD_LOCATION':
+                    return {
+                        ...state,
+                        tempFavoriteLocations: action.payload
+                     }
+         case 'UPDATE_CATEGORIES':
+                return {
+                    ...state,
+                    tempCategories: action.payload
+                }
+
+
+          case 'UPDATE_PREF_RESPONSE':
+            return {
+                ...state,
+                favoriteLocations: action.payload.favoriteLocations,
+                categories: action.payload.categories,
+
+
+            }
+
+            case 'LOAD_TEMP_CATS':
+                return {
+                    ...state,
+                    tempCategories: action.payload
+
+                }
+             case 'EDIT_PREF_SUBMITTED':
+                return {
+                    ...state,
+                    openPreferencesModal: false
+                }
+
         default:
             return state;
 

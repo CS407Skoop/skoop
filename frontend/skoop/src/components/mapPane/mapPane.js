@@ -9,7 +9,7 @@ import GoogleMap from './GoogleMap';
 
 class MapPane extends Component {
     render() {
-        console.log(store.getState());
+        //console.log(store.getState());
         return (
 
             <div className="mapDiv">

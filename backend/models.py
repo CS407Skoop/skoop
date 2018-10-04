@@ -50,8 +50,9 @@ class User(db.Model):
                 self.articles += ","
 
         for category in categories:
-            self.categories += category 
-            self.categories += ","
+            if category is not None :
+                self.categories += category
+                self.categories += ","
 
 
     def parsePreferences(self, preference):

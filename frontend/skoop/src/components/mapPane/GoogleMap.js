@@ -21,7 +21,9 @@ class GoogleMap extends Component {
 
 
     leftSide() {
-        console.log(store.getState().openLeftPane)
+        if(store.getState().enterGuestMode)
+            return (<div />)
+        //console.log(store.getState().openLeftPane)
         if (store.getState().showLogOutModal) {
           return (
             <LogOutModal/>

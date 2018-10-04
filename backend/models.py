@@ -53,7 +53,7 @@ class User(db.Model):
         for category in categories:
 
             if category is not None :
-                if cateogry not in category_array:
+                if category not in category_array:
                     self.categories += category
                     self.categories += ","
 

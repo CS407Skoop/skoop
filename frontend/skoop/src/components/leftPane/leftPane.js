@@ -14,10 +14,13 @@ class LeftPane extends Component {
         store.dispatch(openPreferencesModal());
     }
     showLocationItems () {
+    if (store.getState().favoriteLocations !== undefined) {
     const locationItems = store.getState().favoriteLocations.map(function(location) {
         return <MenuItem > {location} </MenuItem>
     })
     return locationItems;
+    }
+
     }
 
     showArticleItems () {

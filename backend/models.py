@@ -39,14 +39,14 @@ class User(db.Model):
         self.categories = ''
         for location in locations:
 
-            if location not in location_array:
+            if location not in self.locations:
 
                 self.locations += location
                 self.locations += ","
 
         for article in articles:
 
-            if article not in article_array:
+            if article not in self.articles:
 
                 self.articles += article
                 self.articles += ","
@@ -54,7 +54,7 @@ class User(db.Model):
         for category in categories:
 
             if category is not None :
-                if category not in category_array:
+                if category not in self.categories:
                     self.categories += category
                     self.categories += ","
 

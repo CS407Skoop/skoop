@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf6cd279-c057-4c9f-8a81-9c52ed7c6dec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/skoop/src/components/errorModal/errorModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/skoop/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/skoop/src/actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/skoop/src/components/leftPane/leftPaneButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/skoop/src/components/leftPane/leftPaneButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/skoop/src/components/logInModal/logInModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/skoop/src/components/logInModal/logInModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/skoop/src/components/signUpModal/signUpModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/skoop/src/components/signUpModal/signUpModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/skoop/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/skoop/src/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +26,7 @@
         <counts>
           <entry key="css" value="5" />
           <entry key="js" value="45" />
-          <entry key="py" value="12" />
+          <entry key="py" value="14" />
           <entry key="scss" value="1" />
           <entry key="txt" value="2" />
         </counts>
@@ -42,14 +36,14 @@
           <entry key="CSS" value="5" />
           <entry key="JavaScript" value="42" />
           <entry key="PLAIN_TEXT" value="10" />
-          <entry key="Python" value="8" />
+          <entry key="Python" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="66" />
           <entry key="js" value="11880" />
-          <entry key="py" value="1288" />
+          <entry key="py" value="1357" />
           <entry key="scss" value="46" />
           <entry key="txt" value="27" />
         </counts>
@@ -59,7 +53,7 @@
           <entry key="CSS" value="66" />
           <entry key="JavaScript" value="8999" />
           <entry key="PLAIN_TEXT" value="3299" />
-          <entry key="Python" value="943" />
+          <entry key="Python" value="1012" />
         </counts>
       </usages-collector>
     </session>
@@ -76,10 +70,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/skoop/src/components/errorModal/errorModal.js">
+        <entry file="file://$PROJECT_DIR$/backend/route.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+            <state relative-caret-position="536">
+              <caret line="103" column="24" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -89,15 +95,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-22">
               <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="38" column="25" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -147,7 +144,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/skoop/src/reducers/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="591">
@@ -177,10 +174,10 @@
       <find>userCats</find>
       <find>locations</find>
       <find>location</find>
-      <find>cate</find>
-      <find>tempCa</find>
       <find>back</find>
       <find>openLeft</find>
+      <find>tempCa</find>
+      <find>cate</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -204,7 +201,6 @@
         <option value="$PROJECT_DIR$/frontend/skoop/src/components/mapPane/mapPane.js" />
         <option value="$PROJECT_DIR$/frontend/skoop/src/store/index.js" />
         <option value="$PROJECT_DIR$/frontend/skoop/src/components/mapPane/GoogleMap.js" />
-        <option value="$PROJECT_DIR$/backend/models.py" />
         <option value="$PROJECT_DIR$/frontend/skoop/src/components/leftPane/leftPane.js" />
         <option value="$PROJECT_DIR$/frontend/skoop/src/components/mapPane/mapPane.css" />
         <option value="$PROJECT_DIR$/frontend/skoop/src/components/preferencesModal/preferencesModal.js" />
@@ -216,6 +212,7 @@
         <option value="$PROJECT_DIR$/frontend/skoop/src/components/logInModal/logInModal.js" />
         <option value="$PROJECT_DIR$/frontend/skoop/src/actions/index.js" />
         <option value="$PROJECT_DIR$/frontend/skoop/src/reducers/index.js" />
+        <option value="$PROJECT_DIR$/backend/models.py" />
       </list>
     </option>
   </component>
@@ -347,7 +344,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value=" {&#9;null&#9;null" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538678369942" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538679606986" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -586,30 +583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="38" column="25" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/route.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="103" column="24" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/skoop/src/components/preferencesModal/preferencesModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/skoop/src/components/errorModal/errorModal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -663,6 +636,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="591">
           <caret line="152" column="42" selection-start-line="152" selection-start-column="42" selection-end-line="152" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/skoop/src/components/preferencesModal/preferencesModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/route.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="103" column="24" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
         </state>
       </provider>
     </entry>

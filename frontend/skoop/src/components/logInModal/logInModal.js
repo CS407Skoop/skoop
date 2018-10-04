@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Col, FormControl, Modal, FormGroup, ControlLabel, Button } from 'react-bootstrap'
 import { signInEmailChange, signInPasswordChange, logInSubmit, initialModalOptions } from '../../actions';
 import { store } from '../../store';
+import ErrorModal from '../errorModal/errorModal';
 
 class LogInModal extends Component {
 
@@ -21,8 +22,17 @@ class LogInModal extends Component {
         store.dispatch(initialModalOptions());
     }
 
+    showWarning() {
+            console.log(store.getState().warningMsg)
+            if(store.getState().warning) {
+                return <ErrorModal message={store.getState().warningMsg} />
+            }else
+            return <div />
+        }
     render() {
         return (
+            <div>
+            <this.showWarning />
             <Modal bsSize="lg"
                 show={true}
                 aria-labelledby="contained-modal-title-lg"
@@ -62,6 +72,7 @@ class LogInModal extends Component {
                     </Form>
                 </Modal.Body>
             </Modal>
+            </div>
             );
     }
 }

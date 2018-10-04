@@ -8,9 +8,20 @@ class LeftPaneButton extends Component {
 
     }
     render() {
+    console.log(store.getState())
+    var fn;
+    var ln;
+    if(store.getState().firstName){
+        fn = store.getState().firstName.charAt(0);
+        ln=store.getState().lastName.charAt(0);
+    }else
+        {
+            fn = 'T';
+            ln = 'U';
+        }
         return (
             <div onClick={this.openPaneLeft}>
-                SP
+                {fn}{ln}
             </div>
             )
     }

@@ -148,7 +148,9 @@ export default (state, action) => {
                 showSignUpModal: false,
                 enterGuestMode: false,
                 showMainScreen: false,
-                userLoggedIn: false
+                userLoggedIn: false,
+                warning: true,
+                warningMsg: action.payload
 
             }
          case 'STORE_SIGNUP_DETAILS':
@@ -168,7 +170,9 @@ export default (state, action) => {
                                 openOptions: false,
                                 enterGuestMode: false,
                                 showMainScreen: false,
-                                userLoggedIn: false
+                                userLoggedIn: false,
+                                warning: true,
+                                warningMsg: action.payload
             }
         case 'OPEN_LEFT_PANE':
             return {
@@ -261,7 +265,12 @@ export default (state, action) => {
                 ...state,
                 locationGiven: false
             }
-
+        case 'CLOSE_WARNING_MODAL':
+            return {
+                ...state,
+                warning: false,
+                warningMsg: ''
+            }
         default:
             return state;
 

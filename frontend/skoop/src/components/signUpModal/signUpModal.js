@@ -10,6 +10,7 @@ import {
     signUpLastNameChange
 } from '../../actions';
 import { store } from '../../store';
+import ErrorModal from '../errorModal/errorModal';
 
 class SignUpModal extends Component {
 
@@ -41,8 +42,18 @@ class SignUpModal extends Component {
         store.dispatch(initialModalOptions());
     }
 
+    showWarning() {
+        console.log(store.getState().warningMsg)
+        if(store.getState().warning) {
+            return <ErrorModal message={store.getState().warningMsg} />
+        }else
+        return <div />
+    }
+
     render() {
         return (
+            <div>
+            <this.showWarning />
             <Modal bsSize="lg"
                 show={true}
                 aria-labelledby="contained-modal-title-lg"
@@ -106,6 +117,7 @@ class SignUpModal extends Component {
                     </Form>
                 </Modal.Body>
             </Modal>
+            </div>
         );
     }
 }

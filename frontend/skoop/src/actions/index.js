@@ -98,7 +98,8 @@ export const storeUserLogInDetails = (userDetails) => {
 
 export const logInFailure = () => {
     return {
-        type: 'LOG_IN_FAILURE'
+        type: 'LOG_IN_FAILURE',
+        payload: 'Invalid credentials. Try logging in again'
     }
 }
 
@@ -107,22 +108,25 @@ export const logInSubmit = () => {
     var email = currentStore.signInUserEmail;
     var password = currentStore.signInPassword;
     if(!email || email.length===0) {
-        alert('Email cannot be left empty')
+        var msg = 'Email cannot be left empty'
         return {
-            type: 'LOG_IN_FAILURE'
+            type: 'LOG_IN_FAILURE',
+            payload: msg
         }
     }
     if(!password || password.length===0) {
-        alert('Password cannot be left empty')
+        var msg = 'Password cannot be left empty'
         return {
-            type: 'LOG_IN_FAILURE'
+            type: 'LOG_IN_FAILURE',
+            payload: msg
         }
     }
 
     if(!validateEmail(email)) {
-            alert("Invalid Email");
+            var msg  = "Invalid Email";
             return {
                 type: 'LOG_IN_FAILURE',
+                payload: msg
             }
         }
     var jsonToSend = JSON.stringify({
@@ -164,7 +168,8 @@ export const logInSubmit = () => {
 
   export const signUpFailure = () => {
        return {
-          type: 'SIGN_UP_FAILURE'
+          type: 'SIGN_UP_FAILURE',
+          payload: 'User already exists. Try another email.'
        }
   }
 
@@ -194,36 +199,43 @@ export const signUpSubmit = () => {
     var email = currentStore.signUpUserEmail;
         var password = currentStore.signUpPassword;
         if(!email || email.length===0) {
-            alert('Email cannot be left empty')
+            var msg = 'Email cannot be left empty'
             return {
-                type: 'SIGN_UP_FAILURE'
+                type: 'SIGN_UP_FAILURE',
+                payload: msg
             }
         }
         if(!password || password.length===0) {
-            alert('Password cannot be left empty')
+            var msg = 'Password cannot be left empty'
+
             return {
-                type: 'SIGN_UP_FAILURE'
+                type: 'SIGN_UP_FAILURE',
+                payload: msg
             }
         }
 
         if(!validateEmail(email)) {
-                alert("Invalid Email");
+            var msg = 'Invalid Email'
                 return {
                     type: 'SIGN_UP_FAILURE',
+                    payload: msg
                 }
             }
     var confirmPassword = currentStore.signUpConfirmPassword;
     if(!confirmPassword || confirmPassword.length===0) {
-                alert('Password cannot be left empty')
+                var msg = 'Password cannot be left empty'
+
                 return {
-                    type: 'SIGN_UP_FAILURE'
+                    type: 'SIGN_UP_FAILURE',
+                    payload: msg
                 }
             }
 
     if(confirmPassword !== password) {
-        alert('Passwords do not match')
+        var msg = 'Passwords do not match'
         return {
-            type: 'SIGN_UP_FAILURE'
+            type: 'SIGN_UP_FAILURE',
+            payload: msg
         }
     }
 
@@ -232,33 +244,38 @@ export const signUpSubmit = () => {
     var lastName = currentStore.signUpLastName;
 
     if(!firstName || firstName.length===0) {
-                alert('First Name cannot be left empty')
+                var msg = 'First Name cannot be empty'
+
                 return {
-                    type: 'SIGN_UP_FAILURE'
+                    type: 'SIGN_UP_FAILURE',
+                    payload: msg
                 }
             }
 
      if(!lastName || lastName.length===0) {
-                 alert('Last Name cannot be left empty')
+                var msg = 'Last Name cannot be empty'
                  return {
-                     type: 'SIGN_UP_FAILURE'
+                     type: 'SIGN_UP_FAILURE',
+                     payload: msg
                  }
              }
 
 
     if (/[^a-zA-Z]/.test(firstName)) {
 
-        alert('First Name can only contain letters')
+        var msg = 'First Name can only contain letters'
         return {
-                    type: 'SIGN_UP_FAILURE'
+                    type: 'SIGN_UP_FAILURE',
+                    payload: msg
                 }
     }
 
     if (/[^a-zA-Z]/.test(lastName)) {
 
-            alert('Last Name can only contain letters')
+            var msg = 'Last Name can only contain letters'
             return {
-                        type: 'SIGN_UP_FAILURE'
+                        type: 'SIGN_UP_FAILURE',
+                        payload: msg
                     }
         }
 
@@ -285,7 +302,7 @@ export const signUpSubmit = () => {
                     console.log("SIGNED UP")
                 else {
                     alert('User already exists. Use a different email or sign in')
-                    store.dispatch(signUpFailure());
+                    store.dispatch(signUpFailure())
                 }
             })
         })
@@ -451,4 +468,10 @@ var jsonToSend = JSON.stringify({
             payload: store.getState().tempFavoriteCategories
           }
           }
+
+  export const closeWarningModal =() => {
+    return {
+        type: 'CLOSE_WARNING_MODAL',
+    }
+  }
 

@@ -53,7 +53,18 @@ class GoogleMap extends Component {
     }
 
     render() {
+        if (store.getState().mapLoading) {
+            return (
+                <Loader
+                    type="Oval"
+                    color="#00BFFF"
+                    height="200"
+                    width="200"
+                />
+            )
+        }
         if (!store.getState().locationGiven) {
+           
             const defaultProps = {
                 defaultCenter: {
                     lat: 40.424546,
@@ -127,16 +138,7 @@ class GoogleMap extends Component {
                 </div>
             );
         }
-        else {
-            return (
-                <Loader
-                    type="Oval"
-                    color="#00BFFF"
-                    height="200"
-                    width="200"
-                />
-                )
-        }
+       
     }
 }
 

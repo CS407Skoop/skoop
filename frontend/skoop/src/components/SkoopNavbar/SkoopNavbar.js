@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { Search, Grid, Header, Segment } from 'semantic-ui-react'
 import Navbar from 'react-bootstrap/lib/Navbar';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Nav from 'react-bootstrap/lib/Nav';
-import './SkoopNavbar.scss';
+import './SkoopNavbar.css';
 import { store } from '../../store';
 import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode } from '../../actions';
+import 'semantic-ui-css/semantic.min.css';
+import { FaHome } from 'react-icons/fa';
+import { IconContext } from 'react-icons';
 
 
 class SkoopNavbar extends Component {
@@ -24,7 +28,6 @@ class SkoopNavbar extends Component {
         }
 
         if (selectedKey === 3) {
-            console.log('2');
             store.dispatch(showLogOutModal());
         }
 
@@ -41,15 +44,29 @@ class SkoopNavbar extends Component {
                 <Navbar onSelect={this.handleNavbarSelect.bind(this)}>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#home">Skoop</a>
+                            <a href="#home"> <p> Skoop </p></a>
                         </Navbar.Brand>
                     </Navbar.Header>
+                    <Nav>
+                        <NavItem eventKey={5}>
+                            <Search
+                            />
+                        </NavItem>
+                        <NavItem eventKey={5}>
+
+                            <IconContext.Provider value={{ color: "black", size: '2em', style: { margin: '5px 0px 0px 0px'} }}>
+                                <div>
+                                    <FaHome />
+                                </div>
+                            </IconContext.Provider>
+                        </NavItem>
+                    </Nav>
                     <Nav pullRight>
                         <NavItem eventKey={1} href="#">
-                            Login
+                            <p> Login </p>
                     </NavItem>
                         <NavItem eventKey={2} href="#">
-                            Sign Up
+                            <p> Sign Up </p>
                     </NavItem>
 
                     </Nav>

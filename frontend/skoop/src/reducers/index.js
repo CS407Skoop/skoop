@@ -84,6 +84,7 @@ export default (state, action) => {
                 showMainScreen: true,
                 userLoggedIn: false,
                 openLeftPane: false,
+                mapLoading: true
             }
         case 'LOG_IN_SUBMIT':
 
@@ -96,7 +97,8 @@ export default (state, action) => {
                     showMainScreen: true,
                     userLoggedIn: true,
                     openLeftPane: false,
-                    allCategories: ['Sports', 'Technology', 'Climate', 'Politics', 'Breaking', 'Entertainment']
+                    allCategories: ['Sports', 'Technology', 'Climate', 'Politics', 'Breaking', 'Entertainment'],
+                    mapLoading: true
             }
         case 'LOG_USER_OUT':
             return {
@@ -124,7 +126,8 @@ export default (state, action) => {
             return {
                 ...state,
                 locationGiven: true,
-                position: action.payload
+                position: action.payload,
+                mapLoading: false
             }
         }
         case 'STORE_USER_DETAILS': {
@@ -263,7 +266,8 @@ export default (state, action) => {
         case 'NO_LOCATION_GIVEN':
             return {
                 ...state,
-                locationGiven: false
+                locationGiven: false,
+                mapLoading: false
             }
         case 'CLOSE_WARNING_MODAL':
             return {

@@ -7,8 +7,9 @@
     "\\components\\mapPane",
     "\\components\\preferencesModal",
     "\\components\\signUpModal",
+    "\\components\\SkoopNavbar",
     "\\reducers"
   ],
-  "SelectedNode": "\\components\\preferencesModal\\preferencesModal.js",
+  "SelectedNode": "\\components\\preferencesModal\\CategoryCheckbox.js",
   "PreviewInSolutionExplorer": false
 }

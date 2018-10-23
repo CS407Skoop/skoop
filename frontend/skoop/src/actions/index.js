@@ -307,16 +307,6 @@ export const signUpSubmit = () => {
             })
         })
     console.log(jsonToSend);
-    navigator.geolocation.getCurrentPosition(position => {
-        console.log(position);
-        console.log(position);
-        var pos = position;
-        store.dispatch(sendUserLocation(pos));
-
-    }, error => {
-        console.log(error);
-        store.dispatch(noLocationGiven())
-    })
     return {
         type: 'SIGN_UP_SUBMIT',
     }

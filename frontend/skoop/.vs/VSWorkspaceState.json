@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\mapPane",
+    "\\src\\reducers",
+    "\\src\\store"
   ],
-  "SelectedNode": "\\src\\index.js",
+  "SelectedNode": "\\src\\reducers\\index.js",
   "PreviewInSolutionExplorer": false
 }

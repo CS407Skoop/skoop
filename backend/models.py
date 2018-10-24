@@ -67,6 +67,18 @@ class User(db.Model):
 
         return preference_array
 
+class Timeline(db.Model):
+    articles_date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now(), primary_key=True)
+    articles = db.relationship('Article', backref='timeline')
+
+
+    def __repr__(self):
+        return self.id + self.articles_date
+
+    def __init__(self, articles_date):
+
+        self.articles_date = articles_date
+
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(500), nullable=False)
@@ -76,12 +88,12 @@ class Article(db.Model):
     description = db.Column(db.String(750), nullable=True)
     publisher = db.Column(db.String(100), nullable=False)
     country = db.Column(db.String(100), nullable=True)
-    latitute = db.Column(db.Float, nullable=False)
-    longitute = db.Column(db.Float, nullable=False)
+    latitude = db.Column(db.Float, nullable=False)
+    longitude = db.Column(db.Float, nullable=False)
     img_url = db.Column(db.String(500), nullable=True)
     img_height = db.Column(db.Integer, nullable=True)
     img_width = db.Column(db.Integer, nullable=True)
-    article_date = db.Column(db.DateTime, db.ForeignKey(timeline.articles_date), nullable=False)
+    article_date = db.Column(db.DateTime, db.ForeignKey(Timeline.articles_date), nullable=False)
 
     def __repr__(self):
             return self.id + " " + self.url + " " + self.title
@@ -99,22 +111,12 @@ class Article(db.Model):
         self.publisher = publisher
         self.country = country
         self.latitude = latitude
-        self.longitute = longitute
+        self.longitude = longitude
         self.img_url = img_url
         self.img_height = img_height
         self.img_width = img_width
         self.article_date = article_date
 
-class Timeline(db.Model):
-    articles_date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now(), primary_key=True)
-    articles = db.relationship('Article', backref='timeline')
 
-
-    def __repr__(self):
-            return self.id + self.articles_date
-
-    def __init__(self, articles_date):
-
-        self.articles_date = articles_date
         
        

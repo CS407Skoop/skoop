@@ -5,10 +5,11 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Nav from 'react-bootstrap/lib/Nav';
 import './SkoopNavbar.css';
 import { store } from '../../store';
-import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode } from '../../actions';
+import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode, updateZoom, updateCenter } from '../../actions';
 import 'semantic-ui-css/semantic.min.css';
 import { FaHome } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
+import { Radio, RadioGroup } from 'react-radio-group'; 
 
 
 class SkoopNavbar extends Component {
@@ -34,6 +35,14 @@ class SkoopNavbar extends Component {
         if (selectedKey === 4) {
             store.dispatch(enterGuestMode());
         }
+        if (selectedKey === 6) {
+            var center = {
+                lat: 40.424546,
+                lng: -86.921826
+            }
+            store.dispatch(updateCenter(center))
+            store.dispatch(updateZoom(1));
+        }
     }
 
     render() {
@@ -50,9 +59,21 @@ class SkoopNavbar extends Component {
                     <Nav>
                         <NavItem eventKey={5}>
                             <Search
+                                showNoResults={false}
                             />
                         </NavItem>
-                        <NavItem eventKey={5}>
+                        <NavItem eventKey={7}> 
+                            <RadioGroup
+                                name="newsType">
+                                <label>
+                                    <Radio value="oldNews" />  <p className="radioText"> Old News </p>
+                                </label>
+                                <label>
+                                    <Radio value="newNews" />  <p className="radioText"> Current News </p>
+                                </label>
+                            </RadioGroup>
+                        </NavItem>
+                        <NavItem eventKey={6}>
 
                             <IconContext.Provider value={{ color: "black", size: '2em', style: { margin: '5px 0px 0px 0px'} }}>
                                 <div>

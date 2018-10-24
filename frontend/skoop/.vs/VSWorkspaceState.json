@@ -3,10 +3,11 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\mapPane",
+    "\\src\\components\\SkoopNavbar",
+    "\\src\\components\\userOptionsModal",
     "\\src\\reducers",
     "\\src\\store"
   ],
-  "SelectedNode": "\\src\\reducers\\index.js",
+  "SelectedNode": "\\src\\components\\SkoopNavbar\\SkoopNavbar.css",
   "PreviewInSolutionExplorer": false
 }

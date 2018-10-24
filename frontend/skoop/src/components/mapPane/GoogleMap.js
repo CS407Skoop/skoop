@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { store } from '../../store';
-import {openLeftPane} from '../../actions'
+import {updateZoom, updateCenter} from '../../actions'
 import Loader from 'react-loader-spinner';
 import { GoogleMapsStyle } from './GoogleMapStyles';
 import LeftPane from '../leftPane/leftPane';
@@ -52,6 +52,15 @@ class GoogleMap extends Component {
 
     }
 
+    onBoundsChange(center, zoom, bounds, marginBounds) {
+        console.log(center);
+        store.dispatch(updateZoom(zoom));
+        store.dispatch(updateCenter(center));
+
+    }
+
+    onMapClick = ({ x, y, lat, lng, event }) => console.log(x, y, lat, lng, event)
+    
     render() {
         if (store.getState().mapLoading) {
             return (
@@ -64,18 +73,14 @@ class GoogleMap extends Component {
             )
         }
         if (!store.getState().locationGiven) {
-           
+            console.log(store.getState().center);
             const defaultProps = {
                 defaultCenter: {
                     lat: 40.424546,
                     lng: -86.921826
                 },
-                zoom: 11,
-                center: {
-                    lat: 40.424546,
-                    lng: -86.921826
-                },
             }
+           
             return (
                 // Important! Always set the container height explicitly
                 <div className="mapContainer">
@@ -84,8 +89,10 @@ class GoogleMap extends Component {
                         <GoogleMapReact
                             bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo' }}
                             defaultCenter={defaultProps.defaultCenter}
-                            center={defaultProps.center}
-                            defaultZoom={defaultProps.zoom}
+                            center={defaultProps.defaultCenter}
+                            zoom={store.getState().zoom}
+                            onClick={this.onMapClick}
+                            onChange={this.onBoundsChange}
                         >
 
 
@@ -99,18 +106,19 @@ class GoogleMap extends Component {
 
         }
         if (store.getState().position) {
-            //console.log(store.getState().position)
+            console.log(store.getState().position);
             const defaultProps = {
                 defaultCenter: {
                     lat: 40.424546,
                     lng: -86.921826
                 },
-                zoom: 11,
+           
                 center: {
                     lat: store.getState().position.coords.latitude,
                     lng: store.getState().position.coords.longitude
                 },
             }
+            //console.log(store.getState().positio
             return (
                 // Important! Always set the container height explicitly
                 <div className="mapContainer">
@@ -119,8 +127,10 @@ class GoogleMap extends Component {
                         <GoogleMapReact
                             bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo' }}
                             defaultCenter={defaultProps.defaultCenter}
-                            center={defaultProps.center}
-                            defaultZoom={defaultProps.zoom}
+                            center={store.getState().center}
+                            zoom={store.getState().zoom}
+                            onClick={this.onMapClick}
+                            onBoundsChange={this.onBoundsChange}
                         >
 
 

@@ -15,4 +15,3 @@ six==1.10.0
 sklearn==0.0
 urllib3==1.13.1
 virtualenv==15.0.1
-xkit==0.0.0

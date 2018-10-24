@@ -1,4 +1,5 @@
 from app import db
+import datetime
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -80,13 +81,14 @@ class Article(db.Model):
     img_url = db.Column(db.String(500), nullable=True)
     img_height = db.Column(db.Integer, nullable=True)
     img_width = db.Column(db.Integer, nullable=True)
+    article_date = db.Column(db.DateTime, db.ForeignKey(timeline.articles_date), nullable=False)
 
     def __repr__(self):
             return self.id + " " + self.url + " " + self.title
 
     def __init__(self, id=None, url=None, title=None, city=None, category=None, description=None,
                  publisher=None, country=None, latitude=None, longitude=None, img_url=None,
-                 img_height=None, img_width=None):
+                 img_height=None, img_width=None, article_date=datetime.datetime.now()):
         
         self.id = id
         self.url = url
@@ -101,3 +103,18 @@ class Article(db.Model):
         self.img_url = img_url
         self.img_height = img_height
         self.img_width = img_width
+        self.article_date = article_date
+
+class Timeline(db.Model):
+    articles_date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now(), primary_key=True)
+    articles = db.relationship('Article', backref='timeline')
+
+
+    def __repr__(self):
+            return self.id + self.articles_date
+
+    def __init__(self, articles_date):
+
+        self.articles_date = articles_date
+        
+       

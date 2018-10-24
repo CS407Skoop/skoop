@@ -463,5 +463,19 @@ var jsonToSend = JSON.stringify({
     return {
         type: 'CLOSE_WARNING_MODAL',
     }
-  }
+}
+
+export const updateZoom = (zoom) => {
+    return {
+        type: 'UPDATE_ZOOM',
+        payload: zoom
+    }
+}
+
+export const updateCenter = (center) => {
+    return {
+        type: 'UPDATE_CENTER',
+        payload: center
+    }
+}
 

@@ -2,3 +2,12 @@ p {
     margin-top: 5px !important;
 }
 
+label {
+    display: flex !important;
+    align-items: center
+}
+
+.radioText {
+    margin-top: 0px !important;
+    margin-left: 5px;
+}

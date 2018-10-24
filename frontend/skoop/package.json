@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "algoliasearch": "^3.30.0",
     "google": "^2.1.0",
     "google-map-react": "^1.0.9",
     "map": "^1.0.1",
@@ -10,12 +11,18 @@
     "react-bootstrap": "^0.32.4",
     "react-checkbox-group": "^4.0.1",
     "react-dom": "^16.5.2",
+    "react-icons": "^3.2.1",
+    "react-instantsearch-dom": "^5.3.1",
     "react-loader-spinner": "^2.0.6",
+    "react-radio-group": "^3.0.3",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.5",
+    "react-search-box": "^1.0.1",
     "react-select": "^2.1.0",
     "redux": "^4.0.0",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.82.5"
   },
   "scripts": {
     "start": "react-scripts start",

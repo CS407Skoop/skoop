@@ -84,7 +84,14 @@ export default (state, action) => {
                 showMainScreen: true,
                 userLoggedIn: false,
                 openLeftPane: false,
-                mapLoading: true
+                mapLoading: true,
+                zoom: 1,
+                center: {
+                    lat: 40.424546,
+                    lng: -86.921826
+                }
+                
+
             }
         case 'LOG_IN_SUBMIT':
 
@@ -98,7 +105,13 @@ export default (state, action) => {
                     userLoggedIn: true,
                     openLeftPane: false,
                     allCategories: ['Sports', 'Technology', 'Climate', 'Politics', 'Breaking', 'Entertainment'],
-                    mapLoading: true
+                    mapLoading: true,
+                    zoom: 1,
+                    center: {
+                        lat: 40.424546,
+                        lng: -86.921826
+                    }
+                    
             }
         case 'LOG_USER_OUT':
             return {
@@ -127,7 +140,7 @@ export default (state, action) => {
                 ...state,
                 locationGiven: true,
                 position: action.payload,
-                mapLoading: false
+                mapLoading: false,
             }
         }
         case 'STORE_USER_DETAILS': {
@@ -267,13 +280,27 @@ export default (state, action) => {
             return {
                 ...state,
                 locationGiven: false,
-                mapLoading: false
+                mapLoading: false,
+                center: {
+                    lat: 40.424546,
+                    lng: -86.921826
+                }
             }
         case 'CLOSE_WARNING_MODAL':
             return {
                 ...state,
                 warning: false,
                 warningMsg: ''
+            }
+        case 'UPDATE_ZOOM':
+            return {
+                ...state,
+                zoom: action.payload
+            }
+        case 'UPDATE_CENTER':
+            return {
+                ...state,
+                center: action.payload
             }
         default:
             return state;

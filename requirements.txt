@@ -1,7 +1,6 @@
 beautifulsoup4==4.4.1
 chardet==2.3.0
 html5lib==0.999
-louis==2.6.4
 lxml==3.5.0
 numpy==1.14.2
 onboard==1.2.0

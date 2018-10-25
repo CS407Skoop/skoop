@@ -48,6 +48,7 @@ def login():
 def signup():
     data = request.get_json()
 
+    print(data)
     firstName = data['firstName']
     lastName = data['lastName']
     username = data['username']

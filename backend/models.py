@@ -95,9 +95,6 @@ class Article(db.Model):
     img_width = db.Column(db.Integer, nullable=True)
     article_date = db.Column(db.DateTime, db.ForeignKey(Timeline.articles_date), nullable=False)
 
-    def __repr__(self):
-            return self.id + " " + self.url + " " + self.title
-
     def __init__(self, id=None, url=None, title=None, city=None, category=None, description=None,
                  publisher=None, country=None, latitude=None, longitude=None, img_url=None,
                  img_height=None, img_width=None, article_date=datetime.datetime.now()):

@@ -286,7 +286,7 @@ export const signUpSubmit = () => {
         lastName: lastName
     })
 
-    var request = new Request('http://127.0.0.1:5000/api/signup/', {
+    var request = new Request('http://skoopnews.herokuapp.com/api/signup/', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -476,6 +476,13 @@ export const updateCenter = (center) => {
     return {
         type: 'UPDATE_CENTER',
         payload: center
+    }
+}
+
+export const searchValueChange = (search) => {
+    console.log(search);
+    return {
+        type: 'SEARCH_VALUE_CHANGE'
     }
 }
 

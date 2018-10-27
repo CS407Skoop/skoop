@@ -5,7 +5,7 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Nav from 'react-bootstrap/lib/Nav';
 import './SkoopNavbar.css';
 import { store } from '../../store';
-import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode, updateZoom, updateCenter } from '../../actions';
+import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode, updateZoom, updateCenter, searchValueChange } from '../../actions';
 import 'semantic-ui-css/semantic.min.css';
 import { FaHome } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
@@ -18,10 +18,7 @@ class SkoopNavbar extends Component {
 
     handleNavbarSelect(selectedKey) {
         if (selectedKey === 1) {
-
             store.dispatch(openLogInModal());
-
-
         }
 
         if (selectedKey === 2) {
@@ -45,6 +42,11 @@ class SkoopNavbar extends Component {
         }
     }
 
+    onSearchChange(e) {
+        store.dispatch(searchValueChange(e.target.value));
+    }
+
+
     render() {
 
         //console.log(store.getState().userLoggedIn)
@@ -60,6 +62,7 @@ class SkoopNavbar extends Component {
                         <NavItem eventKey={5}>
                             <Search
                                 showNoResults={false}
+                                onSearchChange={this.onSearchChange}
                             />
                         </NavItem>
                         <NavItem eventKey={7}> 

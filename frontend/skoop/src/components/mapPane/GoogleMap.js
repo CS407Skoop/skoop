@@ -5,6 +5,7 @@ import {updateZoom, updateCenter} from '../../actions'
 import Loader from 'react-loader-spinner';
 import { GoogleMapsStyle } from './GoogleMapStyles';
 import LeftPane from '../leftPane/leftPane';
+import Markers from './Markers';
 import './googleMap.css';
 import LeftPaneButton from '../leftPane/leftPaneButton';
 import LogOutModal from '../SkoopNavbar/logOutModal';
@@ -106,7 +107,6 @@ class GoogleMap extends Component {
 
         }
         if (store.getState().position) {
-            console.log(store.getState().position);
             const defaultProps = {
                 defaultCenter: {
                     lat: 40.424546,

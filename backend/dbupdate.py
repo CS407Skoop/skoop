@@ -7,6 +7,7 @@ import certifi
 import ssl
 import geopy.geocoders
 import datetime
+import json
 
 
 subscription_key = "ee34cd704dc145e38f456a285dc314d9"
@@ -93,11 +94,31 @@ def submitArticles(articles):
                 print("Key not found")
 
 
-
 def getTimeLineArticles(date):
     article_list = Timeline.query.filter_by(articles_date=date).first()
-    for x in article_list.articles:
-        print(x.id)
+    list = {}
+    list["date"] = str(date)
+    list["value"] = []
+
+    if article_list is not None:
+        for x in article_list.articles:
+            list["value"].append({"id" : x.id,
+                                    "url" : x.url,
+                                    "title" : x.title,
+                                    "city" : x.city,
+                                    "category" : x.category,
+                                    "description" : x.description,
+                                    "publisher" : x.publisher,
+                                    "country" : x.country,
+                                    "latitude" : x.latitude,
+                                    "longitude" : x.longitude,
+                                    "img_url" : x.img_url,
+                                    "img_height" : x.img_height,
+                                    "img_width" : x.img_width,
+                                    "article_date" : str(x.article_date)})
+    print(list)
+    return json.dumps(list)
+
 
 def getTopByCountry(country):
     params.__setitem__("cc", country)
@@ -118,6 +139,9 @@ def getTopByCategory(category, country=""):
     return search_results
 
 
+#print(getTimeLineArticles(datetime.datetime.now().date()))
+
+
 file = open("../documents/countries.txt", "r")
 for line in file:
     print(line)
@@ -125,10 +149,11 @@ for line in file:
     print(country)
     news_arts = getTopByCountry(country)["value"]
     news_arts = processArticleLocations(news_arts, country)
-    try:
-        submitArticles(news_arts)
-    except:
-        print("lost sql connection")
+    #try:
+    submitArticles(news_arts)
+    #except Exception as ex:
+     #   print(type(ex), ",", ex.__class__.__name__)
+
 
 
 

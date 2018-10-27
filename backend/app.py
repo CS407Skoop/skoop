@@ -7,6 +7,8 @@ app = Flask(__name__)
 CORS(app)
 
 app.config.from_pyfile('config.py')
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 28800 - 1
+app.config['SQLALCHEMY_POOL_TIMEOUT'] = 99999
 
 db = SQLAlchemy(app)
 

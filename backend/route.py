@@ -4,9 +4,10 @@ from flask_json import FlaskJSON, JsonError, json_response, as_json
 import json
 from flask import Response
 from app import app
-from models import User
+from models import User, Timeline, Article
 from app import db
 import validation
+import dbupdate
 
 FlaskJSON(app)
 CORS(app)
@@ -145,3 +146,14 @@ def validate(hash):
         js = json.dumps(ret)
         resp = Response(js, status=200, mimetype='application/json')
         return resp
+
+
+@app.route('/api/getArticles/', methods=['GET', 'POST'])
+@cross_origin()
+def getArticles():
+
+    data = request.get_json()
+    date = data['date']
+    js = dbupdate.getTimeLineArticles(date)
+    resp = Response(js, status=200, mimetype='application/json')
+    return resp

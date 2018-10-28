@@ -82,7 +82,7 @@ class Timeline(db.Model):
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(500), nullable=False)
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(500), nullable=False)
     city = db.Column(db.String(50), nullable=False)
     category = db.Column(db.String(25), nullable=True)
     description = db.Column(db.String(750), nullable=True)

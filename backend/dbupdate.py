@@ -142,15 +142,16 @@ def getTopByCategory(category, country=""):
 #print(getTimeLineArticles(datetime.datetime.now().date()))
 
 
-file = open("../documents/countries.txt", "r")
-for line in file:
-    print(line)
-    country = line.split()[1]
-    print(country)
-    news_arts = getTopByCountry(country)["value"]
-    news_arts = processArticleLocations(news_arts, country)
-    #try:
-    submitArticles(news_arts)
+if __name__ == "__main__":
+    file = open("../documents/countries.txt", "r")
+    for line in file:
+        print(line)
+        country = line.split()[1]
+        print(country)
+        news_arts = getTopByCountry(country)["value"]
+        news_arts = processArticleLocations(news_arts, country)
+        #try:
+        submitArticles(news_arts)
     #except Exception as ex:
      #   print(type(ex), ",", ex.__class__.__name__)
 

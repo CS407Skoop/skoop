@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { store } from '../../store';
-import {updateZoom, updateCenter} from '../../actions'
+import {updateZoom, updateCenter, storePositions} from '../../actions'
 import Loader from 'react-loader-spinner';
 import { GoogleMapsStyle } from './GoogleMapStyles';
 import LeftPane from '../leftPane/leftPane';
@@ -13,6 +13,8 @@ import LeftPaneButton from '../leftPane/leftPaneButton';
 import LogOutModal from '../SkoopNavbar/logOutModal';
 
 class GoogleMap extends Component {
+
+    
 
     UserLocation = () => {
         if(store.getState().locationGiven)
@@ -80,8 +82,8 @@ class GoogleMap extends Component {
         var articles = [];
         var data = [];
         var markers = [];
-        var gradient = []
-        var heatMapData = [];
+        var gradient = [];
+        var heatMapData = []
         if (store.getState().articles) {
             
             articles = store.getState().articles;
@@ -113,11 +115,7 @@ class GoogleMap extends Component {
             ]
             data = {
                 positions: heatMapData,
-                options: {
-                    radius: 20,
-                    opacity: 0.2,
-                    gradient: gradient
-                }
+                
             }
             if (store.getState().zoom >= 0) {
                 markers = articles.map(function (article) {
@@ -128,6 +126,7 @@ class GoogleMap extends Component {
             }
             
         }
+        const positions = heatMapData
         
         if (store.getState().mapLoading) {
             return (
@@ -148,6 +147,7 @@ class GoogleMap extends Component {
                 },
             }
             if (articles.length > 0) {
+                
                 return (
                     // Important! Always set the container height explicitly
                     <div className="mapContainer">
@@ -162,7 +162,13 @@ class GoogleMap extends Component {
                                 onChange={this.onBoundsChange}
                                 heatmapLibrary={true}
                                 updateHeatmap={true}
-                                heatmap={data}
+                                heatmap={{positions:heatMapData,
+                                        options: {
+                                             radius: 20,
+                                             opacity: 0.7,
+                                        }
+
+                                }}
                             >
                             </GoogleMapReact>
                         </div>
@@ -183,7 +189,14 @@ class GoogleMap extends Component {
                                 onClick={this.onMapClick}
                                 onChange={this.onBoundsChange}
                                 heatmapLibrary={true}
-                               
+                                heatmap={{positions:heatMapData,
+                                        options: {
+                                             radius: 20,
+                                             opacity: 0.7,
+                                        }
+
+                                }}
+
                             >
                             </GoogleMapReact>
                         </div>
@@ -194,6 +207,32 @@ class GoogleMap extends Component {
 
         }
         if (store.getState().position) {
+        var testData = [
+                                                {
+                                                  lat: 60.7143,
+                                                  lng: 47.0517,
+                                                },
+                                                {
+                                                  lat: 60.7343,
+                                                  lng: 47.0617,
+                                                },
+                                                {
+                                                  lat: 60.7543,
+                                                  lng: 47.0817,
+                                                },
+                                                {
+                                                  lat: 60.7743,
+                                                  lng: 47.1017,
+                                                },
+                                                {
+                                                  lat: 60.8043,
+                                                  lng: 47.1117,
+                                                },
+                                              ]
+
+
+            var temp1 = {lat: 60.7143,lng: 47.0517,};
+            console.log(testData);
             const defaultProps = {
                 defaultCenter: {
                     lat: 24.075,
@@ -206,6 +245,7 @@ class GoogleMap extends Component {
                 },
             }
             if (articles.length > 0) {
+                console.log(heatMapData)
                 //console.log(data);
                 //console.log(store.getState().positio
                 return (
@@ -214,15 +254,21 @@ class GoogleMap extends Component {
                         <this.leftSide />
                         <div className="mapPane">
                             <GoogleMapReact
-                                bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo', libraries: 'visualization' }}
+                                bootstrapURLKeys={{ key: 'AIzaSyAC1PSJ_g70IDwtv61G76vzidpIRs1YxyM', libraries: 'visualization' }}
                                 defaultCenter={defaultProps.defaultCenter}
                                 center={store.getState().center}
                                 zoom={store.getState().zoom}
                                 onClick={this.onMapClick}
                                 onBoundsChange={this.onBoundsChange}
-                                updateHeatmap={true}
+
                                 heatmapLibrary={true}
-                                heatmap={data}
+                                heatmap={{positions:heatMapData,
+                                        options: {
+                                             radius: 20,
+                                             opacity: 0.7,
+                                        }
+
+                                }}
                                 
                             >
                                 {markers}
@@ -256,6 +302,13 @@ class GoogleMap extends Component {
                                 onClick={this.onMapClick}
                                 onBoundsChange={this.onBoundsChange}
                                 heatmapLibrary={true}
+                                heatmap={{positions:heatMapData,
+                                        options: {
+                                             radius: 20,
+                                             opacity: 0.7,
+                                        }
+
+                                }}
                             >
 
 

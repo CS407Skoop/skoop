@@ -323,6 +323,13 @@ export default (state, action) => {
                 showArticleFrame: false
             }
         }
+        case 'STORE_POSITIONS': {
+            return {
+                ...state,
+                positions: action.payload
+            }
+        }
+         
         default:
             return state;
 

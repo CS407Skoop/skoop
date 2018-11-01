@@ -534,11 +534,16 @@ export const updateCenter = (center) => {
     }
 }
 
+
+
 export const searchValueChange = (search) => {
-    console.log(search);
-    return {
-        type: 'SEARCH_VALUE_CHANGE'
-    }
+    
+        console.log(search);
+        return {
+            type: 'SEARCH_VALUE_CHANGE',
+            payload: search
+        }
+    
 }
 
 export const storeArticleDetails = (articleDetails) => {

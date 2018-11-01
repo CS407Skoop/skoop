@@ -8,6 +8,8 @@ import ssl
 import geopy.geocoders
 import datetime
 import json
+import nltk
+from nltk.corpus import stopwords
 
 
 subscription_key = "ee34cd704dc145e38f456a285dc314d9"
@@ -95,28 +97,51 @@ def submitArticles(articles):
 
 
 def getTimeLineArticles(date):
-    article_list = Timeline.query.filter_by(articles_date=date).first()
+    if date is not None:
+        article_list = Timeline.query.filter_by(articles_date=date).first()
+    else:
+        article_list = Timeline.query.filter_by()
+
     list = {}
-    list["date"] = str(date)
+    list["date"] = date
     list["value"] = []
 
-    if article_list is not None:
-        for x in article_list.articles:
-            list["value"].append({"id" : x.id,
-                                    "url" : x.url,
-                                    "title" : x.title,
-                                    "city" : x.city,
-                                    "category" : x.category,
-                                    "description" : x.description,
-                                    "publisher" : x.publisher,
-                                    "country" : x.country,
-                                    "latitude" : x.latitude,
-                                    "longitude" : x.longitude,
-                                    "img_url" : x.img_url,
-                                    "img_height" : x.img_height,
-                                    "img_width" : x.img_width,
-                                    "article_date" : str(x.article_date)})
-    print(list)
+    if date is None:
+        if article_list is not None:
+            for y in article_list:
+                for x in y.articles:
+                    list["value"].append({"id" : x.id,
+                                            "url" : x.url,
+                                            "title" : x.title,
+                                            "city" : x.city,
+                                            "category" : x.category,
+                                            "description" : x.description,
+                                            "publisher" : x.publisher,
+                                            "country" : x.country,
+                                            "latitude" : x.latitude,
+                                            "longitude" : x.longitude,
+                                            "img_url" : x.img_url,
+                                            "img_height" : x.img_height,
+                                            "img_width" : x.img_width,
+                                            "article_date" : str(x.article_date)})
+    else:
+        if article_list is not None:
+            for x in article_list.articles:
+                list["value"].append({"id" : x.id,
+                                        "url" : x.url,
+                                        "title" : x.title,
+                                        "city" : x.city,
+                                        "category" : x.category,
+                                        "description" : x.description,
+                                        "publisher" : x.publisher,
+                                        "country" : x.country,
+                                        "latitude" : x.latitude,
+                                        "longitude" : x.longitude,
+                                        "img_url" : x.img_url,
+                                        "img_height" : x.img_height,
+                                        "img_width" : x.img_width,
+                                        "article_date" : str(x.article_date)})
+
     return json.dumps(list)
 
 
@@ -139,19 +164,71 @@ def getTopByCategory(category, country=""):
     return search_results
 
 
+def searchArticles(search_str, new):
+
+    date = str(datetime.datetime.now().date())
+    date += " 00:00:00"
+
+    result = {}
+    result["value"] = []
+
+    search_list = search_str.split(" ")
+    filtered_search = [word.lower() for word in search_list if word not in stopwords.words('english')]
+
+    if new:
+        articles = json.loads(getTimeLineArticles(date))
+    else:
+        articles = json.loads(getTimeLineArticles(None))
+
+    for article in articles["value"]:
+        if not new and article["article_date"] == date:
+            continue
+        if  article["title"] is None:
+            continue
+
+        #filtered_description = [word for word in article["description"] if word not in stopwords.words('english')]
+        split_title = article["title"].split(" ")
+        filtered_title = [word.lower() for word in split_title if word not in stopwords.words('english')]
+
+        #print(article["article_date"])
+
+
+
+        flag = False
+        for x in filtered_search:
+            if x in filtered_title:
+                flag = True
+                break
+
+        if flag:
+            result["value"].append(article)
+            print(article["title"])
+
+    return json.dumps(result)
+
+
+
+
+
+
+#searchArticles("google", False)
+
+#getTimeLineArticles("2018-10-27 00:00:00")
+
 #print(getTimeLineArticles(datetime.datetime.now().date()))
 
-flag=False
+'''
+flag = False
 
 if __name__ == "__main__":
     file = open("../documents/countries.txt", "r")
     for line in file:
         print(line)
-        country = line.split()[1]
-        print(country)
-        if country == "FI":
+        country = line.split()[len(line.split()) - 1]
+        if country == "GB":
             flag = True
         if flag:
+            print("here")
             news_arts = getTopByCountry(country)["value"]
             news_arts = processArticleLocations(news_arts, country)
             try:
@@ -160,6 +237,5 @@ if __name__ == "__main__":
                 print(type(ex), ",", ex.__class__.__name__)
 
 
-
-
+'''
 

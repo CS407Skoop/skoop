@@ -9,3 +9,5 @@ Also pip install mysqlclient
 
 
 Link for sql stuff - https://www.youtube.com/watch?v=HXV3zeQKqGY
+
+Image not found - export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/

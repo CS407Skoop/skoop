@@ -149,7 +149,7 @@ export const logInSubmit = () => {
             var objReceived = JSON.parse(text);
             if (objReceived.message === 'SUCCESS') {
                 store.dispatch(storeUserLogInDetails(objReceived));
-                
+
             }
             else {
                 alert('Invalid credentials. Try logging in again')
@@ -183,7 +183,7 @@ export const storePositions = (positions) => {
     }
 }
 export const storeUserSignUpDetails = (userDetails) => {
-    
+
         return {
             type: 'STORE_SIGNUP_DETAILS',
             payload: userDetails
@@ -198,7 +198,7 @@ function validateEmail(email) {
 export const noLocationGiven = () => {
     return {
         type: 'NO_LOCATION_GIVEN'
-            
+
     }
 }
 
@@ -237,7 +237,7 @@ export const getArticles = () => {
             var objReceived = JSON.parse(text);
             console.log(objReceived);
             store.dispatch(storeArticles(objReceived.value));
-            
+
         })
     })
     return {
@@ -352,7 +352,7 @@ export const signUpSubmit = () => {
                 var objReceived = JSON.parse(text);
                 console.log(objReceived);
                 if (objReceived.message === 'SUCCESS') {
-                    
+
                     console.log("SIGNED UP")
                 }
                 else {
@@ -490,7 +490,7 @@ var jsonToSend = JSON.stringify({
         categories: currentStore.tempCategories
     })
     console.log(jsonToSend);
-    var request = new Request('http://127.0.0.1:5000/api/editPreferences/', {
+    var request = new Request('http://skoopnews.herokuapp.com/api/editPreferences/', {
                   method: 'POST',
                   headers: {
                     'Accept': 'application/json',
@@ -537,17 +537,17 @@ export const updateCenter = (center) => {
 
 
 export const searchValueChange = (search) => {
-    
+
         console.log(search);
         return {
             type: 'SEARCH_VALUE_CHANGE',
             payload: search
         }
-    
+
 }
 
 export const storeArticleDetails = (articleDetails) => {
-    
+
     return {
         type: 'STORE_ARTICLE_DETAILS',
         payload: articleDetails
@@ -559,4 +559,3 @@ export const hideArticleInformation = () => {
         type: 'HIDE_ARTICLE_INFORMATION'
     }
 }
-

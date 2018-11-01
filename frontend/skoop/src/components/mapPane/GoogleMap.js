@@ -167,8 +167,7 @@ class GoogleMap extends Component {
                                              radius: 20,
                                              opacity: 0.7,
                                         }
-
-                                }}
+                                 }}
                             >
                             </GoogleMapReact>
                         </div>
@@ -194,8 +193,7 @@ class GoogleMap extends Component {
                                              radius: 20,
                                              opacity: 0.7,
                                         }
-
-                                }}
+                                 }}
 
                             >
                             </GoogleMapReact>
@@ -262,13 +260,12 @@ class GoogleMap extends Component {
                                 onBoundsChange={this.onBoundsChange}
 
                                 heatmapLibrary={true}
-                                heatMapData={{
-                                    positions: heatMapData,
-                                    options: {
-                                        radius: 20,
-                                        opacity: 0.7,
-                                    }
-                                }}
+                                heatmap={{positions:heatMapData,
+                                        options: {
+                                             radius: 20,
+                                             opacity: 0.7,
+                                        }
+                                 }}a
 
                                 
                             >
@@ -308,8 +305,7 @@ class GoogleMap extends Component {
                                              radius: 20,
                                              opacity: 0.7,
                                         }
-
-                                }}
+                                 }}
                             >
 
 

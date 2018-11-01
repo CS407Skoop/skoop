@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './leftPane.css';
 import { store } from '../../store';
-import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button, Clearfix, Dropdown } from 'react-bootstrap';
 import { closeLeftPane, openPreferencesModal } from '../../actions';
 import  PreferencesModal from '../preferencesModal/preferencesModal';
 
@@ -54,7 +54,7 @@ class LeftPane extends Component {
                 <PreferencesModal />
                 )
         }
-        else 
+        else
             return (<div />)
     }
 
@@ -65,32 +65,58 @@ class LeftPane extends Component {
 
               <br /><h3><label>{store.getState().firstName} {store.getState().lastName}</label><br /><br />
               </h3>
-              <ButtonToolbar>
+
+                <Clearfix>
+                <ul className="dropdown-menu open prefs">
+                  <ButtonToolbar>
+                  <h1 id="favoriteLocations">Favorite Locations
+                  <this.showLocationItems/>
+                </h1>
+                  <MenuItem divider />
+                  <h1 id="favoriteArticles">Favorite Articles
+                  <this.showArticleItems/>
+                </h1>
+                  <MenuItem divider />
+                  <h1 id="Categories">Categories
+                  <this.showCategoryItems/>
+                </h1>
+                </ButtonToolbar>
+                </ul>
+              </Clearfix>
+
+
+                {/* <ButtonToolbar>
+                <Dropdown defaultopen="true">
                 <DropdownButton className="prefs"
                   title="Favorite Locations"
                   id="favoriteLocations"
                 >
                   <this.showLocationItems />
                 </DropdownButton>
+              </Dropdown>
               </ButtonToolbar><br />
 
               <ButtonToolbar>
+                <Dropdown defaultopen="true">
                 <DropdownButton className="prefs"
                   title="Favorite Articles"
                   id="favoriteArticles"
                 >
                   <this.showArticleItems/>
                 </DropdownButton>
+              </Dropdown>
               </ButtonToolbar><br />
 
               <ButtonToolbar>
+                <Dropdown defaultopen="true">
                 <DropdownButton className="prefs"
                   title="Categories"
                   id="Categories"
                 >
                   <this.showCategoryItems />
                 </DropdownButton>
-              </ButtonToolbar><br />
+              </Dropdown>
+              </ButtonToolbar><br />  */}
 
               <ButtonToolbar>
                     <Button bsStyle="primary" onClick={this.openPreferencesModal}>Edit</Button>

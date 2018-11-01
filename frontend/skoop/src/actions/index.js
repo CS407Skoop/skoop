@@ -13,6 +13,7 @@ export const openSignUpModal = () => {
 }
 
 export const enterGuestMode = () => {
+    store.dispatch(getArticles());
     navigator.geolocation.getCurrentPosition(position => {
         console.log(position);
         var pos = position;
@@ -145,8 +146,10 @@ export const logInSubmit = () => {
     fetch(request).then(function(response){
         response.text().then(function(text) {
             var objReceived = JSON.parse(text);
-            if(objReceived.message === 'SUCCESS')
+            if (objReceived.message === 'SUCCESS') {
                 store.dispatch(storeUserLogInDetails(objReceived));
+                store.dispatch(getArticles());
+            }
             else {
                 alert('Invalid credentials. Try logging in again')
                 store.dispatch(logInFailure());
@@ -189,6 +192,49 @@ export const noLocationGiven = () => {
     return {
         type: 'NO_LOCATION_GIVEN'
             
+    }
+}
+
+export const storeArticles = (articles) => {
+    console.log("IN");
+    return {
+        type: 'STORE_ARTICLES',
+        payload: articles
+    }
+}
+
+export const getArticles = () => {
+    console.log("GETART")
+    var newDate = new Date();
+    console.log(newDate);
+    var year = newDate.getFullYear();
+    var month = newDate.getMonth() + 1;
+    var day = newDate.getDate()-4;
+    var date = year + "-" + month + "-" + day + " 00:00:00"
+    console.log(date);
+    var jsonToSend = JSON.stringify({
+        date: date
+    })
+    console.log(jsonToSend);
+    var request = new Request('http://skoopnews.herokuapp.com/api/getArticles/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: jsonToSend
+    });
+    fetch(request).then(function (response) {
+        console.log(response);
+        response.text().then(function (text) {
+            var objReceived = JSON.parse(text);
+            console.log(objReceived);
+            store.dispatch(storeArticles(objReceived.value));
+            
+        })
+    })
+    return {
+        type: 'DUMMY'
     }
 }
 
@@ -298,8 +344,10 @@ export const signUpSubmit = () => {
             response.text().then(function(text) {
                 var objReceived = JSON.parse(text);
                 console.log(objReceived);
-                if(objReceived.message === 'SUCCESS')
+                if (objReceived.message === 'SUCCESS') {
+                    
                     console.log("SIGNED UP")
+                }
                 else {
                     alert('User already exists. Use a different email or sign in')
                     store.dispatch(signUpFailure())

@@ -302,6 +302,12 @@ export default (state, action) => {
                 ...state,
                 center: action.payload
             }
+        case 'STORE_ARTICLES': {
+            return {
+                ...state,
+                articles: action.payload
+            }
+        }
         default:
             return state;
 

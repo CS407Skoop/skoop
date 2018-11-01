@@ -66,26 +66,26 @@ class LeftPane extends Component {
               <br /><h3><label>{store.getState().firstName} {store.getState().lastName}</label><br /><br />
               </h3>
 
-              {/* <Clearfix>
+                <Clearfix>
                 <ul className="dropdown-menu open prefs">
                   <ButtonToolbar>
-                  <MenuItem id="favoriteLocations" header>Favorite Locations
+                  <h1 id="favoriteLocations">Favorite Locations
                   <this.showLocationItems/>
-                  </MenuItem>
+                </h1>
                   <MenuItem divider />
-                  <MenuItem id="favoriteArticles" header>Favorite Articles
+                  <h1 id="favoriteArticles">Favorite Articles
                   <this.showArticleItems/>
-                  </MenuItem>
+                </h1>
                   <MenuItem divider />
-                  <MenuItem id="Categories" header>Categories
+                  <h1 id="Categories">Categories
                   <this.showCategoryItems/>
-                  </MenuItem>
+                </h1>
                 </ButtonToolbar>
                 </ul>
-              </Clearfix> */}
+              </Clearfix>
 
 
-               <ButtonToolbar>
+                {/* <ButtonToolbar>
                 <Dropdown defaultopen="true">
                 <DropdownButton className="prefs"
                   title="Favorite Locations"
@@ -116,7 +116,7 @@ class LeftPane extends Component {
                   <this.showCategoryItems />
                 </DropdownButton>
               </Dropdown>
-              </ButtonToolbar><br />
+              </ButtonToolbar><br />  */}
 
               <ButtonToolbar>
                     <Button bsStyle="primary" onClick={this.openPreferencesModal}>Edit</Button>

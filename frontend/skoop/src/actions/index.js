@@ -91,6 +91,7 @@ export const sendUserLocation = (position) => {
 }
 
 export const storeUserLogInDetails = (userDetails) => {
+    store.dispatch(getArticles());
     return {
         type: 'STORE_USER_DETAILS',
         payload: userDetails
@@ -135,7 +136,7 @@ export const logInSubmit = () => {
         password: password
     })
     //console.log(jsonToSend);
-    var request = new Request('http://127.0.0.1:5000/api/login/', {
+    var request = new Request('http://skoopnews.herokuapp.com/api/login/', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -148,7 +149,7 @@ export const logInSubmit = () => {
             var objReceived = JSON.parse(text);
             if (objReceived.message === 'SUCCESS') {
                 store.dispatch(storeUserLogInDetails(objReceived));
-                store.dispatch(getArticles());
+                
             }
             else {
                 alert('Invalid credentials. Try logging in again')
@@ -175,8 +176,14 @@ export const logInSubmit = () => {
           payload: 'User already exists. Try another email.'
        }
   }
-
-  export const storeUserSignUpDetails =  (userDetails) => {
+export const storePositions = (positions) => {
+    return {
+        type: 'STORE_POSITIONS',
+        payload: positions
+    }
+}
+export const storeUserSignUpDetails = (userDetails) => {
+    
         return {
             type: 'STORE_SIGNUP_DETAILS',
             payload: userDetails

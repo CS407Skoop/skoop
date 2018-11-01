@@ -19,15 +19,20 @@ class LeftPane extends Component {
         return <MenuItem > {location} </MenuItem>
     })
     return locationItems;
-    }
+        }
+        return <div />
 
     }
 
-    showArticleItems () {
-        const articleItems = store.getState().favoriteArticles.map(function(article) {
-            return <MenuItem > {article} </MenuItem>
-        })
-        return articleItems;
+    showArticleItems() {
+        console.log(store.getState().favoriteArticles)
+        if (store.getState().favoriteArticles) {
+            const articleItems = store.getState().favoriteArticles.map(function (article) {
+                return <MenuItem > {article} </MenuItem>
+            })
+            return articleItems;
+        }
+        return <div />
         }
      showCategoryItems () {
         if(store.getState().categories !== undefined) {

@@ -21,6 +21,7 @@ class SkoopNavbar extends Component {
             newsType: "newNews"
         }
         this.onRadioChange = this.onRadioChange.bind(this);
+        this.onSearchChange = this.onSearchChange.bind(this);
     }
 
     handleNavbarSelect(selectedKey) {
@@ -49,11 +50,24 @@ class SkoopNavbar extends Component {
         }
     }
 
- 
+    debounce(func, wait, immediate) {
+    var timeout;
+    return function () {
+        var context = this, args = arguments;
+        var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+    };
 
     onSearchChange(e) {
-        
-                store.dispatch(searchValueChange(e.target.value))
+        console.log(e.target.value);
+               // store.dispatch(searchValueChange(e.target.value))
          
     }
 
@@ -83,7 +97,8 @@ class SkoopNavbar extends Component {
                         <NavItem eventKey={5}>
                             <Search
                                 showNoResults={false}
-                                onSearchChange={this.onSearchChange.bind(this)}
+                                onSearchChange={this.debounce(this.onSearchChange.bind(this), 1000).bind(this)}
+                                icon={''}
                             />
                         </NavItem>
                         <NavItem eventKey={7}> 
@@ -143,12 +158,11 @@ class SkoopNavbar extends Component {
                             selectedValue={this.state.newsType}
                         >
 
-                            <label>
-                                <Radio value="oldNews" />  <p className="radioText"> Old News </p>
-                            </label>
-                            <label>
+                   
+                                <Radio checked={true} value="oldNews" />  <p className="radioText"> Old News </p>
+                  
                                 <Radio value="newNews" />  <p className="radioText"> Current News </p>
-                            </label>
+       
                         </RadioGroup>
                     </NavItem>
                     <NavItem eventKey={6}>

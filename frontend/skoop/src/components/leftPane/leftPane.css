@@ -13,11 +13,24 @@
     padding-left: 0 !important;
 }
 
+.dropdown-menu open prefs {
+    z-index: 3;
+}
+
 .prefs {
-  margin-left: 20px; 
+    margin-left: 20px;
 }
 
 .btn-toolbar {
     margin-left: 35px !important;
 
+}
+
+.clearfixClass {
+    z-index: 3;
+    height: 20%;
+}
+
+.nameTag {
+    text-align: center;
 }

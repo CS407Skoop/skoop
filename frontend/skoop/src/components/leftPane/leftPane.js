@@ -14,30 +14,34 @@ class LeftPane extends Component {
         store.dispatch(openPreferencesModal());
     }
     showLocationItems () {
-    if (store.getState().favoriteLocations !== undefined) {
-    const locationItems = store.getState().favoriteLocations.map(function(location) {
-        return <MenuItem > {location} </MenuItem>
-    })
+        if (store.getState().favoriteLocations) {
+            console.log(store.getState().favoriteLocations)
+            const locationItems = store.getState().favoriteLocations.map(function(location) {
+            return <ListGroupItem > {location} </ListGroupItem>
+        })
     return locationItems;
         }
+        else
         return <div />
 
     }
 
     showArticleItems() {
-        console.log(store.getState().favoriteArticles)
+        console.log(store.getState())
         if (store.getState().favoriteArticles) {
+            
             const articleItems = store.getState().favoriteArticles.map(function (article) {
-                return <MenuItem > {article} </MenuItem>
+                return <ListGroupItem > {article} </ListGroupItem>
             })
             return articleItems;
         }
+        else
         return <div />
         }
      showCategoryItems () {
-        if(store.getState().categories !== undefined) {
+        if(store.getState().categories) {
          const categoryItems = store.getState().categories.map(function(category) {
-             return <MenuItem > {category} </MenuItem>
+             return <ListGroupItem> {category} </ListGroupItem>
          })
          return  categoryItems;
          }
@@ -58,30 +62,39 @@ class LeftPane extends Component {
             return (<div />)
     }
 
+
     render() {
+        console.log(this.showCategoryItems);
         return (
             <div className="leftPaneDiv">
                 <this.showModal/>
 
-              <br /><h3><label>{store.getState().firstName} {store.getState().lastName}</label><br /><br />
+                <br /><h3 className="nameTag"><label>{store.getState().firstName} {store.getState().lastName}</label><br /><br />
               </h3>
 
-                <Clearfix>
-                <ul className="dropdown-menu open prefs">
-                  <ButtonToolbar>
-                  <h1 id="favoriteLocations">Favorite Locations
-                  <this.showLocationItems/>
-                </h1>
-                  <MenuItem divider />
-                  <h1 id="favoriteArticles">Favorite Articles
-                  <this.showArticleItems/>
-                </h1>
-                  <MenuItem divider />
-                  <h1 id="Categories">Categories
-                  <this.showCategoryItems/>
-                </h1>
-                </ButtonToolbar>
-                </ul>
+                <Clearfix className="clearfixClass">
+                
+                        <h3 id="favoriteLocations">Favorite Locations </h3>
+                  <ListGroup>         
+                 <this.showLocationItems />
+                 </ListGroup>
+                        
+                 <h3 id="favoriteArticles">Favorite Articles </h3>
+
+                  <ListGroup>
+                  
+                  <this.showArticleItems />
+                  </ListGroup>
+               
+                  <ListGroup >
+                            <h3 id="Categories">Categories</h3>
+                  <this.showCategoryItems />
+                  </ListGroup>
+                    <ButtonToolbar>
+                    <Button bsStyle="primary" onClick={this.openPreferencesModal}>Edit</Button>
+                <Button onClick={this.closeLeftPane}>Exit</Button>
+              </ButtonToolbar>
+               
               </Clearfix>
 
 
@@ -118,10 +131,7 @@ class LeftPane extends Component {
               </Dropdown>
               </ButtonToolbar><br />  */}
 
-              <ButtonToolbar>
-                    <Button bsStyle="primary" onClick={this.openPreferencesModal}>Edit</Button>
-                <Button onClick={this.closeLeftPane}>Exit</Button>
-              </ButtonToolbar>
+              
 
 {/*              <ListGroup>Favorite Locations
                 <ListGroupItem bsStyle="info">Jaipur</ListGroupItem>

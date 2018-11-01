@@ -308,6 +308,21 @@ export default (state, action) => {
                 articles: action.payload
             }
         }
+        case 'STORE_ARTICLE_DETAILS': {
+            console.log(action.payload);
+            return {
+                ...state,
+                articleDetails: action.payload,
+                showArticleFrame: true
+            }
+        }
+        case 'HIDE_ARTICLE_INFORMATION': {
+            return {
+                ...state,
+                articleDetails: false,
+                showArticleFrame: false
+            }
+        }
         default:
             return state;
 

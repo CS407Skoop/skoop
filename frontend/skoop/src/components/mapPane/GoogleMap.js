@@ -56,17 +56,18 @@ class GoogleMap extends Component {
     }
 
     rightSide() {
-        if (store.getState().zoom > 15) {
-            if (store.getState().showRightPane) {
-                return <RightPane />
-            }
-            return <RightPaneButton />
-        }
-        return <div />
+       // if (store.getState().zoom > 10) {
+       //     if (store.getState().showRightPane) {
+       //         return <RightPane />
+       //     }
+       //     return <RightPaneButton />
+       // }
+        // return <div />
+        return <RightPane />
     }
 
     onBoundsChange(center, zoom, bounds, marginBounds) {
-        console.log(center);
+        console.log(bounds);
         store.dispatch(updateZoom(zoom));
         store.dispatch(updateCenter(center));
 
@@ -118,7 +119,7 @@ class GoogleMap extends Component {
                     gradient: gradient
                 }
             }
-            if (store.getState().zoom >= 10) {
+            if (store.getState().zoom >= 0) {
                 markers = articles.map(function (article) {
                     return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title}/>
                 })
@@ -139,7 +140,7 @@ class GoogleMap extends Component {
             )
         }
         if (!store.getState().locationGiven) {
-            console.log(store.getState().center);
+            //console.log(store.getState().center);
             const defaultProps = {
                 defaultCenter: {
                     lat: -34.6076,
@@ -205,7 +206,7 @@ class GoogleMap extends Component {
                 },
             }
             if (articles.length > 0) {
-                console.log(data);
+                //console.log(data);
                 //console.log(store.getState().positio
                 return (
                     // Important! Always set the container height explicitly

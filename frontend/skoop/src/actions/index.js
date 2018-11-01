@@ -208,8 +208,8 @@ export const getArticles = () => {
     var newDate = new Date();
     console.log(newDate);
     var year = newDate.getFullYear();
-    var month = newDate.getMonth() + 1;
-    var day = newDate.getDate()-4;
+    var month = newDate.getMonth();
+    var day = "27";
     var date = year + "-" + month + "-" + day + " 00:00:00"
     console.log(date);
     var jsonToSend = JSON.stringify({
@@ -531,6 +531,20 @@ export const searchValueChange = (search) => {
     console.log(search);
     return {
         type: 'SEARCH_VALUE_CHANGE'
+    }
+}
+
+export const storeArticleDetails = (articleDetails) => {
+    
+    return {
+        type: 'STORE_ARTICLE_DETAILS',
+        payload: articleDetails
+    }
+}
+
+export const hideArticleInformation = () => {
+    return {
+        type: 'HIDE_ARTICLE_INFORMATION'
     }
 }
 

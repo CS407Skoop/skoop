@@ -13,6 +13,8 @@ import RealEstate from '../../images/realestate.png'
 import Science from '../../images/science.png'
 import Sport from '../../images/sport.png'
 import World from '../../images/world.png'
+import { store } from '../../store';
+import { storeArticleDetails } from '../../actions'
 
 class Markers extends Component {
     constructor(props) {
@@ -23,9 +25,17 @@ class Markers extends Component {
             category: this.props.category
         }
     }
+
+    onClick() {
+        console.log("IN");
+        var toStore = {
+            url: this.state.url,
+            title: this.state.title,
+        }
+        store.dispatch(storeArticleDetails(toStore))
+    }
+
     render() {
-       
-        //console.log(imgSrc);
         var category = this.state.category;
         
         if (category.toUpperCase() === "AUTO") {

@@ -10,3 +10,24 @@
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
+
+.articleFrame {
+    margin-top: 3.75%;
+    margin-left: 70%;
+    
+}
+
+.frameHeader {
+    z-index: 999;
+    background-color: #e6e6ed;
+    height: 8.5%;
+    margin-left: 70.5%;
+    width: 31%;
+    opacity: 0.9
+}
+
+.articleTitleText {
+    
+    display: inline
+}
+

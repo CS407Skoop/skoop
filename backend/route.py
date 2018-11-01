@@ -157,3 +157,18 @@ def getArticles():
     js = dbupdate.getTimeLineArticles(date)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
+
+
+@app.route('/api/search/', methods=['GET', 'POST'])
+@cross_origin()
+def search():
+
+    data = request.get_json()
+    flag = data['new']
+    search_string = data['search_string']
+    if flag == 1:
+        js = dbupdate.searchArticles(search_string, True)
+    else:
+        js = dbupdate.searchArticles(search_string, False)
+    resp = Response(js, status=200, mimetype='application/json')
+    return resp

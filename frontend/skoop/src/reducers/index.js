@@ -104,7 +104,7 @@ export default (state, action) => {
                     showMainScreen: true,
                     userLoggedIn: true,
                     openLeftPane: false,
-                    allCategories: ['Sports', 'Technology', 'Climate', 'Politics', 'Breaking', 'Entertainment'],
+                    allCategories: ['Auto', 'Business', 'Education', 'Entertainment', 'Food', 'Health', 'Military', 'Politics', 'Product', 'Product', 'Real Estate', 'Science', 'Sport', 'World'],
                     mapLoading: true,
                     zoom: 1,
                     center: {
@@ -327,6 +327,12 @@ export default (state, action) => {
             return {
                 ...state,
                 positions: action.payload
+            }
+        }
+        case 'SEARCH_VALUE_CHANGE': {
+            return {
+                ...state,
+                searchValue: action.payload
             }
         }
          

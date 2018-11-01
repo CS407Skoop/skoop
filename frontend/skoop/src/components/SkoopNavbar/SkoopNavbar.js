@@ -15,6 +15,13 @@ import { Radio, RadioGroup } from 'react-radio-group';
 class SkoopNavbar extends Component {
 
 
+    constructor() {
+        super();
+        this.state = {
+            newsType: "newNews"
+        }
+        this.onRadioChange = this.onRadioChange.bind(this);
+    }
 
     handleNavbarSelect(selectedKey) {
         if (selectedKey === 1) {
@@ -42,41 +49,27 @@ class SkoopNavbar extends Component {
         }
     }
 
-    debounce(func, wait, immediate) {
-        var timeout;
-        return function () {
-            var context = this, args = arguments;
-            var later = function () {
-                timeout = null;
-                if (!immediate) func.apply(context, args);
-            };
-            var callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
-        };
-    };
+ 
 
     onSearchChange(e) {
-        var func = store.dispatch(searchValueChange(e.target.value));
-        var wait = 1000;
-        var timeout;
-        return function () {
-            var context = this, args = arguments;
-            var later = function () {
-                timeout = null;
-                func.apply(context, args);
-            };
-            var callNow = false;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
-        };
+        
+                store.dispatch(searchValueChange(e.target.value))
+         
+    }
+
+    onRadioChange(value) {
+        console.log(typeof(value));
+        this.setState({
+            newsType: value
+        })
+
+
     }
 
 
     render() {
-
+        var type = this.state.newsType;
+        console.log(type)
         //console.log(store.getState().userLoggedIn)
         if (store.getState().userLoggedIn == false) {
             return (
@@ -90,12 +83,16 @@ class SkoopNavbar extends Component {
                         <NavItem eventKey={5}>
                             <Search
                                 showNoResults={false}
-                                onSearchChange={this.onSearchChange}
+                                onSearchChange={this.onSearchChange.bind(this)}
                             />
                         </NavItem>
                         <NavItem eventKey={7}> 
                             <RadioGroup
-                                name="newsType">
+                                name="newsType"
+                                onChange={this.onRadioChange}
+                                selectedValue={this.state.newsType}
+                            >
+                                
                                 <label>
                                     <Radio value="oldNews" />  <p className="radioText"> Old News </p>
                                 </label>
@@ -132,6 +129,37 @@ class SkoopNavbar extends Component {
                         <a href="#home">Skoop</a>
                     </Navbar.Brand>
                 </Navbar.Header>
+                <Nav>
+                    <NavItem eventKey={5}>
+                        <Search
+                            showNoResults={false}
+                            onSearchChange={this.onSearchChange.bind(this)}
+                        />
+                    </NavItem>
+                    <NavItem eventKey={7}>
+                        <RadioGroup
+                            name="newsType"
+                            onChange={this.onRadioChange}
+                            selectedValue={this.state.newsType}
+                        >
+
+                            <label>
+                                <Radio value="oldNews" />  <p className="radioText"> Old News </p>
+                            </label>
+                            <label>
+                                <Radio value="newNews" />  <p className="radioText"> Current News </p>
+                            </label>
+                        </RadioGroup>
+                    </NavItem>
+                    <NavItem eventKey={6}>
+
+                        <IconContext.Provider value={{ color: "black", size: '2em', style: { margin: '5px 0px 0px 0px' } }}>
+                            <div>
+                                <FaHome />
+                            </div>
+                        </IconContext.Provider>
+                    </NavItem>
+                </Nav>
                 <Nav pullRight>
                     <NavItem eventKey={3} href="#">
                         Log Out

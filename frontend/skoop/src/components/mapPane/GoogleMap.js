@@ -225,6 +225,13 @@ class GoogleMap extends Component {
                                 onBoundsChange={this.onBoundsChange}
                                 updateHeatmap={true}
                                 heatmapLibrary={true}
+                                heatMapData={{
+                                    positions: heatMapData,
+                                    options: {
+                                        radius: 20,
+                                        opacity: 0.7,
+                                    }
+                                }}
                                 
                                 
                             >

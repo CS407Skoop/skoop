@@ -162,7 +162,13 @@ class GoogleMap extends Component {
                                 onChange={this.onBoundsChange}
                                 heatmapLibrary={true}
                                 updateHeatmap={true}
-                                
+                                heatmap={{positions:heatMapData,
+                                        options: {
+                                             radius: 20,
+                                             opacity: 0.7,
+                                        }
+
+                                }}
                             >
                             </GoogleMapReact>
                         </div>
@@ -183,9 +189,14 @@ class GoogleMap extends Component {
                                 onClick={this.onMapClick}
                                 onChange={this.onBoundsChange}
                                 heatmapLibrary={true}
-                                heatmap={{
-                                    positions: positions
+                                heatmap={{positions:heatMapData,
+                                        options: {
+                                             radius: 20,
+                                             opacity: 0.7,
+                                        }
+
                                 }}
+
                             >
                             </GoogleMapReact>
                         </div>
@@ -196,6 +207,32 @@ class GoogleMap extends Component {
 
         }
         if (store.getState().position) {
+        var testData = [
+                                                {
+                                                  lat: 60.7143,
+                                                  lng: 47.0517,
+                                                },
+                                                {
+                                                  lat: 60.7343,
+                                                  lng: 47.0617,
+                                                },
+                                                {
+                                                  lat: 60.7543,
+                                                  lng: 47.0817,
+                                                },
+                                                {
+                                                  lat: 60.7743,
+                                                  lng: 47.1017,
+                                                },
+                                                {
+                                                  lat: 60.8043,
+                                                  lng: 47.1117,
+                                                },
+                                              ]
+
+
+            var temp1 = {lat: 60.7143,lng: 47.0517,};
+            console.log(testData);
             const defaultProps = {
                 defaultCenter: {
                     lat: 24.075,
@@ -223,7 +260,7 @@ class GoogleMap extends Component {
                                 zoom={store.getState().zoom}
                                 onClick={this.onMapClick}
                                 onBoundsChange={this.onBoundsChange}
-                                updateHeatmap={true}
+
                                 heatmapLibrary={true}
                                 heatMapData={{
                                     positions: heatMapData,
@@ -232,7 +269,7 @@ class GoogleMap extends Component {
                                         opacity: 0.7,
                                     }
                                 }}
-                                
+
                                 
                             >
                                 {markers}
@@ -266,6 +303,13 @@ class GoogleMap extends Component {
                                 onClick={this.onMapClick}
                                 onBoundsChange={this.onBoundsChange}
                                 heatmapLibrary={true}
+                                heatmap={{positions:heatMapData,
+                                        options: {
+                                             radius: 20,
+                                             opacity: 0.7,
+                                        }
+
+                                }}
                             >
 
 

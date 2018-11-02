@@ -90,7 +90,7 @@ export default (state, action) => {
                     lat: 40.424546,
                     lng: -86.921826
                 }
-                
+
 
             }
         case 'LOG_IN_SUBMIT':
@@ -111,7 +111,7 @@ export default (state, action) => {
                         lat: 40.424546,
                         lng: -86.921826
                     }
-                    
+
             }
         case 'LOG_USER_OUT':
             return {
@@ -210,10 +210,16 @@ export default (state, action) => {
                 openPreferencesModal: true
             }
 
-        case 'CLOSE_LEFT_PANE':
+        case 'OPEN_RIGHT_PANE':
             return {
-                ...state,
-                openLeftPane: false
+              ...state,
+              openRightPane: true
+            }
+
+        case 'CLOSE_RIGHT_PANE':
+            return {
+              ...state,
+              openRightPane: false
             }
 
         case 'SHOW_LOGOUT_MODAL':
@@ -335,7 +341,7 @@ export default (state, action) => {
                 searchValue: action.payload
             }
         }
-         
+
         default:
             return state;
 

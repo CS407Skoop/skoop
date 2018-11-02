@@ -399,6 +399,18 @@ export const closeLeftPane = () => {
     }
 }
 
+export const openRightPane = () => {
+    return {
+      type: 'OPEN_RIGHT_PANE'
+    }
+}
+
+export const closeRightPane = () => {
+    return {
+      type: 'CLOSE_RIGHT_PANE'
+    }
+}
+
 export const showLogOutModal = () => {
 console.log("IN");
     return {

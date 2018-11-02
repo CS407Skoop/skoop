@@ -79,6 +79,68 @@ class GoogleMap extends Component {
     onMapClick = ({ x, y, lat, lng, event }) => console.log(x, y, lat, lng, event)
     
     render() {
+        if (store.getState().zoom >= 6) {
+            markers = articles.map(function (article) {
+                return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} />
+            })
+            if (articles.length > 0) {
+                const defaultProps = {
+                    defaultCenter: {
+                        lat: 24.075,
+                        lng: 54.940,
+                    },
+
+                    center: {
+                        lat: store.getState().position.coords.latitude,
+                        lng: store.getState().position.coords.longitude
+                    },
+                }
+                //console.log(data);
+                //console.log(store.getState().positio
+                return (
+                    // Important! Always set the container height explicitly
+                    <div className="mapContainer">
+                        <this.leftSide />
+                        <div className="mapPane">
+                            <GoogleMapReact
+                                bootstrapURLKeys={{ key: 'AIzaSyAC1PSJ_g70IDwtv61G76vzidpIRs1YxyM' }}
+                                defaultCenter={defaultProps.defaultCenter}
+                                center={store.getState().center}
+                                zoom={store.getState().zoom}
+                                onClick={this.onMapClick}
+                                onBoundsChange={this.onBoundsChange}
+
+                                heatmapLibrary={true}
+                                heatmap={{
+                                    positions: heatMapData,
+                                    options: {
+                                        radius: 20,
+                                        opacity: 0.7,
+                                    }
+                                }} a
+
+
+                            >
+                                {markers}
+
+
+                                <this.UserLocation
+
+                                    lat={store.getState().position.coords.latitude}
+                                    lng={store.getState().position.coords.longitude}
+
+
+                                />
+
+
+                            </GoogleMapReact>
+                        </div>
+                        <this.rightSide />
+                    </div>
+                );
+            }
+
+        }
         console.log(store.getState().zoom)
         var articles = [];
         var data = [];

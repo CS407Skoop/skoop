@@ -11,6 +11,7 @@ import Markers from './Markers';
 import './googleMap.css';
 import LeftPaneButton from '../leftPane/leftPaneButton';
 import LogOutModal from '../SkoopNavbar/logOutModal';
+import Location from '../../images/location.png'
 
 class GoogleMap extends Component {
 
@@ -19,8 +20,8 @@ class GoogleMap extends Component {
     UserLocation = () => {
         if(store.getState().locationGiven)
         return (
-            <div style={GoogleMapsStyle}>
-                You
+            <div>
+                <img className="testImg" src={Location} />
             </div>
             )
         else 

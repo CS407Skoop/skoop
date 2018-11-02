@@ -84,54 +84,87 @@ class NewGoogleMaps extends Component {
                     var markers = articles.map(function (article) {
                         return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} />
                     })
-                    if (articles.length > 0) {
-                        const defaultProps = {
-                            defaultCenter: {
-                                lat: 24.075,
-                                lng: 54.940,
-                            },
+        if (articles.length > 0) {
+            const defaultProps = {
+                defaultCenter: {
+                    lat: 24.075,
+                    lng: 54.940,
+                },
 
-                            center: {
-                                lat: store.getState().position.coords.latitude,
-                                lng: store.getState().position.coords.longitude
-                            },
-                        }
-                        //console.log(data);
-                        //console.log(store.getState().positio
-                        return (
-                            // Important! Always set the container height explicitly
-                            <div className="mapContainer">
-                                <this.leftSide />
-                                <div className="mapPane">
-                                    <GoogleMapReact
-                                        bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo' }}
-                                        defaultCenter={defaultProps.defaultCenter}
-                                        center={store.getState().center}
-                                        zoom={store.getState().zoom}
-                                        onClick={this.onMapClick}
-                                        onBoundsChange={this.onBoundsChange}
-
-
-
-                                    >
-                                        {markers}
+                center: {
+                    lat: store.getState().position.coords.latitude,
+                    lng: store.getState().position.coords.longitude
+                },
+            }
+            //console.log(data);
+            //console.log(store.getState().positio
+            return (
+                // Important! Always set the container height explicitly
+                <div className="mapContainer">
+                    <this.leftSide />
+                    <div className="mapPane">
+                        <GoogleMapReact
+                            bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo' }}
+                            defaultCenter={defaultProps.defaultCenter}
+                            center={store.getState().center}
+                            zoom={store.getState().zoom}
+                            onClick={this.onMapClick}
+                            onBoundsChange={this.onBoundsChange}
 
 
-                                        <this.UserLocation
 
-                                            lat={store.getState().position.coords.latitude}
-                                            lng={store.getState().position.coords.longitude}
-
-
-                                        />
+                        >
+                            {markers}
 
 
-                                    </GoogleMapReact>
-                                </div>
-                                <this.rightSide />
-                            </div>
-                        );
-                    }
+                            <this.UserLocation
+
+                                lat={store.getState().position.coords.latitude}
+                                lng={store.getState().position.coords.longitude}
+
+
+                            />
+
+
+                        </GoogleMapReact>
+                    </div>
+                    <this.rightSide />
+                </div>
+            );
+        } else {
+            return (
+                // Important! Always set the container height explicitly
+                <div className="mapContainer">
+                    <this.leftSide />
+                    <div className="mapPane">
+                        <GoogleMapReact
+                            bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo' }}
+                            defaultCenter={defaultProps.defaultCenter}
+                            center={store.getState().center}
+                            zoom={store.getState().zoom}
+                            onClick={this.onMapClick}
+                            onBoundsChange={this.onBoundsChange}
+
+
+
+                        >
+
+
+                            <this.UserLocation
+
+                                lat={store.getState().position.coords.latitude}
+                                lng={store.getState().position.coords.longitude}
+
+
+                            />
+
+
+                        </GoogleMapReact>
+                    </div>
+                    <this.rightSide />
+                </div>
+            );
+        }
 
      }
 }

@@ -7,7 +7,7 @@ import { hideArticleInformation, closeRightPane } from '../../actions'
 
 class RightPane extends Component {
     onClick() {
-        store.dispatch(closeRightPane());
+        store.dispatch(hideArticleInformation());
     }
 
     // showArticleItems() {

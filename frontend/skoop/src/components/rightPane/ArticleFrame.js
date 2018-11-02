@@ -5,6 +5,7 @@ import './rightPane.css'
 
 class ArticleFrame extends Component {
     render() {
+        console.log("INNNN");
         return (
                 <Iframe url={store.getState().articleDetails.url}
                     width="30%"

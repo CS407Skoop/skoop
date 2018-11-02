@@ -79,23 +79,23 @@ class NewGoogleMaps extends Component {
     onMapClick = ({ x, y, lat, lng, event }) => console.log(x, y, lat, lng, event)
 
     render() {
+        const defaultProps = {
+            defaultCenter: {
+                lat: 24.075,
+                lng: 54.940,
+            },
 
+            center: {
+                lat: store.getState().position.coords.latitude,
+                lng: store.getState().position.coords.longitude
+            },
+        }
         var articles = store.getState().articles;
                     var markers = articles.map(function (article) {
                         return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} />
                     })
         if (articles.length > 0) {
-            const defaultProps = {
-                defaultCenter: {
-                    lat: 24.075,
-                    lng: 54.940,
-                },
-
-                center: {
-                    lat: store.getState().position.coords.latitude,
-                    lng: store.getState().position.coords.longitude
-                },
-            }
+            
             //console.log(data);
             //console.log(store.getState().positio
             return (

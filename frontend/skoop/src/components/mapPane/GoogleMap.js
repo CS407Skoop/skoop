@@ -59,28 +59,7 @@ class GoogleMap extends Component {
     }
 
     rightSide() {
-      if (store.getState().showLogOutModal) {
-        return (
-          <LogOutModal/>
-        )
-      }
-      if (store.getState().zoom > 10) {
-        if (store.getState().openRightPane) {
-          return (
-            <div className="rightPane">
-              <RightPane />
-            </div>
-          )
-        }
-        else {
-          return (
-            <div className="rightPaneButton">
-              <RightPaneButton />
-            </div>
-          )
-        }
-      }
-      return null;
+        return <RightPane />
     }
 
     onBoundsChange(center, zoom, bounds, marginBounds) {
@@ -139,7 +118,7 @@ class GoogleMap extends Component {
 
                                 />
 
-
+                             
                             </GoogleMapReact>
                         </div>
                         <this.rightSide />
@@ -222,7 +201,7 @@ class GoogleMap extends Component {
                     // Important! Always set the container height explicitly
                     <div className="mapContainer">
                         <this.leftSide />
-                        <this.rightSide />
+             
                         <div className="mapPane">
                             <GoogleMapReact
                                 bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo', libraries: 'visualization' }}
@@ -240,9 +219,10 @@ class GoogleMap extends Component {
                                         }
                                  }}
                             >
+                             
                             </GoogleMapReact>
                         </div>
-
+                        <this.rightSide />
                     </div>
                 );
             }
@@ -250,7 +230,7 @@ class GoogleMap extends Component {
                 return (
                     <div className="mapContainer">
                         <this.leftSide />
-                        <this.rightSide />
+
                         <div className="mapPane">
                             <GoogleMapReact
                                 bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo', libraries: 'visualization' }}
@@ -269,9 +249,10 @@ class GoogleMap extends Component {
                                  }}
 
                             >
+                               
                             </GoogleMapReact>
                         </div>
-
+                        <this.rightSide />
                     </div>
                     )
             }
@@ -317,13 +298,14 @@ class GoogleMap extends Component {
             }
             if (articles.length > 0) {
                 console.log(heatMapData)
+                console.log(store.getState().showArticleFrame)
                 //console.log(data);
                 //console.log(store.getState().positio
                 return (
                     // Important! Always set the container height explicitly
                     <div className="mapContainer">
                         <this.leftSide />
-                        <this.rightSide />
+                       
                         <div className="mapPane">
                             <GoogleMapReact
                                 bootstrapURLKeys={{ key: 'AIzaSyAC1PSJ_g70IDwtv61G76vzidpIRs1YxyM', libraries: 'visualization' }}
@@ -339,7 +321,7 @@ class GoogleMap extends Component {
                                              radius: 20,
                                              opacity: 0.7,
                                         }
-                                 }}a
+                                 }}
 
 
                             >
@@ -354,10 +336,10 @@ class GoogleMap extends Component {
 
                                 />
 
-
+                                
                             </GoogleMapReact>
                         </div>
-
+                        <this.rightSide />
                     </div>
                 );
             }
@@ -365,7 +347,7 @@ class GoogleMap extends Component {
                 return (
                     <div className="mapContainer">
                         <this.leftSide />
-                        <this.rightSide />
+               
                         <div className="mapPane">
                             <GoogleMapReact
                                 bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo', libraries: 'visualization' }}
@@ -394,10 +376,10 @@ class GoogleMap extends Component {
 
                                 />
 
-
+                               
                             </GoogleMapReact>
                         </div>
-
+                        <this.rightSide />
                     </div>
                     )
             }

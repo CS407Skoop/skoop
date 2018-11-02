@@ -74,12 +74,12 @@ class LeftPane extends Component {
 
                 <Clearfix className="clearfixClass">
                 
-                        <h3 id="favoriteLocations">Favorite Locations </h3>
+                        <h4 id="favoriteLocations">Favorite Locations </h4>
                   <ListGroup>         
                  <this.showLocationItems />
                  </ListGroup>
                         
-                 <h3 id="favoriteArticles">Favorite Articles </h3>
+                 <h4 id="favoriteArticles">Favorite Articles </h4>
 
                   <ListGroup>
                   
@@ -87,7 +87,7 @@ class LeftPane extends Component {
                   </ListGroup>
                
                   <ListGroup >
-                            <h3 id="Categories">Categories</h3>
+                            <h4 id="Categories">Categories</h4>
                   <this.showCategoryItems />
                   </ListGroup>
                     <ButtonToolbar>

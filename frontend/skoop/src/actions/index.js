@@ -559,3 +559,38 @@ export const hideArticleInformation = () => {
         type: 'HIDE_ARTICLE_INFORMATION'
     }
 }
+
+export const getSearchResults = () => {
+    var newDate = new Date();
+    console.log(newDate);
+    var year = newDate.getFullYear();
+    var month = newDate.getMonth();
+    var day = "27";
+    var date = year + "-" + month + "-" + day + " 00:00:00"
+    console.log(date);
+    var jsonToSend = JSON.stringify({
+        search_string: store.getState().searchValue,
+        new: 1
+    })
+    console.log(jsonToSend);
+    var request = new Request('http://skoopnews.herokuapp.com/api/search/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: jsonToSend
+    });
+    fetch(request).then(function (response) {
+        console.log(response);
+        response.text().then(function (text) {
+            var objReceived = JSON.parse(text);
+            console.log(objReceived);
+            store.dispatch(storeArticles(objReceived.value));
+
+        })
+    })
+    return {
+        type: 'DUMMY'
+    }
+}

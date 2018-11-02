@@ -5,9 +5,9 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Nav from 'react-bootstrap/lib/Nav';
 import './SkoopNavbar.css';
 import { store } from '../../store';
-import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode, updateZoom, updateCenter, searchValueChange } from '../../actions';
+import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode, updateZoom, updateCenter, searchValueChange, getSearchResults } from '../../actions';
 import 'semantic-ui-css/semantic.min.css';
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaSearch } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 import { Radio, RadioGroup } from 'react-radio-group'; 
 
@@ -48,6 +48,9 @@ class SkoopNavbar extends Component {
             store.dispatch(updateCenter(center))
             store.dispatch(updateZoom(1));
         }
+        if (selectedKey === 8) {
+            store.dispatch(getSearchResults());
+        }
     }
 
     debounce(func, wait, immediate) {
@@ -67,7 +70,7 @@ class SkoopNavbar extends Component {
 
     onSearchChange(e) {
         console.log(e.target.value);
-               // store.dispatch(searchValueChange(e.target.value))
+                store.dispatch(searchValueChange(e.target.value))
          
     }
 
@@ -97,17 +100,25 @@ class SkoopNavbar extends Component {
                         <NavItem eventKey={5}>
                             <Search
                                 showNoResults={false}
-                                onSearchChange={this.debounce(this.onSearchChange.bind(this), 1000).bind(this)}
+                                onSearchChange={this.onSearchChange.bind(this)}
                                 icon={''}
                             />
+                           
+                        </NavItem>
+                        <NavItem eventKey={8}>
+                            <IconContext.Provider value={{ color: "black", size: '2em', style: { margin: '-2px 0px 0px 0px' } }}>
+                                <div>
+                                    <FaSearch />
+                                </div>
+                            </IconContext.Provider>
+
                         </NavItem>
                         <NavItem eventKey={7}> 
                             <RadioGroup
                                 name="newsType"
                                 onChange={this.onRadioChange}
                                 selectedValue={this.state.newsType}
-                            >
-                                
+                            > 
                                 <label>
                                     <Radio value="oldNews" />  <p className="radioText"> Old News </p>
                                 </label>
@@ -118,7 +129,7 @@ class SkoopNavbar extends Component {
                         </NavItem>
                         <NavItem eventKey={6}>
 
-                            <IconContext.Provider value={{ color: "black", size: '2em', style: { margin: '5px 0px 0px 0px'} }}>
+                            <IconContext.Provider value={{ color: "black", size: '2em', style: { margin: '-5px 0px 0px 0px'} }}>
                                 <div>
                                     <FaHome />
                                 </div>
@@ -150,6 +161,15 @@ class SkoopNavbar extends Component {
                             showNoResults={false}
                             onSearchChange={this.onSearchChange.bind(this)}
                         />
+                        
+                    </NavItem>
+                    <NavItem eventKey={8}>
+                        <IconContext.Provider value={{ color: "black", size: '2em', style: { margin: '-2px 1px 0px 0px' } }}>
+                            <div>
+                                <FaSearch />
+                            </div>
+                        </IconContext.Provider>
+
                     </NavItem>
                     <NavItem eventKey={7}>
                         <RadioGroup
@@ -157,10 +177,7 @@ class SkoopNavbar extends Component {
                             onChange={this.onRadioChange}
                             selectedValue={this.state.newsType}
                         >
-
-                   
                                 <Radio checked={true} value="oldNews" />  <p className="radioText"> Old News </p>
-                  
                                 <Radio value="newNews" />  <p className="radioText"> Current News </p>
        
                         </RadioGroup>

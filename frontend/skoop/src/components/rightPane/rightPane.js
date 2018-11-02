@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { store } from '../../store';
 import './rightPane.css'
 import './ArticleFrame';
+import { Button } from 'reactstrap';
 import ArticleFrame from './ArticleFrame';
 import { hideArticleInformation, closeRightPane } from '../../actions'
 
@@ -29,12 +30,9 @@ class RightPane extends Component {
             return (
                 <div className="rightPaneDiv">
                     <div className="frameHeader">
-                        <div className="articleTitle">
-                            <p className="articleTitleText"> <b> {store.getState().articleDetails.title} </b> </p>
 
-                        </div>
                         <div className="articleTitle">
-                            <a onClick={this.onClick}> Hide </a>
+                            <Button color="danger" style={{marginTop: "3px"}} onClick={this.onClick}>Go back to Map</Button>
 
                         </div>
                     </div>

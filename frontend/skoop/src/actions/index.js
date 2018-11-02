@@ -538,7 +538,8 @@ export const updateCenter = (center) => {
 
 export const searchValueChange = (search) => {
 
-        console.log(search);
+    console.log(search);
+        
         return {
             type: 'SEARCH_VALUE_CHANGE',
             payload: search
@@ -560,17 +561,12 @@ export const hideArticleInformation = () => {
     }
 }
 
-export const getSearchResults = () => {
-    var newDate = new Date();
-    console.log(newDate);
-    var year = newDate.getFullYear();
-    var month = newDate.getMonth();
-    var day = "27";
-    var date = year + "-" + month + "-" + day + " 00:00:00"
-    console.log(date);
+export const getSearchResults = (flag) => {
+
+    console.log(store.getState().searchValue);
     var jsonToSend = JSON.stringify({
         search_string: store.getState().searchValue,
-        new: 1
+        new: flag
     })
     console.log(jsonToSend);
     var request = new Request('http://skoopnews.herokuapp.com/api/search/', {

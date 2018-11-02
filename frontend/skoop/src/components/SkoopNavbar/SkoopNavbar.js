@@ -5,7 +5,7 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Nav from 'react-bootstrap/lib/Nav';
 import './SkoopNavbar.css';
 import { store } from '../../store';
-import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode, updateZoom, updateCenter, searchValueChange, getSearchResults } from '../../actions';
+import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode, updateZoom, updateCenter, searchValueChange, getSearchResults, getArticles } from '../../actions';
 import 'semantic-ui-css/semantic.min.css';
 import { FaHome, FaSearch } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
@@ -18,9 +18,10 @@ class SkoopNavbar extends Component {
     constructor() {
         super();
         this.state = {
-            newsType: "newNews"
+            
+            selectedValue: 1
         }
-        this.onRadioChange = this.onRadioChange.bind(this);
+
         this.onSearchChange = this.onSearchChange.bind(this);
     }
 
@@ -49,7 +50,20 @@ class SkoopNavbar extends Component {
             store.dispatch(updateZoom(1));
         }
         if (selectedKey === 8) {
-            store.dispatch(getSearchResults());
+            store.dispatch(getSearchResults(this.state.selectedValue));
+        }
+
+        if (selectedKey === 7) {
+            console.log("IN");
+            if (this.state.selectedValue == 1) {
+                this.setState({
+                    selectedValue: 0
+                })
+            } else {
+                this.setState({
+                    selectedValue: 1
+                })
+            }
         }
     }
 
@@ -69,24 +83,22 @@ class SkoopNavbar extends Component {
     };
 
     onSearchChange(e) {
-        console.log(e.target.value);
-                store.dispatch(searchValueChange(e.target.value))
+        if (e.target.value.length == 0)
+            store.dispatch(getArticles());
+        else
+        store.dispatch(searchValueChange(e.target.value))
+
          
     }
 
-    onRadioChange(value) {
-        console.log(typeof(value));
-        this.setState({
-            newsType: value
-        })
-
-
+    handleSelection(e) {
+        console.log(e);
+       
     }
 
 
     render() {
-        var type = this.state.newsType;
-        console.log(type)
+        console.log(this.state.selectedValue)
         //console.log(store.getState().userLoggedIn)
         if (store.getState().userLoggedIn == false) {
             return (
@@ -113,18 +125,16 @@ class SkoopNavbar extends Component {
                             </IconContext.Provider>
 
                         </NavItem>
-                        <NavItem eventKey={7}> 
+                        <NavItem eventKey={7}>
                             <RadioGroup
-                                name="newsType"
-                                onChange={this.onRadioChange}
-                                selectedValue={this.state.newsType}
-                            > 
-                                <label>
-                                    <Radio value="oldNews" />  <p className="radioText"> Old News </p>
-                                </label>
-                                <label>
-                                    <Radio value="newNews" />  <p className="radioText"> Current News </p>
-                                </label>
+                            selectedValue={this.state.selectedValue}
+                            name="newsType">
+                            <label>
+                                    <Radio value={0} />  <p className="radioText"> Old News </p>
+                            </label>
+                            <label>
+                                    <Radio value={1} />  <p className="radioText"> Current News </p>
+                            </label>
                             </RadioGroup>
                         </NavItem>
                         <NavItem eventKey={6}>
@@ -173,13 +183,14 @@ class SkoopNavbar extends Component {
                     </NavItem>
                     <NavItem eventKey={7}>
                         <RadioGroup
-                            name="newsType"
-                            onChange={this.onRadioChange}
-                            selectedValue={this.state.newsType}
-                        >
-                                <Radio checked={true} value="oldNews" />  <p className="radioText"> Old News </p>
-                                <Radio value="newNews" />  <p className="radioText"> Current News </p>
-       
+                            selectedValue={this.state.selectedValue}
+                            name="newsType">
+                            <label>
+                                <Radio value={0} />  <p className="radioText"> Old News </p>
+                            </label>
+                            <label>
+                                <Radio value={1} />  <p className="radioText"> Current News </p>
+                            </label>
                         </RadioGroup>
                     </NavItem>
                     <NavItem eventKey={6}>

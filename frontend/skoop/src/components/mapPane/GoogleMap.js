@@ -117,7 +117,7 @@ class GoogleMap extends Component {
                 positions: heatMapData,
                 
             }
-            if (store.getState().zoom >= 0) {
+            if (store.getState().zoom >= 6) {
                 markers = articles.map(function (article) {
                     return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title}/>
                 })

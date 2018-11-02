@@ -29,7 +29,7 @@ class LeftPane extends Component {
     showArticleItems() {
         console.log(store.getState())
         if (store.getState().favoriteArticles) {
-            
+
             const articleItems = store.getState().favoriteArticles.map(function (article) {
                 return <ListGroupItem > {article} </ListGroupItem>
             })
@@ -37,7 +37,7 @@ class LeftPane extends Component {
         }
         else
         return <div />
-        }
+    }
      showCategoryItems () {
         if(store.getState().categories) {
          const categoryItems = store.getState().categories.map(function(category) {
@@ -69,33 +69,37 @@ class LeftPane extends Component {
             <div className="leftPaneDiv">
                 <this.showModal/>
 
-                <br /><h3 className="nameTag"><label>{store.getState().firstName} {store.getState().lastName}</label><br /><br />
-              </h3>
+                <br />
+                <h3><label className="nameTag">{store.getState().firstName} {store.getState().lastName}</label><br /><br />
+                </h3>
 
                 <Clearfix className="clearfixClass">
-                
+
                         <h4 id="favoriteLocations">Favorite Locations </h4>
-                  <ListGroup>         
+                  <ListGroup>
                  <this.showLocationItems />
                  </ListGroup>
-                        
+
                  <h4 id="favoriteArticles">Favorite Articles </h4>
 
                   <ListGroup>
-                  
+
                   <this.showArticleItems />
                   </ListGroup>
-               
+
                   <ListGroup >
                             <h4 id="Categories">Categories</h4>
                   <this.showCategoryItems />
                   </ListGroup>
-                    <ButtonToolbar>
-                    <Button bsStyle="primary" onClick={this.openPreferencesModal}>Edit</Button>
-                <Button onClick={this.closeLeftPane}>Exit</Button>
-              </ButtonToolbar>
-               
+
+                  <ButtonToolbar class="prefbuttons">
+                  <Button bsStyle="primary" onClick={this.openPreferencesModal}>Edit</Button>
+                  <Button onClick={this.closeLeftPane}>Exit</Button>
+                  </ButtonToolbar>
+
               </Clearfix>
+
+
 
 
                 {/* <ButtonToolbar>
@@ -131,7 +135,7 @@ class LeftPane extends Component {
               </Dropdown>
               </ButtonToolbar><br />  */}
 
-              
+
 
 {/*              <ListGroup>Favorite Locations
                 <ListGroupItem bsStyle="info">Jaipur</ListGroupItem>

@@ -6,11 +6,11 @@
     "\\frontend\\skoop\\src",
     "\\frontend\\skoop\\src\\actions",
     "\\frontend\\skoop\\src\\components",
-    "\\frontend\\skoop\\src\\components\\logInModal",
-    "\\frontend\\skoop\\src\\components\\userOptionsModal",
-    "\\frontend\\skoop\\src\\reducers",
-    "\\frontend\\skoop\\src\\store"
+    "\\frontend\\skoop\\src\\components\\mapPane",
+    "\\frontend\\skoop\\src\\components\\rightPane",
+    "\\frontend\\skoop\\src\\components\\signUpModal",
+    "\\frontend\\skoop\\src\\reducers"
   ],
-  "SelectedNode": "\\frontend\\skoop\\src\\index.js",
+  "SelectedNode": "\\frontend\\skoop\\src\\reducers\\index.js",
   "PreviewInSolutionExplorer": false
 }

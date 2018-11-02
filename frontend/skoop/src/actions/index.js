@@ -550,7 +550,8 @@ export const updateCenter = (center) => {
 
 export const searchValueChange = (search) => {
 
-        console.log(search);
+    console.log(search);
+        
         return {
             type: 'SEARCH_VALUE_CHANGE',
             payload: search
@@ -569,5 +570,35 @@ export const storeArticleDetails = (articleDetails) => {
 export const hideArticleInformation = () => {
     return {
         type: 'HIDE_ARTICLE_INFORMATION'
+    }
+}
+
+export const getSearchResults = (flag) => {
+
+    console.log(store.getState().searchValue);
+    var jsonToSend = JSON.stringify({
+        search_string: store.getState().searchValue,
+        new: flag
+    })
+    console.log(jsonToSend);
+    var request = new Request('http://skoopnews.herokuapp.com/api/search/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: jsonToSend
+    });
+    fetch(request).then(function (response) {
+        console.log(response);
+        response.text().then(function (text) {
+            var objReceived = JSON.parse(text);
+            console.log(objReceived);
+            store.dispatch(storeArticles(objReceived.value));
+
+        })
+    })
+    return {
+        type: 'DUMMY'
     }
 }

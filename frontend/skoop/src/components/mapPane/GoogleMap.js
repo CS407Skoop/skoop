@@ -80,6 +80,7 @@ class GoogleMap extends Component {
     
     render() {
         if (store.getState().zoom >= 6) {
+        articles = store.getState().articles;
             markers = articles.map(function (article) {
                 return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} />
             })
@@ -103,21 +104,13 @@ class GoogleMap extends Component {
                         <this.leftSide />
                         <div className="mapPane">
                             <GoogleMapReact
-                                bootstrapURLKeys={{ key: 'AIzaSyAC1PSJ_g70IDwtv61G76vzidpIRs1YxyM' }}
+                                bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo' }}
                                 defaultCenter={defaultProps.defaultCenter}
                                 center={store.getState().center}
                                 zoom={store.getState().zoom}
                                 onClick={this.onMapClick}
                                 onBoundsChange={this.onBoundsChange}
 
-                                heatmapLibrary={true}
-                                heatmap={{
-                                    positions: heatMapData,
-                                    options: {
-                                        radius: 20,
-                                        opacity: 0.7,
-                                    }
-                                }} a
 
 
                             >
@@ -250,6 +243,7 @@ class GoogleMap extends Component {
                                 zoom={store.getState().zoom}
                                 onClick={this.onMapClick}
                                 onChange={this.onBoundsChange}
+                                updateHeatmap={true}
                                 heatmapLibrary={true}
                                 heatmap={{positions:heatMapData,
                                         options: {
@@ -321,7 +315,7 @@ class GoogleMap extends Component {
                                 zoom={store.getState().zoom}
                                 onClick={this.onMapClick}
                                 onBoundsChange={this.onBoundsChange}
-
+                                updateHeatmap={true}
                                 heatmapLibrary={true}
                                 heatmap={{positions:heatMapData,
                                         options: {
@@ -362,6 +356,7 @@ class GoogleMap extends Component {
                                 zoom={store.getState().zoom}
                                 onClick={this.onMapClick}
                                 onBoundsChange={this.onBoundsChange}
+                                updateHeatmap={true}
                                 heatmapLibrary={true}
                                 heatmap={{positions:heatMapData,
                                         options: {

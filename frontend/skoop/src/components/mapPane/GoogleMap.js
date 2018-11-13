@@ -8,6 +8,7 @@ import LeftPane from '../leftPane/leftPane';
 import RightPane from '../rightPane/rightPane';
 import RightPaneButton from '../rightPane/rightPaneButton';
 import Markers from './Markers';
+import HorizontalTimeline from 'react-horizontal-timeline';
 import './googleMap.css';
 import LeftPaneButton from '../leftPane/leftPaneButton';
 import LogOutModal from '../SkoopNavbar/logOutModal';
@@ -15,7 +16,12 @@ import Location from '../../images/location.png'
 
 class GoogleMap extends Component {
 
-
+    constructor() {
+        super()
+        this.state = {
+            index: 1
+        }
+    }
 
     UserLocation = () => {
         if(store.getState().locationGiven)
@@ -258,6 +264,15 @@ class GoogleMap extends Component {
             }
 
         }
+        var oldDate = new Date("2018-11-05");
+        var newDate = new Date("2018-11-12");
+        var values = new Array();
+        var dt = new Date(oldDate);
+        while (dt <= newDate) {
+            values.push(new Date(dt));
+            dt.setDate(dt.getDate() + 1);
+        }
+        console.log(values);
         if (store.getState().position) {
         var testData = [
                                                 {
@@ -340,6 +355,15 @@ class GoogleMap extends Component {
                             </GoogleMapReact>
                         </div>
                         <this.rightSide />
+                        <div style={{ width: '60%', height: '100px', margin: '0 auto' }}>
+                            <HorizontalTimeline
+                                index={1}
+                                indexClick={(index) => {
+                                    this.setState({ value: index, previous: this.state.value });
+                                }}
+                                values={values} />
+                        </div>
+
                     </div>
                 );
             }

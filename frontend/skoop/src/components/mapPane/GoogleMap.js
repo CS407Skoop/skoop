@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { store } from '../../store';
-import {updateZoom, updateCenter, storePositions} from '../../actions'
+import {updateZoom, updateCenter, storePositions, onTimelineDateChange} from '../../actions'
 import Loader from 'react-loader-spinner';
 import { GoogleMapsStyle } from './GoogleMapStyles';
 import LeftPane from '../leftPane/leftPane';
@@ -19,7 +19,7 @@ class GoogleMap extends Component {
     constructor() {
         super()
         this.state = {
-            index: 1
+            articles: store.getState().articles
         }
     }
 
@@ -75,75 +75,54 @@ class GoogleMap extends Component {
 
     }
 
+   
+
     onMapClick = ({ x, y, lat, lng, event }) => console.log(x, y, lat, lng, event)
 
     render() {
-        if (store.getState().zoom >= 6) {
-        articles = store.getState().articles;
-            markers = articles.map(function (article) {
-                return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} />
-            })
-            if (articles.length > 0) {
-                const defaultProps = {
-                    defaultCenter: {
-                        lat: 24.075,
-                        lng: 54.940,
-                    },
-
-                    center: {
-                        lat: store.getState().position.coords.latitude,
-                        lng: store.getState().position.coords.longitude
-                    },
-                }
-                //console.log(data);
-                //console.log(store.getState().positio
-                return (
-                    // Important! Always set the container height explicitly
-                    <div className="mapContainer">
-                        <this.leftSide />
-                        <div className="mapPane">
-                            <GoogleMapReact
-                                bootstrapURLKeys={{ key: 'AIzaSyDt9ySx7K6ddMXjH65Xcxtq7wg3oLLRoEo' }}
-                                defaultCenter={defaultProps.defaultCenter}
-                                center={store.getState().center}
-                                zoom={store.getState().zoom}
-                                onClick={this.onMapClick}
-                                onBoundsChange={this.onBoundsChange}
-
-
-
-                            >
-                                {markers}
-
-
-                                <this.UserLocation
-
-                                    lat={store.getState().position.coords.latitude}
-                                    lng={store.getState().position.coords.longitude}
-
-
-                                />
-
-                             
-                            </GoogleMapReact>
-                        </div>
-                        <this.rightSide />
-                    </div>
-                );
-            }
-
-        }
-        console.log(store.getState().zoom)
+        
         var articles = [];
+        var gradient = [];
         var data = [];
         var markers = [];
-        var gradient = [];
         var heatMapData = []
         if (store.getState().articles) {
-
+            
             articles = store.getState().articles;
-            console.log(articles);
 
+            if(this.state.articles != store.getState().articles) {
+                this.setState({
+                    articles: articles
+                });
+                return (
+                    <h> Plese wait </h>
+                )
+            }
+            /*
+
+            if(this.state.articles) {
+                console.log(this.state.articles)
+                console.log(articles.length)
+                if(this.state.articles.length == 0) {
+                    this.setState({
+                        articles: articles
+                    })
+                }
+                if(this.state.articles.length != 0){
+                if(this.state.articles.length != articles.length) {
+                    console.log("III")
+                    this.setState({
+                        articles: articles
+                    })
+                    return (
+                        <h> Plese wait </h>
+                    )
+                }
+                }
+            }
+           
+            console.log(articles);
+*/
             for (var i = 0; i < articles.length; i++) {
                 var coords = {
                     lat: articles[i].latitude,
@@ -264,15 +243,6 @@ class GoogleMap extends Component {
             }
 
         }
-        var oldDate = new Date("2018-11-05");
-        var newDate = new Date("2018-11-12");
-        var values = new Array();
-        var dt = new Date(oldDate);
-        while (dt <= newDate) {
-            values.push(new Date(dt));
-            dt.setDate(dt.getDate() + 1);
-        }
-        console.log(values);
         if (store.getState().position) {
         var testData = [
                                                 {
@@ -355,14 +325,7 @@ class GoogleMap extends Component {
                             </GoogleMapReact>
                         </div>
                         <this.rightSide />
-                        <div style={{ width: '60%', height: '100px', margin: '0 auto' }}>
-                            <HorizontalTimeline
-                                index={1}
-                                indexClick={(index) => {
-                                    this.setState({ value: index, previous: this.state.value });
-                                }}
-                                values={values} />
-                        </div>
+                        
 
                     </div>
                 );

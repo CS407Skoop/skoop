@@ -92,7 +92,7 @@ class NewGoogleMaps extends Component {
         }
         var articles = store.getState().articles;
                     var markers = articles.map(function (article) {
-                        return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} />
+                        return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} id = {article.id} />
                     })
         if (articles.length > 0) {
             

@@ -85,7 +85,6 @@ class SkoopNavbar extends Component {
     onSearchChange(e) {
         if (e.target.value.length == 0)
             store.dispatch(getArticles());
-        else
         store.dispatch(searchValueChange(e.target.value))
 
          

@@ -41,9 +41,15 @@ class PreferencesModal extends Component {
     render() {
         
         console.log(store.getState().tempFavoriteLocations)
-        var one = store.getState().tempFavoriteLocations[0];
-        var two = store.getState().tempFavoriteLocations[1];
-        var three = store.getState().tempFavoriteLocations[2];
+        var one = "";
+        var two = "";
+        var three = "";
+        if(store.getState().tempFavoriteLocations.length > 0)
+            one = store.getState().tempFavoriteLocations[0];
+        if(store.getState().tempFavoriteLocations.length > 1)
+            two = store.getState().tempFavoriteLocations[1];
+        if(store.getState().tempFavoriteLocations.length > 2)
+            three = store.getState().tempFavoriteLocations[2];
 
       for(var i = 0; i<countries.length; i++) {
         if(countries[i].label === store.getState().tempFavoriteLocations[0]) {

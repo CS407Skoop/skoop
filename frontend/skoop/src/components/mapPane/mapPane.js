@@ -27,14 +27,72 @@ class MapPane extends Component {
     }
     onIndexChange(index) {
         console.log(index);
-        this.setState({
-            index: index
-        })
-        store.dispatch(onTimelineDateChange(index));
+       
+            this.setState({
+                index: index
+            })
+
+        
+        store.dispatch(onTimelineDateChange(this.state.index));
     }
     render() {
+        // var showTimeline = () => {
+        //     if(store.getState().searchValue) {
+        //         if(store.getState().searchValue.length>0){
+        //             console.log(store.getState().searchValue);
+        //             return (
+        //                 <div />
+        //             )
+        //         }
+        //     }
+        //     console.log("...");
+        //     return (
+        //     <div style={{ width: '60%', transform: `translate(${0}px, ${10}px)` , height: '100px', margin: '0 auto' }}>
+        //                     <HorizontalTimeline
+        //                         index={this.state.index}
+        //                         indexClick={this.onIndexChange.bind(this)}
+        //                         values={this.state.values} />
+        //                     </div>
+        //     );
+        // }
+       
         //console.log(store.getState());
+        if(store.getState().searchValue) {
+            if(store.getState().searchValue.length > 0) {
+                if(store.getState().zoom<6) {
+           
+                    return (
+            
+                        <div className="mapDiv">
+                            <Grid fluid>
+                                <Row className="showGrid">
+                                    
+                                    <Col lg={12}>    <GoogleMap/> </Col>
+                                    
+                                </Row>    
+                            </Grid>
+                        </div>
+                        );
+                    }
+                    else {
+            
+                        return (
+            
+                                    <div className="mapDiv">
+                                        <Grid fluid>
+                                            <Row className="showGrid">
+            
+                                                <Col lg={12}>    <NewGoogleMap/> </Col>
+            
+                                            </Row>
+                                        </Grid>
+                                        </div>
+                                    );
+                    }
+            }
+        }
         if(store.getState().zoom<6) {
+           
         return (
 
             <div className="mapDiv">
@@ -72,7 +130,7 @@ class MapPane extends Component {
                                 indexClick={this.onIndexChange.bind(this)}
                                 values={this.state.values} />
                             </div>
-                        </div>
+                            </div>
                         );
         }
     }

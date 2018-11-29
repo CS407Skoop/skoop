@@ -22,7 +22,8 @@ class Markers extends Component {
         this.state = {
             url: this.props.url,
             title: this.props.title,
-            category: this.props.category
+            category: this.props.category,
+            id: this.props.id
         }
     }
 
@@ -31,6 +32,7 @@ class Markers extends Component {
         var toStore = {
             url: this.state.url,
             title: this.state.title,
+            id: this.state.id
         }
         store.dispatch(storeArticleDetails(toStore))
     }

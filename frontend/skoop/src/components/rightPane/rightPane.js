@@ -11,6 +11,12 @@ class RightPane extends Component {
         store.dispatch(hideArticleInformation());
     }
 
+    onLikeArticle() {
+        var objToSend = {
+            id: store.getState().articleDetails.id
+        }
+    }
+
     // showArticleItems() {
     //     console.log(store.getState())
     //     if (store.getState().favoriteArticles) {
@@ -31,10 +37,14 @@ class RightPane extends Component {
                 <div className="rightPaneDiv">
                     <div className="frameHeader">
 
-                        <div className="articleTitle">
-                            <Button color="danger" style={{marginTop: "3px"}} onClick={this.onClick}>Go back to Map</Button>
+                       
+                            <Button color="danger" style={{marginTop: "5px", marginLeft: "5px"}} onClick={this.onClick}>Go back to Map</Button>
 
-                        </div>
+                       
+                       
+                            <Button color="danger" style={{marginTop: "5px", marginLeft: "15px"}} onClick={this.onLikeArticle}>Like article</Button>
+
+                       
                     </div>
                     <ArticleFrame />
                 </div>

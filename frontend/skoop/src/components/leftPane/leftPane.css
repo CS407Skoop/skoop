@@ -22,6 +22,7 @@
 }
 
 .btn-toolbar {
+    margin-top: 20px !important;
     margin-left: 35px !important;
 
 }
@@ -41,4 +42,13 @@
 
 .prefbuttons {
   align-content: center;
+}
+
+.toggleDiv {
+   align-content: center;
+   margin-left: 18%;
+}
+
+.toggleText {
+    margin-left: 3%;
 }

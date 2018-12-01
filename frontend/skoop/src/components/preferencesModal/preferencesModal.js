@@ -70,7 +70,7 @@ class PreferencesModal extends Component {
 
             >
                 <Modal.Header>
-                    <Modal.Title>Sign Up!</Modal.Title>
+                    <Modal.Title>Edit Preferences</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form horizontal>
@@ -94,6 +94,14 @@ class PreferencesModal extends Component {
                             </Col>
                             <Col sm={8}>
                               <this.categoriesToShow />
+                              </Col>
+                            </FormGroup>
+                        <FormGroup>
+                            <Col componentClass={ControlLabel} sm={2}>
+                               Blocked Categories
+                            </Col>
+                            <Col sm={8}>
+                              
                               </Col>
                             </FormGroup>
                         

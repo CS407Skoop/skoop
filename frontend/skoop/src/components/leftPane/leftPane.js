@@ -4,8 +4,23 @@ import { store } from '../../store';
 import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button, Clearfix, Dropdown } from 'react-bootstrap';
 import { closeLeftPane, openPreferencesModal } from '../../actions';
 import  PreferencesModal from '../preferencesModal/preferencesModal';
+import Toggle from 'react-toggle';
+import './toggle.css';
 
 class LeftPane extends Component {
+    constructor() {
+        super();
+        this.state = {
+            userPreferncesMode: false
+        }
+    }
+
+    handleToggleChange() {
+        this.setState({
+            userPreferncesMode: !this.state.userPreferncesMode
+        })
+    }
+
     closeLeftPane() {
         store.dispatch(closeLeftPane());
     }
@@ -91,7 +106,19 @@ class LeftPane extends Component {
                             <h4 id="Categories">Categories</h4>
                   <this.showCategoryItems />
                   </ListGroup>
-
+                  <ListGroup >
+                            <h4 id="Categories">Blocked Categories</h4>
+                  <this.showCategoryItems />
+                  </ListGroup>
+                  <div className="toggleDiv">
+                  <label>
+                    <Toggle
+                    defaultChecked={this.userPreferncesMode}
+                    onChange={this.handleToggleChange.bind(this)} />
+                    <span className="toggleText">User preferences</span>
+                    
+                </label>
+                </div> 
                   <ButtonToolbar class="prefbuttons">
                   <Button bsStyle="primary" onClick={this.openPreferencesModal}>Edit</Button>
                   <Button onClick={this.closeLeftPane}>Exit</Button>

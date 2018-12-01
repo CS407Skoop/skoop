@@ -12,14 +12,18 @@ import HorizontalTimeline from 'react-horizontal-timeline';
 class MapPane extends Component {
     constructor() {
         super();
-        var oldDate = new Date("2018-11-05");
-        var newDate = new Date("2018-11-12");
+        var today = new Date();
+        var previousWeek= today.getTime() - 7 * 24 * 60 * 60 * 1000;
+
+        
         var values = new Array();
-        var dt = new Date(oldDate);
-        while (dt <= newDate) {
-            values.push(new Date(dt));
-            dt.setDate(dt.getDate() + 1);
+        while (previousWeek <= today) {
+            var d = new Date(previousWeek);
+            console.log(d);
+            values.push(d);
+            previousWeek += (24*60*60*1000);
         }
+        console.log(values);
         this.state = ({
             values: values,
             index: 7

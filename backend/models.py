@@ -10,13 +10,14 @@ class User(db.Model):
     locations = db.Column(db.String(1000), nullable=False)
     articles = db.Column(db.String(1000), nullable=False)
     categories = db.Column(db.String(1000), nullable=False)
+    blockedArticles = db.Column(db.String(1000), nullable=False)
     isValidated = db.Column(db.Boolean, nullable=False)
 
 
     def __repr__(self):
             return self.first_name + " " + self.last_name + " " + self.email + " " + self.password
 
-    def __init__(self, first_name=None, last_name=None, email=None, password=None, locations='', articles='', categories='', isValidated=False):
+    def __init__(self, first_name=None, last_name=None, email=None, password=None, locations='', articles='', categories='', blockedCategories='', isValidated=False):
         
         self.first_name = first_name
         self.last_name = last_name
@@ -25,19 +26,14 @@ class User(db.Model):
         self.locations = locations
         self.articles = articles
         self.categories = categories
+        self.blockedCategories = blockedCategories
         self.isValidated = isValidated
 
-    def editPreferences(self, locations='', articles='', categories=''): 
-
-
-        location_array = self.locations.split(',')
-        print(location_array)
-
-        article_array = self.articles.split(',')
-        category_array = self.categories.split(',')
+    def editPreferences(self, locations='', articles='', categories='', blockedCategories=''): 
 
         self.locations = ''
         self.categories = ''
+        self.blockedCategories = ''
         for location in locations:
 
             if location not in self.locations:
@@ -51,6 +47,13 @@ class User(db.Model):
 
                 self.articles += article
                 self.articles += ","
+
+        for blocked in blockedCategories:
+
+            if blocked not in self.blockedCategories:
+
+                self.blockedCategories += blocked
+                self.blockedCategories += ","
 
         for category in categories:
 

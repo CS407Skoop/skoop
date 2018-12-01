@@ -633,7 +633,7 @@ export const onTimelineDateChange = (index) => {
             var objReceived = JSON.parse(text);
             console.log(objReceived);
             store.dispatch(storeArticles(objReceived.value));
-
+           
         })
     })
     return {

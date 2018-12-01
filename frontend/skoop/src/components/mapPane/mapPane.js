@@ -36,7 +36,7 @@ class MapPane extends Component {
             })
 
         
-        store.dispatch(onTimelineDateChange(this.state.index));
+        store.dispatch(onTimelineDateChange(index));
     }
     render() {
         // var showTimeline = () => {

@@ -109,6 +109,7 @@ def getTimeLineArticles(date, toggle, username):
     locations = []
     posLocations = []
     posCategories = []
+    negCategories = []
 
     user = User.query.filter_by(email=username).first()
 
@@ -124,9 +125,11 @@ def getTimeLineArticles(date, toggle, username):
                 dic[line['English short name lower case']] = line['Alpha-2 code']
         posLocations = [dic[x] for x in locations]
         posCategories = user.parsePreferences(user.categories)
+        negCategories = user.parsePreferences(user.blockedCategories)
     print(locations)
     print(posLocations)
     print(posCategories)
+    print(negCategories)
 
 
     favArticles = user.parsePreferences(user.articles)
@@ -138,7 +141,8 @@ def getTimeLineArticles(date, toggle, username):
             for y in article_list:
                 for x in y.articles:
                     if (not toggle) or (x.category in posCategories or x.country in posLocations):
-                        tempArticle = {"id" : x.id,
+                        if x.category not in negCategories:
+                            tempArticle = {"id" : x.id,
                                             "url" : x.url,
                                             "title" : x.title,
                                             "city" : x.city,
@@ -152,17 +156,18 @@ def getTimeLineArticles(date, toggle, username):
                                             "img_height" : x.img_height,
                                             "img_width" : x.img_width,
                                             "article_date" : str(x.article_date)}
-                        if str(x.id) in favArticles:
-                            tempArticle["isLiked"] = True
-                        else:
-                            tempArticle["isLiked"] = False
+                            if str(x.id) in favArticles:
+                                tempArticle["isLiked"] = True
+                            else:
+                                tempArticle["isLiked"] = False
 
-                        list["value"].append(tempArticle)
+                            list["value"].append(tempArticle)
     else:
         if article_list is not None:
             for x in article_list.articles:
                 if (not toggle) or (x.category in posCategories or x.country in posLocations):
-                    tempArticle = {"id" : x.id,
+                    if x.category not in negCategories:
+                        tempArticle = {"id" : x.id,
                                         "url" : x.url,
                                         "title" : x.title,
                                         "city" : x.city,
@@ -177,12 +182,12 @@ def getTimeLineArticles(date, toggle, username):
                                         "img_width" : x.img_width,
                                         "article_date" : str(x.article_date)}
 
-                    if str(x.id) in favArticles:
-                        tempArticle["isLiked"] = True
-                    else:
-                        tempArticle["isLiked"] = False
+                        if str(x.id) in favArticles:
+                            tempArticle["isLiked"] = True
+                        else:
+                            tempArticle["isLiked"] = False
 
-                    list["value"].append(tempArticle)
+                        list["value"].append(tempArticle)
 
     return json.dumps(list)
 

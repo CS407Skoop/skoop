@@ -161,7 +161,9 @@ def getArticles():
 
     data = request.get_json()
     date = data['date']
-    js = dbupdate.getTimeLineArticles(date)
+    toggle = data['toggle']
+    username = data['username']
+    js = dbupdate.getTimeLineArticles(date, toggle, username)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
 

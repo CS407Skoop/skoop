@@ -19,7 +19,6 @@ class MapPane extends Component {
         var values = new Array();
         while (previousWeek <= today) {
             var d = new Date(previousWeek);
-            console.log(d);
             values.push(d);
             previousWeek += (24*60*60*1000);
         }
@@ -37,7 +36,7 @@ class MapPane extends Component {
             })
 
         
-        store.dispatch(onTimelineDateChange(this.state.index));
+        store.dispatch(onTimelineDateChange(index));
     }
     render() {
         // var showTimeline = () => {

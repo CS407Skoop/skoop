@@ -608,9 +608,11 @@ export const getSearchResults = (flag) => {
 export const onTimelineDateChange = (index) => {
     var newDate = new Date();
     console.log(newDate);
-    var year = newDate.getFullYear();
-    var month = newDate.getMonth()+1;
-    var day = newDate.getDate()-(7-index);
+    var tStamp = newDate.getTime() - ((7-index) * 24 * 60 * 60 * 1000);
+    var newDay = new Date(tStamp);
+    var year = newDay.getFullYear();
+    var month = newDay.getMonth()+1;
+    var day = newDay.getDate(); 
     var date = year + "-" + month + "-" + day + " 00:00:00"
     console.log(date);
     var jsonToSend = JSON.stringify({
@@ -631,7 +633,7 @@ export const onTimelineDateChange = (index) => {
             var objReceived = JSON.parse(text);
             console.log(objReceived);
             store.dispatch(storeArticles(objReceived.value));
-
+           
         })
     })
     return {

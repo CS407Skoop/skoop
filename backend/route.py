@@ -191,7 +191,7 @@ def modifyArticleLike():
     username = data['username']
     articleID = data['id']
 
-    user = User.query.filter_by(email=username, password=password).first()
+    user = User.query.filter_by(email=username).first()
 
     if user is None :
         ret = {
@@ -203,17 +203,25 @@ def modifyArticleLike():
 
     else :
 
-        if articleID not in user.articles:
-            user.articles += article
-            user.articles += ","
+        article_array = user.parsePreferences(user.articles)
+
+        #print(articleID)
+        #print(article_array)
+        #print(articleID in article_array)
+
+        if articleID not in article_array:
+            article_array.append(articleID)
 
         else :
-            user.articles = user.articles.replace("," + articleID, "")
+            article_array.remove(articleID)
 
+        user.articles = ','.join(article_array)
+        user.articles += ","
         db.session.commit()
         ret = {
             'message': 'SUCCESS',
         }
         js = json.dumps(ret)
         resp = Response(js, status=200, mimetype='application/json')
+        print(article_array)
         return resp

@@ -94,7 +94,7 @@ def editPreferences():
     categories = data['categories']
     blockedCategories = ''
 
-    if data.get('blockedCategories')
+    if data.get('blockedCategories'):
         blockedCategories = data['blockedCategories']
 
     user = User.query.filter_by(email=username, password=password).first()
@@ -118,7 +118,7 @@ def editPreferences():
             'email': username,
             'favoriteLocations': user.parsePreferences(user.locations),
             'favoriteArticles': user.parsePreferences(user.articles),
-            'categories': user.parsePreferences(user.categories)
+            'categories': user.parsePreferences(user.categories),
             'blockedCategories' : user.parsePreferences(user.blockedCategories)
         }
         js = json.dumps(ret)

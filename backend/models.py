@@ -10,7 +10,7 @@ class User(db.Model):
     locations = db.Column(db.String(1000), nullable=False)
     articles = db.Column(db.String(1000), nullable=False)
     categories = db.Column(db.String(1000), nullable=False)
-    blockedArticles = db.Column(db.String(1000), nullable=False)
+    blockedCategories = db.Column(db.String(1000), nullable=False)
     isValidated = db.Column(db.Boolean, nullable=False)
 
 

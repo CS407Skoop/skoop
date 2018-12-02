@@ -37,7 +37,8 @@ def login():
             'email': username,
             'favoriteLocations': user.parsePreferences(user.locations),
             'favoriteArticles': user.parsePreferences(user.articles),
-            'categories': user.parsePreferences(user.categories)
+            'categories': user.parsePreferences(user.categories),
+            'blockedCategories' : user.parsePreferences(user.blockedCategories)
 
         }
         js = json.dumps(ret)
@@ -69,7 +70,8 @@ def signup():
             'email': username,
             'categories': '',
             'articles' : '',
-            'locations' : ''
+            'locations' : '',
+            'blockedCategories' : '' 
         }
     else:
         ret = {
@@ -90,6 +92,10 @@ def editPreferences():
     articles = data['favoriteArticles']
     locations = data['favoriteLocations']
     categories = data['categories']
+    blockedCategories = ''
+
+    if data.get('blockedCategories'):
+        blockedCategories = data['blockedCategories']
 
     user = User.query.filter_by(email=username, password=password).first()
 
@@ -102,7 +108,7 @@ def editPreferences():
         return resp
 
     else :
-        user.editPreferences(locations, articles, categories)
+        user.editPreferences(locations, articles, categories, blockedCategories)
         print(locations)
         db.session.commit()
         ret = {
@@ -112,7 +118,8 @@ def editPreferences():
             'email': username,
             'favoriteLocations': user.parsePreferences(user.locations),
             'favoriteArticles': user.parsePreferences(user.articles),
-            'categories': user.parsePreferences(user.categories)
+            'categories': user.parsePreferences(user.categories),
+            'blockedCategories' : user.parsePreferences(user.blockedCategories)
         }
         js = json.dumps(ret)
         resp = Response(js, status=200, mimetype='application/json')
@@ -174,3 +181,39 @@ def search():
         js = dbupdate.searchArticles(search_string, False)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
+
+@app.route('/api/likeArticle/', methods=['GET', 'POST'])
+@cross_origin()
+def modifyArticleLike():
+
+    data = request.get_json()
+
+    username = data['username']
+    articleID = data['id']
+
+    user = User.query.filter_by(email=username, password=password).first()
+
+    if user is None :
+        ret = {
+            'message': 'Invalid credentials'
+        }
+        js = json.dumps(ret)
+        resp = Response(js, status=200, mimetype='application/json')
+        return resp
+
+    else :
+
+        if articleID not in user.articles:
+            user.articles += article
+            user.articles += ","
+
+        else :
+            user.articles = user.articles.replace("," + articleID, "")
+
+        db.session.commit()
+        ret = {
+            'message': 'SUCCESS',
+        }
+        js = json.dumps(ret)
+        resp = Response(js, status=200, mimetype='application/json')
+        return resp

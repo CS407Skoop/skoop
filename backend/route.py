@@ -179,3 +179,39 @@ def search():
         js = dbupdate.searchArticles(search_string, False)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
+
+@app.route('/api/likeArticle/', methods=['GET', 'POST'])
+@cross_origin()
+def modifyArticleLike():
+
+    data = request.get_json()
+
+    username = data['username']
+    articleID = data['id']
+
+    user = User.query.filter_by(email=username, password=password).first()
+
+    if user is None :
+        ret = {
+            'message': 'Invalid credentials'
+        }
+        js = json.dumps(ret)
+        resp = Response(js, status=200, mimetype='application/json')
+        return resp
+
+    else :
+
+        if articleID not in user.articles:
+            user.articles += article
+            user.articles += ","
+
+        else :
+            user.articles = user.articles.replace("," + articleID, "")
+
+        db.session.commit()
+        ret = {
+            'message': 'SUCCESS',
+        }
+        js = json.dumps(ret)
+        resp = Response(js, status=200, mimetype='application/json')
+        return resp

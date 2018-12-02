@@ -41,13 +41,6 @@ class User(db.Model):
                 self.locations += location
                 self.locations += ","
 
-        for article in articles:
-
-            if article not in self.articles:
-
-                self.articles += article
-                self.articles += ","
-
         for blocked in blockedCategories:
 
             if blocked not in self.blockedCategories:

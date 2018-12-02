@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf6cd279-c057-4c9f-8a81-9c52ed7c6dec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/wikipedia-iso-country-codes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/database_readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database_readme.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/dbupdate.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dbupdate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/route.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/route.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/skoop/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/skoop/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/skoop/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/skoop/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/validation.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,24 +73,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="csv" value="1" />
           <entry key="js" value="4" />
-          <entry key="md" value="2" />
-          <entry key="py" value="11" />
-          <entry key="txt" value="4" />
+          <entry key="md" value="3" />
+          <entry key="py" value="17" />
+          <entry key="txt" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JavaScript" value="4" />
-          <entry key="Markdown" value="2" />
-          <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="11" />
+          <entry key="Markdown" value="3" />
+          <entry key="PLAIN_TEXT" value="7" />
+          <entry key="Python" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="10" />
-          <entry key="py" value="4088" />
+          <entry key="py" value="5188" />
           <entry key="txt" value="25" />
         </counts>
       </usages-collector>
@@ -100,52 +99,105 @@
         <counts>
           <entry key="JavaScript" value="10" />
           <entry key="PLAIN_TEXT" value="25" />
-          <entry key="Python" value="4088" />
+          <entry key="Python" value="5188" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/dbupdate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+            <state relative-caret-position="-379">
+              <caret line="12" column="10" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="10" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <marker date="1541106718810" expanded="true" signature="7681:7720" ph="..." />
-                <marker date="1541106718810" expanded="true" signature="7681:7765" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/wikipedia-iso-country-codes.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/database_readme.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="180">
+              <caret line="12" column="64" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/config.py">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/sqlalchemy/orm/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="157">
+              <caret line="420" selection-start-line="420" selection-end-line="420" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/MySQLdb/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/key.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/validation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="28" column="91" selection-start-line="28" selection-start-column="91" selection-end-line="28" selection-end-column="91" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/route.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="154" column="29" lean-forward="true" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="29" />
+            <state relative-caret-position="385">
+              <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -183,6 +235,8 @@
       <find>mapcontainer</find>
       <find>get_json</find>
       <find>query</find>
+      <find>smtplib</find>
+      <find>csv</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/backend</dir>
@@ -215,14 +269,14 @@
         <option value="$PROJECT_DIR$/frontend/skoop/src/reducers/index.js" />
         <option value="$PROJECT_DIR$/documents/countries.txt" />
         <option value="$PROJECT_DIR$/backend/app.py" />
-        <option value="$PROJECT_DIR$/backend/models.py" />
         <option value="$PROJECT_DIR$/backend/config.py" />
         <option value="$PROJECT_DIR$/backend/database_readme.txt" />
         <option value="$PROJECT_DIR$/frontend/skoop/src/actions/index.js" />
-        <option value="$PROJECT_DIR$/backend/route.py" />
         <option value="$PROJECT_DIR$/frontend/skoop/src/components/mapPane/GoogleMap.js" />
+        <option value="$PROJECT_DIR$/backend/models.py" />
         <option value="$PROJECT_DIR$/backend/validation.py" />
         <option value="$PROJECT_DIR$/backend/dbupdate.py" />
+        <option value="$PROJECT_DIR$/backend/route.py" />
       </list>
     </option>
   </component>
@@ -255,46 +309,6 @@
               <item name="skoop" type="b2602c69:ProjectViewProjectNode" />
               <item name="skoop" type="462c0819:PsiDirectoryNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="skoop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-              <item name="documents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="skoop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="skoop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="skoop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="skoop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="skoop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="skoop" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="mapPane" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -385,7 +399,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.47831327" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32891566" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -430,7 +444,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/backend/dbupdate.py</url>
-          <line>174</line>
+          <line>216</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
@@ -592,9 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/key.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -613,14 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
           <caret line="341" selection-start-line="341" selection-end-line="341" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -652,13 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/skoop/src/components/mapPane/GoogleMap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -666,42 +662,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/validation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="28" column="85" lean-forward="true" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="114" column="25" selection-start-line="114" selection-start-column="13" selection-end-line="114" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/route.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="154" column="29" lean-forward="true" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/skoop/src/index.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/database_readme.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documents/countries.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -717,14 +679,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/dbupdate.py">
+    <entry file="file://$PROJECT_DIR$/backend/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/sqlalchemy/orm/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="420" selection-start-line="420" selection-end-line="420" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/skoop/src/components/rightPane/rightPane.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/MySQLdb/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/skoop/src/components/rightPane/rightPane.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/key.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/flask_sqlalchemy/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-883">
+          <caret line="510" selection-start-line="510" selection-end-line="510" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/wikipedia-iso-country-codes.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/validation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="91" selection-start-line="28" selection-start-column="91" selection-end-line="28" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/database_readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="64" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/dbupdate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-379">
+          <caret line="12" column="10" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="10" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <marker date="1541106718810" expanded="true" signature="7681:7720" ph="..." />
-            <marker date="1541106718810" expanded="true" signature="7681:7765" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/route.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>

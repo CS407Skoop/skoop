@@ -10,7 +10,7 @@ import datetime
 import json
 import nltk
 from nltk.corpus import stopwords
-
+import csv
 
 subscription_key = "ee34cd704dc145e38f456a285dc314d9"
 search_url = "https://api.cognitive.microsoft.com/bing/v7.0/news"
@@ -96,7 +96,7 @@ def submitArticles(articles):
                 print("Key not found")
 
 
-def getTimeLineArticles(date):
+def getTimeLineArticles(date, toggle, username):
     if date is not None:
         article_list = Timeline.query.filter_by(articles_date=date).first()
     else:
@@ -106,11 +106,39 @@ def getTimeLineArticles(date):
     list["date"] = date
     list["value"] = []
 
+    locations = []
+    posLocations = []
+    posCategories = []
+
+    user = User.query.filter_by(email=username).first()
+
+    if user is None:
+        return list
+
+    if toggle:
+        locations = user.parsePreferences(user.locations)
+        dic = {}
+        with open("wikipedia-iso-country-codes.csv") as f:
+            file = csv.DictReader(f, delimiter=',')
+            for line in file:
+                dic[line['English short name lower case']] = line['Alpha-2 code']
+        posLocations = [dic[x] for x in locations]
+        posCategories = user.parsePreferences(user.categories)
+    print(locations)
+    print(posLocations)
+    print(posCategories)
+
+
+    favArticles = user.parsePreferences(user.articles)
+    print(favArticles)
+
+
     if date is None:
         if article_list is not None:
             for y in article_list:
                 for x in y.articles:
-                    list["value"].append({"id" : x.id,
+                    if (not toggle) or (x.category in posCategories or x.country in posLocations):
+                        tempArticle = {"id" : x.id,
                                             "url" : x.url,
                                             "title" : x.title,
                                             "city" : x.city,
@@ -123,11 +151,18 @@ def getTimeLineArticles(date):
                                             "img_url" : x.img_url,
                                             "img_height" : x.img_height,
                                             "img_width" : x.img_width,
-                                            "article_date" : str(x.article_date)})
+                                            "article_date" : str(x.article_date)}
+                        if str(x.id) in favArticles:
+                            tempArticle["isLiked"] = True
+                        else:
+                            tempArticle["isLiked"] = False
+
+                        list["value"].append(tempArticle)
     else:
         if article_list is not None:
             for x in article_list.articles:
-                list["value"].append({"id" : x.id,
+                if (not toggle) or (x.category in posCategories or x.country in posLocations):
+                    tempArticle = {"id" : x.id,
                                         "url" : x.url,
                                         "title" : x.title,
                                         "city" : x.city,
@@ -140,7 +175,14 @@ def getTimeLineArticles(date):
                                         "img_url" : x.img_url,
                                         "img_height" : x.img_height,
                                         "img_width" : x.img_width,
-                                        "article_date" : str(x.article_date)})
+                                        "article_date" : str(x.article_date)}
+
+                    if str(x.id) in favArticles:
+                        tempArticle["isLiked"] = True
+                    else:
+                        tempArticle["isLiked"] = False
+
+                    list["value"].append(tempArticle)
 
     return json.dumps(list)
 
@@ -205,10 +247,6 @@ def searchArticles(search_str, new):
             print(article["title"])
 
     return json.dumps(result)
-
-
-
-
 
 
 #searchArticles("google", False)

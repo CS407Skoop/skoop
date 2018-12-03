@@ -30,17 +30,27 @@ def login():
         resp = Response(js, status=200, mimetype='application/json')
         return resp
     else :
+        articleTitles = []
+        articleLinks = []
+
+        for artID in user.parsePreferences(user.articles):
+            tempArt = Article.query.filter_by(id=artID).first()
+        articleTitles.append(tempArt.title)
+        articleLinks.append(tempArt.url)
+
         ret = {
             'message': 'SUCCESS',
             'firstName': user.first_name,
             'lastName': user.last_name,
             'email': username,
             'favoriteLocations': user.parsePreferences(user.locations),
-            'favoriteArticles': user.parsePreferences(user.articles),
+            'favoriteArticleTitles': articleTitles,
+            'favoriteArticleLinks': articleLinks,
             'categories': user.parsePreferences(user.categories),
-            'blockedCategories' : user.parsePreferences(user.blockedCategories)
+            'blockedCategories': user.parsePreferences(user.blockedCategories)
 
         }
+
         js = json.dumps(ret)
         resp = Response(js, status=200, mimetype='application/json')
         return resp

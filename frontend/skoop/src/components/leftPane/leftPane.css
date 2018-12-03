@@ -5,6 +5,7 @@
     padding: 0;
     z-index: 3;
     width: 100%;
+    overflow: auto;
     background-color: #e6e6ed;
     opacity: 0.9
 }
@@ -51,4 +52,12 @@
 
 .toggleText {
     margin-left: 3%;
+}
+
+.favArticlesButton {
+    margin-bottom: 10px;
+}
+
+.articleItem {
+    margin-bottom: 10px;
 }

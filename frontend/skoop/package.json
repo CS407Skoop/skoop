@@ -22,6 +22,7 @@
     "react-scripts": "1.1.5",
     "react-search-box": "^1.0.1",
     "react-select": "^2.1.0",
+    "react-share": "^2.4.0",
     "react-toggle": "^4.0.2",
     "reactstrap": "^6.5.0",
     "redux": "^4.0.0",

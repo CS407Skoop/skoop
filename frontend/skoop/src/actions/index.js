@@ -203,7 +203,7 @@ export const noLocationGiven = () => {
 }
 
 export const storeArticles = (articles) => {
-    console.log("IN");
+    console.log(articles);
     return {
         type: 'STORE_ARTICLES',
         payload: articles
@@ -631,7 +631,7 @@ export const onTimelineDateChange = (index) => {
         console.log(response);
         response.text().then(function (text) {
             var objReceived = JSON.parse(text);
-            console.log(objReceived);
+            
             store.dispatch(storeArticles(objReceived.value));
            
         })

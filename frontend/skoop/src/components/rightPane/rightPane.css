@@ -18,17 +18,22 @@
 }
 
 .frameHeader {
+    /* display: inline-block; */
     z-index: 999;
     background-color: #e6e6ed;
     height: 9%;
     margin-left: 70.25%;
     margin-top: -2px;
     width: 31%;
-    margin-right: -5px;
+    margin-right: -3px;
     opacity: 0.9
 }
 
 .articleTitleText {
 
     display: inline
+}
+
+.shareButtons {
+    /* display: inline-block; */
 }

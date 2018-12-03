@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './leftPane.css';
 import { store } from '../../store';
-import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button, Clearfix, Dropdown } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button, Clearfix, Dropdown, Modal } from 'react-bootstrap';
 import { closeLeftPane, openPreferencesModal } from '../../actions';
 import  PreferencesModal from '../preferencesModal/preferencesModal';
 import Toggle from 'react-toggle';
@@ -11,7 +11,8 @@ class LeftPane extends Component {
     constructor() {
         super();
         this.state = {
-            userPreferncesMode: false
+            userPreferncesMode: false,
+            showFavArticlesModal: false
         }
     }
 
@@ -41,18 +42,23 @@ class LeftPane extends Component {
 
     }
 
-    showArticleItems() {
-        console.log(store.getState())
-        if (store.getState().favoriteArticles) {
+     showArticleItems() {
+         
+         if (store.getState().favoriteArticles) {
 
             const articleItems = store.getState().favoriteArticles.map(function (article) {
-                return <ListGroupItem > {article} </ListGroupItem>
-            })
-            return articleItems;
-        }
-        else
-        return <div />
-    }
+                 return (
+                <div className = "articleItem">
+                    <ListGroupItem > {article} </ListGroupItem>
+                    <Button bsStyle="primary" bsSize="small"> Remove </Button>
+                 </div>
+                 )
+             })
+             return articleItems;
+         }
+         else
+         return <div />
+     }
      showCategoryItems () {
         if(store.getState().categories) {
          const categoryItems = store.getState().categories.map(function(category) {
@@ -77,11 +83,35 @@ class LeftPane extends Component {
             return (<div />)
     }
 
+    showFavArticles() {
+        this.setState({
+            showFavArticlesModal: !this.state.showFavArticlesModal
+        })
+    }
+
 
     render() {
         console.log(this.showCategoryItems);
         return (
+            
             <div className="leftPaneDiv">
+                <Modal bsSize="lg"
+                show={this.state.showFavArticlesModal}
+                aria-labelledby="contained-modal-title-lg"
+
+            >
+                <Modal.Header>
+                    <Modal.Title>Favorite Articles</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <ListGroup>
+                    <this.showArticleItems />
+                    </ListGroup>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button bsStyle="primary" onClick={this.showFavArticles.bind(this)}>Close</Button>
+            </Modal.Footer>
+            </Modal>
                 <this.showModal/>
 
                 <br />
@@ -95,13 +125,9 @@ class LeftPane extends Component {
                  <this.showLocationItems />
                  </ListGroup>
 
-                 <h4 id="favoriteArticles">Favorite Articles </h4>
-
-                  <ListGroup>
-
-                  <this.showArticleItems />
-                  </ListGroup>
-
+                  <div className="favArticlesButton">
+                  <Button bsStyle="primary" bsSize="large" onClick = {this.showFavArticles.bind(this)}>Favorite Articles</Button>
+                  </div>
                   <ListGroup >
                             <h4 id="Categories">Categories</h4>
                   <this.showCategoryItems />

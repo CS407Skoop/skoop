@@ -254,6 +254,12 @@ def searchArticles(search_str, new):
     return json.dumps(result)
 
 
+def getCountryLocation(countryCode):
+    temploc = gn.geocode(countryCode)
+    print(temploc.latitude, temploc.longitude)
+
+
+
 #searchArticles("google", False)
 
 #getTimeLineArticles("2018-10-27 00:00:00")

@@ -235,3 +235,15 @@ def modifyArticleLike():
         resp = Response(js, status=200, mimetype='application/json')
         print(article_array)
         return resp
+
+
+@app.route('/api/getLocation/', methods=['GET', 'POST'])
+@cross_origin()
+def getLocation():
+
+    data = request.get_json()
+    country = data['country']
+
+    js = dbupdate.getCountryLocation(country)
+    resp = Response(js, status=200, mimetype='application/json')
+    return resp

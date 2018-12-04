@@ -254,10 +254,20 @@ def searchArticles(search_str, new):
     return json.dumps(result)
 
 
-def getCountryLocation(countryCode):
-    temploc = gn.geocode(countryCode)
-    print(temploc.latitude, temploc.longitude)
+def getCountryLocation(country):
+    with open("wikipedia-iso-country-codes.csv") as f:
+        file = csv.DictReader(f, delimiter=',')
+        for line in file:
+            if line['English short name lower case'] == country:
+                countryCode = line['Alpha-2 code']
+                break
 
+    print(countryCode)
+
+    temploc = gn.geocode(countryCode)
+    res = {"latitude":temploc.latitude,
+            "longitude": temploc.longitude}
+    return json.dumps(res)
 
 
 #searchArticles("google", False)

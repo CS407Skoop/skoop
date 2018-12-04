@@ -49,36 +49,34 @@ class RightPane extends Component {
                     <div className="frameHeader">
 
                             
-                            <Button color="danger" style={{marginTop: "10px"}} onClick={this.onClick}>Go back to Map</Button>
+                            <Button color="danger" style={{marginTop: "8px", marginLeft: "-120px" }} onClick={this
+                            .onClick}>Go back to Map</Button>
 
                        
                        
-                            <Button color="danger" style={{marginTop: "10px", marginLeft: "10px"}} onClick={this.onLikeArticle}>Like article</Button>
+                            <Button color="danger" style={{marginTop: "8px", marginLeft: "10px"}} onClick={this.onLikeArticle}>Like article</Button>
                             <div className="shareButtons">
                             <FacebookShareButton
+
                                 url={store.getState().articleDetails.url}>
                                 <FacebookIcon
                                 size={32}
                                 round />
                             </FacebookShareButton>
                             <TwitterShareButton
+                                style={{marginLeft: "5px" }}
                                 url={store.getState().articleDetails.url}>
                                 <TwitterIcon
                                 size={32}
                                 round />
                             </TwitterShareButton>
                             <GooglePlusShareButton
+                                style={{marginLeft: "5px" }}
                                 url={store.getState().articleDetails.url}>
                                 <GooglePlusIcon
                                 size={32}
                                 round />
                             </GooglePlusShareButton>
-                            <LinkedinShareButton
-                                url={store.getState().articleDetails.url}>
-                                <LinkedinIcon
-                                size={32}
-                                round />
-                            </LinkedinShareButton>
                             </div>
                             
                        

@@ -97,6 +97,9 @@ def submitArticles(articles):
 
 
 def getTimeLineArticles(date, toggle, username):
+
+    #print("sdjfhksdjghfskldjghsjkdfghkjsg")
+
     if date is not None:
         article_list = Timeline.query.filter_by(articles_date=date).first()
     else:
@@ -113,9 +116,6 @@ def getTimeLineArticles(date, toggle, username):
 
     user = User.query.filter_by(email=username).first()
 
-    if user is None:
-        return list
-
     if toggle:
         locations = user.parsePreferences(user.locations)
         dic = {}
@@ -126,14 +126,18 @@ def getTimeLineArticles(date, toggle, username):
         posLocations = [dic[x] for x in locations]
         posCategories = user.parsePreferences(user.categories)
         negCategories = user.parsePreferences(user.blockedCategories)
+
+
     print(locations)
     print(posLocations)
     print(posCategories)
     print(negCategories)
 
 
-    favArticles = user.parsePreferences(user.articles)
-    print(favArticles)
+    favArticles = []
+    if user is not None:
+        favArticles = user.parsePreferences(user.articles)
+        print(favArticles)
 
 
     if date is None:

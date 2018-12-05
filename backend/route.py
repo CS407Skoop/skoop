@@ -35,8 +35,8 @@ def login():
 
         for artID in user.parsePreferences(user.articles):
             tempArt = Article.query.filter_by(id=artID).first()
-        articleTitles.append(tempArt.title)
-        articleLinks.append(tempArt.url)
+            articleTitles.append(tempArt.title)
+            articleLinks.append(tempArt.url)
 
         ret = {
             'message': 'SUCCESS',
@@ -170,6 +170,7 @@ def validate(hash):
 @cross_origin()
 def getArticles():
 
+    print("in articles")
     data = request.get_json()
     date = data['date']
     toggle = data['toggle']

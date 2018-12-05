@@ -169,6 +169,7 @@ def validate(hash):
 @cross_origin()
 def getArticles():
 
+    print("in articles")
     data = request.get_json()
     date = data['date']
     toggle = data['toggle']

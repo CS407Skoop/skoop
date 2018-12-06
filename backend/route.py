@@ -35,8 +35,9 @@ def login():
 
         for artID in user.parsePreferences(user.articles):
             tempArt = Article.query.filter_by(id=artID).first()
-            articleTitles.append(tempArt.title)
-            articleLinks.append(tempArt.url)
+            if tempArt is not None:
+                articleTitles.append(tempArt.title)
+                articleLinks.append(tempArt.url)
 
         ret = {
             'message': 'SUCCESS',
@@ -228,7 +229,8 @@ def modifyArticleLike():
             article_array.remove(articleID)
 
         user.articles = ','.join(article_array)
-        user.articles += ","
+        if len(article_array) is not 0:
+            user.articles += ","
         db.session.commit()
         ret = {
             'message': 'SUCCESS',

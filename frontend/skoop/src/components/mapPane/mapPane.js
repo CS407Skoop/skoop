@@ -58,7 +58,15 @@ class MapPane extends Component {
         //                     </div>
         //     );
         // }
-       
+       if(store.getState().searchValue) {
+           if(store.getState().searchValue.length > 0) {
+               if(this.state.index != 7) {
+                    this.setState({
+                        index: 7
+                    })
+               }
+           }
+       }
         //console.log(store.getState());
         if(store.getState().searchValue) {
             if(store.getState().searchValue.length > 0) {

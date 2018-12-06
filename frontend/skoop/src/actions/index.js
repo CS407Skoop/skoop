@@ -692,6 +692,7 @@ export const onTimelineDateChange = (index) => {
     fetch(request).then(function (response) {
         console.log(response);
         response.text().then(function (text) {
+            console.log(response)
             var objReceived = JSON.parse(text);
             console.log(objReceived);
             store.dispatch(storeArticles(objReceived.value));

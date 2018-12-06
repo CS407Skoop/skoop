@@ -30,7 +30,8 @@ class PreferencesModal extends Component {
         console.log(allCats)
         this.state = {
             allCats: allCats,
-            userCats: store.getState().blockedCategories
+            userCats: store.getState().blockedCategories,
+            blockedToSend: store.getState().blockedCategories
         }
     }
 
@@ -42,11 +43,13 @@ class PreferencesModal extends Component {
 
     closeModal() {
         this.setState({
-            blockedToSend: []
+            blockedToSend: [],
+            userCats: []
         })
         store.dispatch(closePrefModal())
     }
     submitPref() {
+        console.log(this.state.blockedToSend);
         store.dispatch(submitEditPref(this.state.blockedToSend));
     }
     categoriesToShow() {
@@ -71,7 +74,8 @@ class PreferencesModal extends Component {
             if(store.getState().userCats){
             if(this.state.userCats.length != store.getState().blockedCategories.length) {
                 this.setState({
-                    userCats: store.getState().blockedCategories
+                    userCats: store.getState().blockedCategories,
+                    blockedToSend: store.getState().blockedCategories
                 })
             }
         }

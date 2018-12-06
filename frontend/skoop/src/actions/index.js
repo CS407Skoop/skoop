@@ -519,18 +519,27 @@ if(currentStore.favoriteArticles) {
     favoriteArticles = currentStore.favoriteArticles;
 }
 var blockedCategories = new Array();
-if(blockedToSend) {
-for(var i = 0; i<blockedToSend.length; i++) {
-    blockedCategories.push(blockedToSend[i].label)
-    }
-}
+ if(blockedToSend) {
+ for(var i = 0; i<blockedToSend.length; i++) {
+     if(typeof blockedToSend[i] !== 'string'){
+         console.log(typeof blockedToSend[i])
+         console.log(blockedToSend[i]);
+        blockedCategories.push(blockedToSend[i].label)
+     }
+     else {
+         console.log(blockedToSend);
+         blockedCategories.push(blockedToSend[i])
+     }
+     }
+ }
+ console.log(blockedCategories);
 var jsonToSend = JSON.stringify({
         username: currentStore.signInUserEmail,
         password: currentStore.signInPassword,
         favoriteArticles: favoriteArticles,
         favoriteLocations: currentStore.tempFavoriteLocations,
         categories: currentStore.tempCategories,
-        blockedCategories: blockedCategories
+        blockedCategories: blockedCategories    
     })
     console.log(jsonToSend);
     var request = new Request('http://skoopnews.herokuapp.com/api/editPreferences/', {
@@ -623,6 +632,7 @@ export const getSearchResults = (flag) => {
     fetch(request).then(function (response) {
         console.log(response);
         response.text().then(function (text) {
+            console.log(text);
             var objReceived = JSON.parse(text);
             console.log(objReceived);
             store.dispatch(storeArticles(objReceived.value));

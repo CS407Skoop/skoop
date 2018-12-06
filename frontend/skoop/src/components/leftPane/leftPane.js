@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './leftPane.css';
 import { store } from '../../store';
 import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button, Clearfix, Dropdown, Modal } from 'react-bootstrap';
-import { closeLeftPane, openPreferencesModal, changeToggle, getLocationCentre } from '../../actions';
+import { closeLeftPane, openPreferencesModal, changeToggle, getLocationCentre, likeArticle, removeArticle } from '../../actions';
 import  PreferencesModal from '../preferencesModal/preferencesModal';
 import Toggle from 'react-toggle';
 import './toggle.css';
@@ -11,17 +11,14 @@ class LeftPane extends Component {
     constructor() {
         super();
         this.state = {
-            userPreferncesMode: false,
+            
             showFavArticlesModal: false
         }
     }
 
     handleToggleChange() {
-        this.setState({
-            userPreferncesMode: !this.state.userPreferncesMode
-        }, () => {
-            store.dispatch(changeToggle(this.state.userPreferncesMode))
-        })
+        
+            store.dispatch(changeToggle(!store.getState().toggle))
     }
 
     closeLeftPane() {
@@ -51,13 +48,13 @@ class LeftPane extends Component {
 
      showArticleItems() {
          
-         if (store.getState().favoriteArticles) {
+         if (store.getState().favoriteArticleTitles) {
 
-            const articleItems = store.getState().favoriteArticles.map(function (article) {
+            const articleItems = store.getState().favoriteArticleTitles.map(function (article, index) {
                  return (
                 <div className = "articleItem">
-                    <ListGroupItem > {article} </ListGroupItem>
-                    <Button bsStyle="primary" bsSize="small"> Remove </Button>
+                    <ListGroupItem > <a href={store.getState().favoriteArticleLinks[index]}> {article} </a> </ListGroupItem>
+                    <Button bsStyle="primary" bsSize="small" onClick = {()=> {store.dispatch(removeArticle(store.getState().favoriteArticleIDs[index]))}}> Remove </Button>
                  </div>
                  )
              })
@@ -96,9 +93,30 @@ class LeftPane extends Component {
         })
     }
 
+    removeArticles(id) {
+        var objToSend = JSON.stringify({
+            id: id,
+            username: store.getState().signInUserEmail
+        })
+        store.dispatch(likeArticle(objToSend));
+    }
+
 
     render() {
         var locationItems;
+        var articleItems = <div />;
+        // const cont = this;
+        // if (store.getState().favoriteArticleTitles) {
+
+        //     articleItems = store.getState().favoriteArticleTitles.map(function (article, index) {
+        //          return (
+        //         <div className = "articleItem">
+        //             <ListGroupItem > <a href={store.getState().favoriteArticleLinks[index]}> {article} </a> </ListGroupItem>
+        //             <Button bsStyle="primary" bsSize="small" onClick={cont.removeArticles(store.getState().favoriteArticleIDs[index])}> Remove </Button>
+        //          </div>
+        //          )
+        //      })
+        //  }
         const cox = this;
         var blockedCategories = <div />;
         if (store.getState().blockedCategories) {
@@ -161,7 +179,7 @@ class LeftPane extends Component {
                   <div className="toggleDiv">
                   <label>
                     <Toggle
-                    defaultChecked={this.userPreferncesMode}
+                    defaultChecked={store.getState().toggle}
                     onChange={this.handleToggleChange.bind(this)} />
                     <span className="toggleText">User preferences</span>
                     

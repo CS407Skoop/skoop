@@ -155,7 +155,9 @@ export default (state, action) => {
                 lastName: action.payload.lastName,
                                             email: action.payload.email,
                                             favoriteLocations: action.payload.favoriteLocations,
-                                            favoriteArticles: action.payload.favoriteArticles,
+                                            favoriteArticleTitles: action.payload.favoriteArticleTitles,
+                                            favoriteArticleLinks: action.payload.favoriteArticleLinks,
+                                            favoriteArticleIDs: action.payload.favoriteArticleIDs,
                                             categories: action.payload.categories,
                                             blockedCategories: action.payload.blockedCategories
             }
@@ -361,6 +363,16 @@ export default (state, action) => {
                 callGA: action.payload 
             }
         }
+
+        case 'STORE_FAVARTICLES_DETAILS': {
+            return {
+                ...state,
+                favoriteArticleIDs: action.payload.favoriteArticleIDs,
+                favoriteArticleLinks: action.payload.favoriteArticleLinks,
+                favoriteArticleTitles: action.payload.favoriteArticleTitles
+            }
+        }
+
         default:
             return state;
 

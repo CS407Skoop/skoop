@@ -150,6 +150,7 @@ export const logInSubmit = () => {
             console.log(text);
             var objReceived = JSON.parse(text);
             if (objReceived.message === 'SUCCESS') {
+                console.log(objReceived);
                 store.dispatch(storeUserLogInDetails(objReceived));
 
             }
@@ -692,7 +693,16 @@ export const onTimelineDateChange = (index) => {
     }
 }
 
+export const changeToggleInStore = (toggle) => {
+    return {
+        type: 'CHANGE_TOGGLE',
+        payload: toggle
+    }
+}
+
 export const changeToggle = (toggle) => {
+
+    store.dispatch(changeToggleInStore(toggle))
 
     if(store.getState().callGA == 7) {
         store.dispatch(getArticles())
@@ -701,11 +711,10 @@ export const changeToggle = (toggle) => {
         store.dispatch(onTimelineDateChange(store.getState().callGA));
     }
 
-
     return {
-        type: 'CHANGE_TOGGLE',
-        payload: toggle
+        type: 'DUMMY',
     }
+    
 }
 
 export const likeArticle = (objToSend) => {
@@ -721,13 +730,22 @@ export const likeArticle = (objToSend) => {
     fetch(request).then(function (response) {
         console.log(response);
         response.text().then(function (text) {
+            console.log(text);
             var objReceived = JSON.parse(text);
             console.log(objReceived);
+            store.dispatch(storeFavoriteArticleDetails(objReceived))
            
         })
     })
     return {
         type: 'DUMMY'
+    }
+}
+
+export const storeFavoriteArticleDetails = (details) => {
+    return {
+        type: 'STORE_FAVARTICLES_DETAILS',
+        payload: details
     }
 }
 
@@ -752,6 +770,34 @@ export const getLocationCentre = (location) => {
                 lng: objReceived.longitude,
             }
             store.dispatch(updateCenter(center))
+           
+        })
+    })
+    return {
+        type: 'DUMMY'
+    }
+}
+
+export const removeArticle = (id) => {
+    var objToSend = JSON.stringify({
+        id: id,
+        username: store.getState().signInUserEmail
+    })
+    var request = new Request('http://skoopnews.herokuapp.com/api/likeArticle/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: objToSend
+    });
+    fetch(request).then(function (response) {
+        console.log(response);
+        response.text().then(function (text) {
+            console.log(text);
+            var objReceived = JSON.parse(text);
+            console.log(objReceived);
+            store.dispatch(storeFavoriteArticleDetails(objReceived))
            
         })
     })

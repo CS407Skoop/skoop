@@ -4,7 +4,7 @@ import './rightPane.css'
 import './ArticleFrame';
 import { Button } from 'reactstrap';
 import ArticleFrame from './ArticleFrame';
-import { hideArticleInformation, closeRightPane, likeArticle, storeArticles } from '../../actions'
+import { hideArticleInformation, closeRightPane, likeArticle, getArticles, onTimelineDateChange } from '../../actions'
 import {
     FacebookShareButton,
     GooglePlusShareButton,
@@ -41,26 +41,25 @@ class RightPane extends Component {
             id: this.state.id,
             username: store.getState().signInUserEmail
         }
-        var articles = store.getState().articles;
-        //console.log(articles);
-        var ind;
-        var id = this.state.id;
-        articles.forEach(function(item, index, array) {
-            //console.log(item, index);
-            if(item.id == id) {
-                if(articles[index].isLiked) {
-                    articles[index].isLiked = false;
-                }else {
-                    articles[index].isLiked = true;
-                }
-                //console.log(articles[index]);
-                ind = index;
-            }
-          });
-          console.log(ind);
-        console.log(articles[ind]);
+        // var articles = store.getState().articles;
+        // //console.log(articles);
+        // var ind;
+        // var id = this.state.id;
+        // articles.forEach(function(item, index, array) {
+        //     //console.log(item, index);
+        //     if(item.id == id) {
+        //         if(articles[index].isLiked) {
+        //             articles[index].isLiked = false;
+        //         }else {
+        //             articles[index].isLiked = true;
+        //         }
+        //         //console.log(articles[index]);
+        //         ind = index;
+        //     }
+        //   });
+        //   console.log(ind);
+        // console.log(articles[ind]);
         store.dispatch(likeArticle(JSON.stringify(objToSend)));
-        store.dispatch(storeArticles(articles));
     }
 
     // showArticleItems() {
@@ -94,13 +93,10 @@ class RightPane extends Component {
             }
         }
         var likeArticle;
-        var text;
-        if(this.state) {
-            if(this.state.isLiked) {
-            text = "Unlike article";
-            }
-            else {
-            text = "Like article";
+        var text = 'Like Article';
+        if(store.getState().favoriteArticleIDs && this.state) {
+        if(store.getState().favoriteArticleIDs.includes(this.state.id)) {
+            text = 'Unlike article'
             }
         }
         if(store.getState().userLoggedIn) {

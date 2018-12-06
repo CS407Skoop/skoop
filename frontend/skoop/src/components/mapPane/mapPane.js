@@ -106,7 +106,7 @@ class MapPane extends Component {
                         
                     </Row>    
                 </Grid>
-                <div style={{ width: '60%', background: '#eaecf2', transform: `translate(${0}px, ${-110}px)` , height: '100px', margin: '0 auto' }}>
+                <div style={{ width: '37%', background: '#eaecf2', transform: `translate(${0}px, ${-110}px)` , height: '100px', margin: '0 auto' }}>
                             <HorizontalTimeline
                                 index={this.state.index}
                                 indexClick={this.onIndexChange.bind(this)}
@@ -127,7 +127,7 @@ class MapPane extends Component {
 
                                 </Row>
                             </Grid>
-                            <div style={{ width: '60%', background: '#eaecf2', transform: `translate(${0}px, ${-110}px)` , height: '100px', margin: '0 auto' }}>
+                            <div style={{ width: '37%', background: '#eaecf2', transform: `translate(${0}px, ${-110}px)` , height: '100px', margin: '0 auto' }}>
                             <HorizontalTimeline
                                 index={this.state.index}
                                 indexClick={this.onIndexChange.bind(this)}

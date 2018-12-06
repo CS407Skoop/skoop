@@ -5,7 +5,7 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Nav from 'react-bootstrap/lib/Nav';
 import './SkoopNavbar.css';
 import { store } from '../../store';
-import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode, updateZoom, updateCenter, searchValueChange, getSearchResults, getArticles } from '../../actions';
+import { openLogInModal, openSignUpModal, showLogOutModal, enterGuestMode, updateZoom, updateCenter, searchValueChange, getSearchResults, getArticles, hideArticleInformation } from '../../actions';
 import 'semantic-ui-css/semantic.min.css';
 import { FaHome, FaSearch } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
@@ -48,6 +48,7 @@ class SkoopNavbar extends Component {
             }
             store.dispatch(updateCenter(center))
             store.dispatch(updateZoom(1));
+            store.dispatch(hideArticleInformation())
         }
         if (selectedKey === 8) {
             store.dispatch(getSearchResults(this.state.selectedValue));

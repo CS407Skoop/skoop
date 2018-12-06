@@ -35,8 +35,9 @@ def login():
 
         for artID in user.parsePreferences(user.articles):
             tempArt = Article.query.filter_by(id=artID).first()
-        articleTitles.append(tempArt.title)
-        articleLinks.append(tempArt.url)
+            if tempArt is not None:
+                articleTitles.append(tempArt.title)
+                articleLinks.append(tempArt.url)
 
         ret = {
             'message': 'SUCCESS',
@@ -157,12 +158,13 @@ def validate(hash):
         print(user)
         print(user.isValidated)
         db.session.commit()
-        ret = {
-            'message' : 'Successfully credentials'
-        }
-        js = json.dumps(ret)
-        resp = Response(js, status=200, mimetype='application/json')
-        return resp
+        ret = "<html><body><center>Successfully credentials</center></body></html>"
+        #ret = {
+        #    'message' : 'Successfully credentials'
+        #}
+        #js = json.dumps(ret)
+        #resp = Response(js, status=200, mimetype='application/json')
+        return ret
 
 
 @app.route('/api/getArticles/', methods=['GET', 'POST'])
@@ -200,7 +202,7 @@ def modifyArticleLike():
     data = request.get_json()
 
     username = data['username']
-    articleID = data['id']
+    articleID = str(data['id'])
 
     user = User.query.filter_by(email=username).first()
 
@@ -221,16 +223,18 @@ def modifyArticleLike():
         #print(articleID in article_array)
 
         if articleID not in article_array:
-            article_array.append(articleID)
+            str(article_array.append(articleID))
 
         else :
             article_array.remove(articleID)
 
         user.articles = ','.join(article_array)
-        user.articles += ","
+        if len(article_array) is not 0:
+            user.articles += ","
         db.session.commit()
         ret = {
             'message': 'SUCCESS',
+            'favoriteArticles': article_array
         }
         js = json.dumps(ret)
         resp = Response(js, status=200, mimetype='application/json')

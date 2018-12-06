@@ -14,11 +14,40 @@ import CategoryCheckbox from './CategoryCheckbox';
 
 class PreferencesModal extends Component {
 
+    constructor() {
+        super();
+        var allCats = new Array(store.getState().allCategories.length);
+        for(var i = 0; i<store.getState().allCategories.length; i++) {
+
+
+            var toAdd = {
+                value: i,
+                label: store.getState().allCategories[i]
+            }
+            allCats.push(toAdd)
+            
+        }
+        console.log(allCats)
+        this.state = {
+            allCats: allCats,
+            userCats: store.getState().blockedCategories
+        }
+    }
+
+    onSelectChange(e) {
+        this.setState({
+            blockedToSend: e
+        })
+    }
+
     closeModal() {
+        this.setState({
+            blockedToSend: []
+        })
         store.dispatch(closePrefModal())
     }
     submitPref() {
-        store.dispatch(submitEditPref());
+        store.dispatch(submitEditPref(this.state.blockedToSend));
     }
     categoriesToShow() {
     return (
@@ -39,7 +68,30 @@ class PreferencesModal extends Component {
             }
 
     render() {
-        
+            if(store.getState().userCats){
+            if(this.state.userCats.length != store.getState().blockedCategories.length) {
+                this.setState({
+                    userCats: store.getState().blockedCategories
+                })
+            }
+        }
+
+            
+            var userCats = new Array(store.getState().blockedCategories.length);
+            for(var i = 0; i<store.getState().allCategories.length; i++) {
+                    if(store.getState().blockedCategories.includes(store.getState().allCategories[i])){
+
+                        //console.log("AAAA")
+                        //console.log(store.getState().allCategories[i])
+
+                        var toAdd = {
+                            value: i,
+                            label: store.getState().allCategories[i]
+                        }
+                        userCats.push(toAdd)
+                        }
+
+                        }
         console.log(store.getState().tempFavoriteLocations)
         var one = "";
         var two = "";
@@ -101,16 +153,21 @@ class PreferencesModal extends Component {
                                Blocked Categories
                             </Col>
                             <Col sm={8}>
-                              
+                            <Select
+                                defaultValue={userCats}
+                                isMulti
+                                options={this.state.allCats}
+                                onChange={(e) => this.onSelectChange(e)}
+                            />
                               </Col>
                             </FormGroup>
                         
                         <FormGroup>
                             <Col smOffset={2} sm={2}>
-                                <Button bsStyle="primary" onClick={this.submitPref} >Submit</Button>
+                                <Button bsStyle="primary" onClick={this.submitPref.bind(this)} >Submit</Button>
                             </Col>
                             <Col smOffset={6} sm={2}>
-                                <Button onClick={this.closeModal} >Cancel</Button>
+                                <Button onClick={this.closeModal.bind(this)} >Cancel</Button>
 
                             </Col>
                         </FormGroup>

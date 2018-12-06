@@ -23,7 +23,8 @@ class Markers extends Component {
             url: this.props.url,
             title: this.props.title,
             category: this.props.category,
-            id: this.props.id
+            id: this.props.id,
+            isLiked: this.props.isLiked
         }
     }
 
@@ -32,8 +33,10 @@ class Markers extends Component {
         var toStore = {
             url: this.state.url,
             title: this.state.title,
-            id: this.state.id
+            id: this.state.id,
+            isLiked: this.state.isLiked
         }
+        console.log(toStore);
         store.dispatch(storeArticleDetails(toStore))
     }
 

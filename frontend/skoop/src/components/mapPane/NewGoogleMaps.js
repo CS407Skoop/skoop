@@ -16,7 +16,12 @@ import Location from '../../images/location.png'
 class NewGoogleMaps extends Component {
 
 
-
+    constructor() {
+        super();
+        this.state = {
+            articles: store.getState.articles
+        }
+    }
     UserLocation = () => {
         if(store.getState().locationGiven)
         return (
@@ -91,8 +96,9 @@ class NewGoogleMaps extends Component {
             },
         }
         var articles = store.getState().articles;
+        console.log(articles[98]);
                     var markers = articles.map(function (article) {
-                        return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} id = {article.id} />
+                        return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} id = {article.id} isLiked={article.isLiked}/>
                     })
         if (articles.length > 0) {
             

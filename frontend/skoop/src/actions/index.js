@@ -145,7 +145,9 @@ export const logInSubmit = () => {
           body: jsonToSend
         });
     fetch(request).then(function(response){
+        console.log(response);
         response.text().then(function(text) {
+            console.log(text);
             var objReceived = JSON.parse(text);
             if (objReceived.message === 'SUCCESS') {
                 store.dispatch(storeUserLogInDetails(objReceived));
@@ -203,7 +205,7 @@ export const noLocationGiven = () => {
 }
 
 export const storeArticles = (articles) => {
-    console.log(articles);
+    //console.log(articles[98]);
     return {
         type: 'STORE_ARTICLES',
         payload: articles
@@ -217,10 +219,23 @@ export const getArticles = () => {
     var year = newDate.getFullYear();
     var month = newDate.getMonth()+1;
     var day = newDate.getDate();
-    var date = year + "-" + month + "-" + day + " 00:00:00"
+    var date = year + "-" + month + "-" + day + " 00:00:00";
+    var username = 'dummy';
+    if(store.getState().signInUserEmail) {
+        username = store.getState().signInUserEmail;
+    }
     console.log(date);
+    var toggle;
+    if(!store.getState().toggle) {
+        toggle = false;
+    }
+    else {
+        toggle = store.getState().toggle;
+    }
     var jsonToSend = JSON.stringify({
-        date: date
+        date: date,
+        toggle: toggle,
+        username: username
     })
     console.log(jsonToSend);
     var request = new Request('http://skoopnews.herokuapp.com/api/getArticles/', {
@@ -234,6 +249,7 @@ export const getArticles = () => {
     fetch(request).then(function (response) {
         console.log(response);
         response.text().then(function (text) {
+            //console.log(text);
             var objReceived = JSON.parse(text);
             console.log(objReceived);
             store.dispatch(storeArticles(objReceived.value));
@@ -494,14 +510,26 @@ export const updateAfterResponsePref = (res) => {
     }
 }
 
-export const submitEditPref = () => {
+export const submitEditPref = (blockedToSend) => {
+    console.log(blockedToSend);
 const currentStore = store.getState();
+var favoriteArticles = [];
+if(currentStore.favoriteArticles) {
+    favoriteArticles = currentStore.favoriteArticles;
+}
+var blockedCategories = new Array();
+if(blockedToSend) {
+for(var i = 0; i<blockedToSend.length; i++) {
+    blockedCategories.push(blockedToSend[i].label)
+    }
+}
 var jsonToSend = JSON.stringify({
         username: currentStore.signInUserEmail,
         password: currentStore.signInPassword,
-        favoriteArticles: currentStore.favoriteArticles,
+        favoriteArticles: favoriteArticles,
         favoriteLocations: currentStore.tempFavoriteLocations,
-        categories: currentStore.tempCategories
+        categories: currentStore.tempCategories,
+        blockedCategories: blockedCategories
     })
     console.log(jsonToSend);
     var request = new Request('http://skoopnews.herokuapp.com/api/editPreferences/', {
@@ -605,7 +633,16 @@ export const getSearchResults = (flag) => {
     }
 }
 
+export const callGA = (bVal) => {
+    return {
+        type: 'CALL_GA',
+        payload: bVal
+    }
+}
+
 export const onTimelineDateChange = (index) => {
+        store.dispatch(callGA(index))
+   
     var newDate = new Date();
     console.log(newDate);
     var tStamp = newDate.getTime() - ((7-index) * 24 * 60 * 60 * 1000);
@@ -615,8 +652,22 @@ export const onTimelineDateChange = (index) => {
     var day = newDay.getDate(); 
     var date = year + "-" + month + "-" + day + " 00:00:00"
     console.log(date);
+    var username = 'dummy';
+    if(store.getState().signInUserEmail) {
+        username = store.getState().signInUserEmail;
+    }
+    console.log(date);
+    var toggle;
+    if(!store.getState().toggle) {
+        toggle = false;
+    }
+    else {
+        toggle = store.getState().toggle;
+    }
     var jsonToSend = JSON.stringify({
-        date: date
+        date: date,
+        username: username,
+        toggle: toggle
     })
     console.log(jsonToSend);
     var request = new Request('http://skoopnews.herokuapp.com/api/getArticles/', {
@@ -631,8 +682,76 @@ export const onTimelineDateChange = (index) => {
         console.log(response);
         response.text().then(function (text) {
             var objReceived = JSON.parse(text);
-            
+            console.log(objReceived);
             store.dispatch(storeArticles(objReceived.value));
+           
+        })
+    })
+    return {
+        type: 'DUMMY'
+    }
+}
+
+export const changeToggle = (toggle) => {
+
+    if(store.getState().callGA == 7) {
+        store.dispatch(getArticles())
+    }
+    else {
+        store.dispatch(onTimelineDateChange(store.getState().callGA));
+    }
+
+
+    return {
+        type: 'CHANGE_TOGGLE',
+        payload: toggle
+    }
+}
+
+export const likeArticle = (objToSend) => {
+    console.log(objToSend);
+    var request = new Request('http://skoopnews.herokuapp.com/api/likeArticle/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: objToSend
+    });
+    fetch(request).then(function (response) {
+        console.log(response);
+        response.text().then(function (text) {
+            var objReceived = JSON.parse(text);
+            console.log(objReceived);
+           
+        })
+    })
+    return {
+        type: 'DUMMY'
+    }
+}
+
+export const getLocationCentre = (location) => {
+    var jsonToSend = JSON.stringify({
+        country: location
+    })
+    var request = new Request('http://skoopnews.herokuapp.com/api/getLocation/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: jsonToSend
+    });
+    fetch(request).then(function (response) {
+        console.log(response);
+        response.text().then(function (text) {
+            var objReceived = JSON.parse(text);
+            var center = {
+                lat: objReceived.latitude,
+                lng: objReceived.longitude,
+            }
+            store.dispatch(updateCenter(center))
            
         })
     })

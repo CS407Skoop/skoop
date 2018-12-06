@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './leftPane.css';
 import { store } from '../../store';
 import { ListGroup, ListGroupItem, DropdownButton, ButtonToolbar, MenuItem, Button, Clearfix, Dropdown, Modal } from 'react-bootstrap';
-import { closeLeftPane, openPreferencesModal } from '../../actions';
+import { closeLeftPane, openPreferencesModal, changeToggle, getLocationCentre } from '../../actions';
 import  PreferencesModal from '../preferencesModal/preferencesModal';
 import Toggle from 'react-toggle';
 import './toggle.css';
@@ -19,6 +19,8 @@ class LeftPane extends Component {
     handleToggleChange() {
         this.setState({
             userPreferncesMode: !this.state.userPreferncesMode
+        }, () => {
+            store.dispatch(changeToggle(this.state.userPreferncesMode))
         })
     }
 
@@ -29,18 +31,23 @@ class LeftPane extends Component {
     openPreferencesModal() {
         store.dispatch(openPreferencesModal());
     }
-    showLocationItems () {
-        if (store.getState().favoriteLocations) {
-            console.log(store.getState().favoriteLocations)
-            const locationItems = store.getState().favoriteLocations.map(function(location) {
-            return <ListGroupItem > {location} </ListGroupItem>
-        })
-    return locationItems;
-        }
-        else
-        return <div />
 
+    centreLocation(location) {
+        store.dispatch(getLocationCentre(location));
     }
+
+    // showLocationItems () {
+    //     if (store.getState().favoriteLocations) {
+    //         console.log(store.getState().favoriteLocations)
+    //         const locationItems = store.getState().favoriteLocations.map(function(location) {
+    //         return <ListGroupItem onClick = {this.centreLocation(location)}> {location} </ListGroupItem>
+    //     })
+    // return locationItems;
+    //     }
+    //     else
+    //     return <div />
+
+    // }
 
      showArticleItems() {
          
@@ -91,7 +98,22 @@ class LeftPane extends Component {
 
 
     render() {
-        console.log(this.showCategoryItems);
+        var locationItems;
+        const cox = this;
+        var blockedCategories = <div />;
+        if (store.getState().blockedCategories) {
+            blockedCategories = store.getState().blockedCategories.map(function(category) {
+            return <ListGroupItem > {category} </ListGroupItem>
+            })
+        }
+        if (store.getState().favoriteLocations) {
+            console.log(store.getState().favoriteLocations)
+            locationItems = store.getState().favoriteLocations.map(function(location) {
+            return <ListGroupItem onClick = {cox.centreLocation.bind(cox, location)}> {location} </ListGroupItem>
+            })
+        }
+        else
+            locationItems = <div />
         return (
             
             <div className="leftPaneDiv">
@@ -122,7 +144,7 @@ class LeftPane extends Component {
 
                         <h4 id="favoriteLocations">Favorite Locations </h4>
                   <ListGroup>
-                 <this.showLocationItems />
+                 {locationItems}
                  </ListGroup>
 
                   <div className="favArticlesButton">
@@ -134,7 +156,7 @@ class LeftPane extends Component {
                   </ListGroup>
                   <ListGroup >
                             <h4 id="Categories">Blocked Categories</h4>
-                  <this.showCategoryItems />
+                  {blockedCategories}
                   </ListGroup>
                   <div className="toggleDiv">
                   <label>

@@ -86,6 +86,7 @@ export default (state, action) => {
                 openLeftPane: false,
                 mapLoading: true,
                 zoom: 1,
+                toggle: false,
                 center: {
                     lat: 40.424546,
                     lng: -86.921826
@@ -107,6 +108,8 @@ export default (state, action) => {
                     allCategories: ['Auto', 'Business', 'Education', 'Entertainment', 'Food', 'Health', 'Military', 'Politics', 'Product', 'Product', 'Real Estate', 'Science', 'Sport', 'World'],
                     mapLoading: true,
                     zoom: 1,
+                    toggle: false,
+                    callGA: 7,
                     center: {
                         lat: 40.424546,
                         lng: -86.921826
@@ -120,11 +123,13 @@ export default (state, action) => {
                 userLoggedIn: false,
                 showMainScreen: false,
                 firstName: '',
+                callGA: 7,
                 lastName: '',
                                             email: '',
                                             favoriteLocations: '',
                                             favoriteArticles: '',
                                             categories: '',
+                                            blockedCategories: '',
                                             showLogOutModal: false
 
 
@@ -151,7 +156,8 @@ export default (state, action) => {
                                             email: action.payload.email,
                                             favoriteLocations: action.payload.favoriteLocations,
                                             favoriteArticles: action.payload.favoriteArticles,
-                                            categories: action.payload.categories
+                                            categories: action.payload.categories,
+                                            blockedCategories: action.payload.blockedCategories
             }
         }
 
@@ -266,6 +272,7 @@ export default (state, action) => {
                 ...state,
                 favoriteLocations: action.payload.favoriteLocations,
                 categories: action.payload.categories,
+                blockedCategories: action.payload.blockedCategories
 
 
             }
@@ -342,6 +349,18 @@ export default (state, action) => {
             }
         }
 
+        case 'CHANGE_TOGGLE': {
+            return {
+                ...state,
+                toggle: action.payload
+            }
+        }
+        case 'CALL_GA': {
+            return {
+                ...state,
+                callGA: action.payload 
+            }
+        }
         default:
             return state;
 

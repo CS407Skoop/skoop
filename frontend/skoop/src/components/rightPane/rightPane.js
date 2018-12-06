@@ -4,7 +4,7 @@ import './rightPane.css'
 import './ArticleFrame';
 import { Button } from 'reactstrap';
 import ArticleFrame from './ArticleFrame';
-import { hideArticleInformation, closeRightPane } from '../../actions'
+import { hideArticleInformation, closeRightPane, likeArticle, storeArticles } from '../../actions'
 import {
     FacebookShareButton,
     GooglePlusShareButton,
@@ -18,14 +18,49 @@ import {
     from 'react-share';
 
 class RightPane extends Component {
+
+    constructor() {
+        super();
+        if(store.getState().articleDetails){
+        this.state = {
+            id: store.getState().articleDetails.id,
+            isLiked: store.getState().articleDetails.isLiked
+            }
+        }
+    }
+
     onClick() {
         store.dispatch(hideArticleInformation());
     }
 
     onLikeArticle() {
+        this.setState ({
+            isLiked: !this.state.isLiked
+        })
         var objToSend = {
-            id: store.getState().articleDetails.id
+            id: this.state.id,
+            username: store.getState().signInUserEmail
         }
+        var articles = store.getState().articles;
+        //console.log(articles);
+        var ind;
+        var id = this.state.id;
+        articles.forEach(function(item, index, array) {
+            //console.log(item, index);
+            if(item.id == id) {
+                if(articles[index].isLiked) {
+                    articles[index].isLiked = false;
+                }else {
+                    articles[index].isLiked = true;
+                }
+                //console.log(articles[index]);
+                ind = index;
+            }
+          });
+          console.log(ind);
+        console.log(articles[ind]);
+        store.dispatch(likeArticle(JSON.stringify(objToSend)));
+        store.dispatch(storeArticles(articles));
     }
 
     // showArticleItems() {
@@ -40,8 +75,40 @@ class RightPane extends Component {
     //     else
     //     return <div />
     // }
-
+    
     render() {
+        if(store.getState().articleDetails){
+            if(!this.state) {
+            this.setState({
+                id: store.getState().articleDetails.id,
+                isLiked: store.getState().articleDetails.isLiked
+                })
+            }
+            else {
+                if(this.state.id != store.getState().articleDetails.id) {
+                  this.setState({
+                    id: store.getState().articleDetails.id,
+                    isLiked: store.getState().articleDetails.isLiked
+                  })  
+                }
+            }
+        }
+        var likeArticle;
+        var text;
+        if(this.state) {
+            if(this.state.isLiked) {
+            text = "Unlike article";
+            }
+            else {
+            text = "Like article";
+            }
+        }
+        if(store.getState().userLoggedIn) {
+            likeArticle = (<Button color="danger" style={{marginTop: "8px", marginLeft: "10px"}} onClick={this.onLikeArticle.bind(this)}>{text}</Button>)            
+        }
+        else {
+            likeArticle =  <div />
+        }
         if (store.getState().showArticleFrame) {
             console.log(store.getState().articleDetails);
             return (
@@ -54,7 +121,7 @@ class RightPane extends Component {
 
                        
                        
-                            <Button color="danger" style={{marginTop: "8px", marginLeft: "10px"}} onClick={this.onLikeArticle}>Like article</Button>
+                            {likeArticle}
                             <div className="shareButtons">
                             <FacebookShareButton
 

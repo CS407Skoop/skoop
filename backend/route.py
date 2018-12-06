@@ -32,12 +32,14 @@ def login():
     else :
         articleTitles = []
         articleLinks = []
+        articlesIDs = []
 
         for artID in user.parsePreferences(user.articles):
             tempArt = Article.query.filter_by(id=artID).first()
             if tempArt is not None:
                 articleTitles.append(tempArt.title)
                 articleLinks.append(tempArt.url)
+                articlesIDs.append(tempArt.id)
 
         ret = {
             'message': 'SUCCESS',
@@ -45,6 +47,7 @@ def login():
             'lastName': user.last_name,
             'email': username,
             'favoriteLocations': user.parsePreferences(user.locations),
+            'favoriteArticleIDs': articlesIDs,
             'favoriteArticleTitles': articleTitles,
             'favoriteArticleLinks': articleLinks,
             'categories': user.parsePreferences(user.categories),
@@ -232,9 +235,22 @@ def modifyArticleLike():
         if len(article_array) is not 0:
             user.articles += ","
         db.session.commit()
+
+        articleTitles = []
+        articleLinks = []
+        articlesIDs = []
+
+        for artID in article_array:
+            tempArt = Article.query.filter_by(id=artID).first()
+            if tempArt is not None:
+                articleTitles.append(tempArt.title)
+                articleLinks.append(tempArt.url)
+                articlesIDs.append(tempArt.id)
+
         ret = {
-            'message': 'SUCCESS',
-            'favoriteArticles': article_array
+            'favoriteArticleIDs': articlesIDs,
+            'favoriteArticleTitles': articleTitles,
+            'favoriteArticleLinks': articleLinks
         }
         js = json.dumps(ret)
         resp = Response(js, status=200, mimetype='application/json')

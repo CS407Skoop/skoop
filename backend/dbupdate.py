@@ -227,9 +227,9 @@ def searchArticles(search_str, new):
     filtered_search = [word.lower() for word in search_list if word not in stopwords.words('english')]
 
     if new:
-        articles = json.loads(getTimeLineArticles(date))
+        articles = json.loads(getTimeLineArticles(date, False, "dummy"))
     else:
-        articles = json.loads(getTimeLineArticles(None))
+        articles = json.loads(getTimeLineArticles(None, False, "dummy"))
 
     for article in articles["value"]:
         if not new and article["article_date"] == date:

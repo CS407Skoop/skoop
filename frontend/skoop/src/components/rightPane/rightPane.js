@@ -100,7 +100,7 @@ class RightPane extends Component {
             }
         }
         if(store.getState().userLoggedIn) {
-            likeArticle = (<Button color="danger" style={{marginTop: "8px", marginLeft: "10px"}} onClick={this.onLikeArticle.bind(this)}>{text}</Button>)            
+            likeArticle = (<Button color="danger" style={{marginTop: "1%", marginLeft: "2%"}} onClick={this.onLikeArticle.bind(this)}>{text}</Button>)
         }
         else {
             likeArticle =  <div />
@@ -112,7 +112,7 @@ class RightPane extends Component {
                     <div className="frameHeader">
 
                             
-                            <Button color="danger" style={{marginTop: "8px", marginLeft: "-120px" }} onClick={this
+                            <Button color="danger" style={{marginTop: "1%", marginLeft: "-38%" }} onClick={this
                             .onClick}>Go back to Map</Button>
 
                        
@@ -127,14 +127,14 @@ class RightPane extends Component {
                                 round />
                             </FacebookShareButton>
                             <TwitterShareButton
-                                style={{marginLeft: "5px" }}
+                                style={{marginLeft: "2%" }}
                                 url={store.getState().articleDetails.url}>
                                 <TwitterIcon
                                 size={32}
                                 round />
                             </TwitterShareButton>
                             <GooglePlusShareButton
-                                style={{marginLeft: "5px" }}
+                                style={{marginLeft: "2%" }}
                                 url={store.getState().articleDetails.url}>
                                 <GooglePlusIcon
                                 size={32}

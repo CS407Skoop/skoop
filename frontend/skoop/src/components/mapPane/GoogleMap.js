@@ -153,7 +153,7 @@ class GoogleMap extends Component {
             }
             if (store.getState().zoom >=6  ||  articles.length <= 10) {
                 markers = articles.map(function (article) {
-                    return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title}/>
+                    return <Markers lat={article.latitude} lng={article.longitude} category={article.category} url={article.url} title={article.title} id = {article.id} isLiked={article.isLiked}/>
                 })
             } else {
                 markers = <div />

@@ -1,6 +1,6 @@
 flask_mysql==1.4.0
 geopy==1.17.0
-certifi==2018.04.16
+certifi==2022.12.7
 geotext==0.2.0
 mysqlclient==1.3.13
 flask==1.0.2
